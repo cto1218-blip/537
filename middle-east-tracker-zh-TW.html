@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 美以伊衝突追蹤 | 地緣政治情報儀表板</title>
+    
+    <!-- 自动刷新：每小时重新加载页面 -->
+    <meta http-equiv="refresh" content="3600">
+    
+    <style>
+        :root {
+            --color-bg: #0a0f1e;
+            --color-surface: #141b2d;
+            --color-surface-elevated: #1a2332;
+            --color-border: rgba(99, 102, 241, 0.15);
+            --color-border-strong: rgba(99, 102, 241, 0.3);
+            --color-text-primary: #e2e8f0;
+            --color-text-secondary: #94a3b8;
+            --color-text-muted: #64748b;
+            --color-accent-primary: #6366f1;
+            --color-accent-secondary: #8b5cf6;
+            --color-conflict: #ef4444;
+            --color-warning: #f59e0b;
+            --color-success: #10b981;
+            --color-info: #3b82f6;
+            --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+            --font-mono: "SF Mono", Monaco, "Cascadia Code", "Consolas", "Courier New", monospace;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-display);
+            background: var(--color-bg);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.06) 0%, transparent 40%);
+            z-index: -1;
+            animation: pulse-bg 20s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-bg {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+        
+        .header .timestamp {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 8px 16px;
+            background: var(--color-surface-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+            font-size: 0.875rem;
+            font-family: var(--font-mono);
+            color: var(--color-accent-primary);
+        }
+        
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+        
+        .stat-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--card-accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .stat-card:hover {
+            border-color: var(--color-border-strong);
+            transform: translateY(-4px);
+        }
+        
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+        
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--card-accent), var(--color-accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+        
+        .stat-meta {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+        
+        .stat-change {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            font-family: var(--font-mono);
+            margin-left: 6px;
+        }
+        
+        .stat-change.positive {
+            color: #10b981;
+        }
+        
+        .stat-change.negative {
+            color: #ef4444;
+        }
+        
+        .section {
+            margin-bottom: 48px;
+        }
+        
+        .section-title {
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            font-weight: 800;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--section-accent, var(--color-accent-primary)), var(--color-accent-secondary));
+            border-radius: 12px;
+            font-size: 1.5rem;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        
+        .news-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .news-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #ef4444, #dc2626);
+            border-radius: 16px 0 0 16px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .news-card:hover {
+            border-color: rgba(239, 68, 68, 0.4);
+            transform: translateX(4px);
+        }
+        
+        .news-card:hover::before {
+            opacity: 1;
+        }
+        
+        .news-source {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #fca5a5;
+            margin-bottom: 12px;
+            font-family: var(--font-mono);
+        }
+        
+        .news-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .news-description {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        .news-date {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            font-family: var(--font-mono);
+        }
+        
+        .predictions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .prediction-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .prediction-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #f59e0b, #d97706);
+            border-radius: 16px 0 0 16px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .prediction-card:hover {
+            border-color: rgba(245, 158, 11, 0.4);
+            transform: translateX(4px);
+        }
+        
+        .prediction-card:hover::before {
+            opacity: 1;
+        }
+        
+        .prediction-actor {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            font-size: 0.813rem;
+            font-weight: 700;
+            color: #fbbf24;
+            margin-bottom: 16px;
+        }
+        
+        .prediction-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .prediction-description {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+            margin-bottom: 16px;
+            max-height: 120px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        
+        .probability-bar-container {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border);
+        }
+        
+        .probability-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.813rem;
+            color: var(--color-text-muted);
+        }
+        
+        .probability-value {
+            font-weight: 700;
+            font-family: var(--font-mono);
+            color: #fbbf24;
+            font-size: 0.875rem;
+        }
+        
+        .probability-bar {
+            height: 8px;
+            background: var(--color-surface-elevated);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .probability-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+            border-radius: 8px;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .polymarket-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        
+        .polymarket-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .polymarket-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #06b6d4, #0891b2);
+            border-radius: 16px 0 0 16px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .polymarket-card:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            transform: translateX(4px);
+        }
+        
+        .polymarket-card:hover::before {
+            opacity: 1;
+        }
+        
+        .polymarket-question {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        .polymarket-odds {
+            display: flex;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        
+        .odds-option {
+            flex: 1;
+            background: var(--color-surface-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .odds-option:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+        }
+        
+        .odds-label {
+            font-size: 0.813rem;
+            color: var(--color-text-muted);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .odds-value {
+            font-size: 2rem; min-width: 80px; text-align: center;
+            font-weight: 900;
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .polymarket-description {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .polymarket-volume {
+            font-size: 0.813rem;
+            color: var(--color-text-muted);
+            font-family: var(--font-mono);
+        }
+        
+        .polymarket-volume strong {
+            color: #06b6d4;
+            font-weight: 600;
+        }
+        
+        /* 市場波動分析樣式 */
+        .market-subsection {
+            margin-bottom: 48px;
+        }
+        
+        .market-subtitle {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(16, 185, 129, 0.2);
+        }
+        
+        .market-icon {
+            font-size: 1.75rem;
+        }
+        
+        
+        /* 金价/油价板块：强制分两行显示 */
+        .market-subsection 
+        
+        
+
+        /* 金价/油价：分组显示，自适应换行 */
+        .market-subsection .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+        
+        /* 现价卡片和预测卡片：统一大小，允许3个并排 */
+        .market-subsection .market-grid > .market-card-wrapper.current-price,
+        .market-subsection .market-grid > .market-card-wrapper.prediction-price {
+            min-width: 240px;
+        }
+
+        
+.market-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        
+        .market-subsection .market-grid > .market-card-wrapper,
+        .market-subsection .market-grid > * {
+            width: 100%;
+        }
+        
+        /* 当遇到注释"预测开始"时，前面的卡片为一组 */
+        .market-subsection .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+.market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+        
+        .market-card {
+            background: var(--color-surface);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .market-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(16, 185, 129, 0.3);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
+        }
+        
+        .oil-card {
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .gold-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .gold-card .market-value {
+            color: #92400e;
+        }
+        
+        /* 卡片内的 market-value 调整（无 header 包装时） */
+        .market-card > .market-value {
+            margin-bottom: 12px;
+            font-size: 2.25rem;
+            font-weight: 800;
+        }
+        
+        .gold-card .market-peak {
+            color: #b45309;
+        }
+        
+        /* 预测卡片样式 */
+        .market-card.prediction-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px dashed #0ea5e9;
+            opacity: 0.92;
+        }
+        
+        .market-card.prediction-card .market-label {
+            color: #0369a1;
+            font-weight: 600;
+        }
+        
+        .market-card.prediction-card .market-value {
+            color: #0284c7;
+            font-style: italic;
+        }
+        
+        .market-card.prediction-card .market-meta {
+            color: #0369a1;
+        }
+        
+        
+        
+        /* 当前价格卡片加强 */
+        .market-card.gold-card:not(.prediction-card)::before,
+        
+        
+        
+        
+        
+        
+        .stock-card {
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .etf-card {
+            border-left: 4px solid #10b981;
+        }
+        
+        .oil-analysis, .stock-analysis {
+            grid-column: span 2;
+            border-left: 4px solid #10b981;
+        }
+        
+        .market-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
+        
+        .market-label {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            font-weight: 600;
+        }
+        
+        .market-value {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .market-unit {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            margin-left: 4px;
+        }
+        
+        .market-change {
+            font-size: 1.125rem;
+            font-weight: 600;
+            font-family: var(--font-mono);
+            margin-bottom: 16px;
+        }
+        
+        .market-change.positive {
+            color: #10b981;
+        }
+        
+        .market-change.negative {
+            color: #ef4444;
+        }
+        
+        .market-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8125rem;
+            color: var(--color-text-muted);
+            padding-top: 12px;
+            border-top: 1px solid var(--color-border);
+        }
+        
+        .market-peak, .market-trend, .market-note, .market-recovery {
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+        
+        .analysis-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .analysis-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .analysis-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--color-border);
+            line-height: 1.6;
+            font-size: 0.9375rem;
+        }
+        
+        .analysis-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .positive {
+            color: #10b981;
+            font-weight: 600;
+        }
+        
+        .sector-winner {
+            color: #10b981;
+            font-weight: 600;
+        }
+        
+        .sector-loser {
+            color: #ef4444;
+            font-weight: 600;
+        }
+        
+        /* 市場洞察 */
+        .market-insight {
+            margin-top: 48px;
+            padding: 32px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(6, 182, 212, 0.05));
+            border-radius: 16px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        
+        .insight-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+        
+        .insight-card {
+            background: rgba(20, 27, 45, 0.6);
+            backdrop-filter: blur(12px);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .insight-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+        }
+        
+        .insight-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        
+        .insight-label {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 12px;
+        }
+        
+        .insight-text {
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            color: var(--color-text-secondary);
+        }
+        
+        .insight-text strong {
+            color: #10b981;
+            font-weight: 600;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            padding-bottom: 50px;
+            border-left: 2px solid rgba(139, 92, 246, 0.3);
+            margin-left: 40px;
+        }
+        
+        .timeline-item:last-child {
+            border-left-color: transparent;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: -12px;
+            top: 5px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+            animation: pulse-timeline 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-timeline {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(139, 92, 246, 0.9);
+            }
+        }
+        
+        .timeline-date {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: white;
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 1.05em;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        
+        .timeline-content {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            border-color: var(--color-border-strong);
+            transform: translateX(5px);
+        }
+        
+        .timeline-content h3 {
+            color: #f1f5f9;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        
+        .timeline-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .timeline-content li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+        
+        .timeline-content li:last-child {
+            border-bottom: none;
+        }
+        
+        .timeline-content li:before {
+            content: "▸";
+            position: absolute;
+            left: 12px;
+            color: #8b5cf6;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .highlight {
+            background: rgba(139, 92, 246, 0.2);
+            color: #c4b5fd;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        
+        .alert {
+            background: rgba(236, 72, 153, 0.2);
+            color: #f9a8d4;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            border: 1px solid rgba(236, 72, 153, 0.3);
+        }
+        
+        footer {
+            margin-top: 80px;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+        }
+        
+        footer p {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+        }
+        
+        footer strong {
+            color: var(--color-accent-primary);
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px 16px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            
+            .stats-grid,
+            .news-grid,
+            .polymarket-grid,
+            .predictions-grid,
+            .market-grid,
+            .insight-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .oil-analysis, .stock-analysis {
+                grid-column: span 1;
+            }
+            
+            .market-insight {
+                padding: 24px 16px;
+            }
+            
+            .timeline-item {
+                padding-left: 50px;
+                margin-left: 20px;
+            }
+        }
+        
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-surface-elevated);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-border-strong);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🌐 2026 美以伊衝突追蹤</h1>
+            <p>中東地緣政治局勢情報儀表板</p>
+            <div class="timestamp">最後更新：2026年4月15日 16:00 (UTC+8) | 自動更新</div>
+        </header>
+        
+        <div class="stats-grid">
+            <div class="stat-card" style="--card-accent: var(--color-conflict);">
+                <div class="stat-value">⚠️ 高位</div>
+                <div class="stat-label">地缘风险</div>
+                <div class="stat-meta">以伊冲突 + 美伊谈判</div>
+            </div>
+            
+            <div class="stat-card" style="--card-accent: var(--color-success);">
+                <div class="stat-value">✅ 加薩停火6個月</div>
+                <div class="stat-label">提供經驗借鑒但伊朗停火更脆弱</div>
+                <div class="stat-meta">4月11日週五標誌加薩停火協議<strong>滿6個月</strong>（自2025年10月11日起生效）。儘管6個月內仍有<strong>738人死亡</strong>（加薩衛生部數據），但停火協議基本穩定。加薩停火為伊朗停火提供經驗：<strong>明確範圍、執行機制、監督方可持續</strong>。然而，伊朗停火協議在範圍界定（黎巴嫩問題）上存在<strong>根本性分歧</strong>，執行難度遠高於加薩停火，崩潰風險極高。市場擔憂停火協議脆弱性。</div>
+            </div>
+            
+            <div class="stat-card" style="--card-accent: var(--color-warning);">
+                <div class="stat-value">🛢️ 油價高位波動</div>
+                <div class="stat-label">100%機率突破$105</div>
+                <div class="stat-meta">WTI原油當前<strong>$96-104區間</strong>（近期高點$104.4），Polymarket預測<strong>100%機率</strong>4月內突破$105，<strong>82%機率</strong>突破$110。地緣風險溢價顯著。黎巴嫩衝突升級、停火協議脆弱等因素支撐油價。霍爾木茲海峽<strong>仍未完全重新開放</strong>（僅14%機率4月底前恢復正常）：油輪/貨船繼續觀望，只有俄羅斯油輪通過。<strong>可能存在水雷威脅</strong>，需清理作業。</div>
+            </div>
+            
+            <div class="stat-card" style="--card-accent: var(--color-conflict);">
+                <div class="stat-value">🇮🇱 內塔尼亞胡危機</div>
+                <div class="stat-label">史上最嚴重政治災難</div>
+                <div class="stat-meta">以色列總理內塔尼亞胡在國內遭遇<strong>史無前例的政治風暴</strong>，被指犯下「以色列歷史上<strong>最嚴重的政治災難</strong>」。反對派指控他被川普「強迫接受停火」，未能實現戰爭目標（摧毀真主黨、解除伊朗核威脅）。內塔尼亞胡在國內愈發孤立，執政聯盟岌岌可危。他明確表示「<strong>黎巴嫩沒有停火</strong>」以平息國內批評，但這一立場與伊朗存在根本性矛盾，成為停火協議最大威脅。</div>
+            </div>
+        </div>
+        
+        <!-- 最新消息 -->
+        <section class="section">
+            <h2 class="section-title" style="--section-accent: #ef4444;">
+                <span class="section-title-icon">📰</span>
+                最新消息（過去24小時）
+            </h2>
+            
+            <div class="news-grid">
+                <div class="news-card">
+                    <span class="news-source">AP News</span>
+                    <span class="news-date">2026-04-10</span>
+                    <div class="news-title">加沙停火6个月，进展有限但冲突基本停止</div>
+                    <div class="news-description">根据联合国报告，加沙地带重建工作进展缓慢，超过70%的基础设施仍处于损毁状态。国际援助资金到位率不足40%，超过150万巴勒斯坦人依然流离失所。以色列与哈马斯仍在埃及和卡塔尔斡旋下进行谈判，讨论第二阶段停火条件。</div>
+                </div>
+                <div class="news-card">
+                    <span class="news-source">NDTV Profit</span>
+                    <span class="news-date">2026-04-16</span>
+                    <div class="news-title">以伊战争紧张局势推升油价，霍尔木兹海峡成焦点</div>
+                    <div class="news-description">美国与伊朗代表在阿曼首都马斯喀特举行非公开会谈，讨论停火延期事宜。分析师认为，若霍尔木兹海峡遭到封锁，全球油价可能飙升至$150/桶以上。国际能源署呼吁各国释放战略石油储备以稳定市场。</div>
+                </div>
+                <div class="news-card">
+                    <span class="news-source">Trading Economics</span>
+                    <span class="news-date">2026-04-16</span>
+                    <div class="news-title">金价突破4800美元，地缘风险推动避险需求</div>
+                    <div class="news-description">投资者大量涌入黄金ETF，全球央行连续第15个月净买入黄金。中国、俄罗斯、印度等国加速增持黄金储备，以对冲地缘政治风险和美元波动。分析师预测若中东局势进一步恶化，金价可能挑战$5,000/盎司关口。</div>
+                </div>
+            </div>
+      </section>
+        
+        
+        <!-- AI 預測分析 -->
+        <section class="section">
+            <h2 class="section-title" style="--section-accent: #f59e0b;">
+                <span class="section-title-icon">🔮</span>
+                AI 局勢預測：停火協議面臨嚴峻考驗
+            </h2>
+            
+            <div class="predictions-grid">
+                <div class="prediction-card">
+                    <span class="prediction-actor">AI 模型預測</span>
+                    <div class="prediction-title">美伊谈判在4月底前达成框架协议</div>
+                    <div class="prediction-description">基于特朗普「接近结束」表态和第二轮谈判计划，但军事部署仍在增加显示谨慎态度</div>
+                    <div class="probability-bar-container">
+                        <div class="probability-label">
+                            <span>可能性</span>
+                            <span class="probability-value">42%</span>
+                        </div>
+                        <div class="probability-bar">
+                            <div class="probability-fill" style="width: 42%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="prediction-card">
+                    <span class="prediction-actor">AI 模型預測</span>
+                    <div class="prediction-title">霍尔木兹海峡5月内恢复正常通航</div>
+                    <div class="prediction-description">目前商业交通受限但部分船只仍在通行，完全恢复需要正式和平协议支持</div>
+                    <div class="probability-bar-container">
+                        <div class="probability-label">
+                            <span>可能性</span>
+                            <span class="probability-value">35%</span>
+                        </div>
+                        <div class="probability-bar">
+                            <div class="probability-fill" style="width: 35%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="prediction-card">
+                    <span class="prediction-actor">AI 模型預測</span>
+                    <div class="prediction-title">油价在5月回落至80美元以下</div>
+                    <div class="prediction-description">当前WTI约92美元，若谈判成功且海峡通航恢复，供应压力缓解将推动油价下行</div>
+                    <div class="probability-bar-container">
+                        <div class="probability-label">
+                            <span>可能性</span>
+                            <span class="probability-value">28%</span>
+                        </div>
+                        <div class="probability-bar">
+                            <div class="probability-fill" style="width: 28%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="prediction-card">
+                    <span class="prediction-actor">AI 模型預測</span>
+                    <div class="prediction-title">以色列与黎巴嫩边境冲突升级</div>
+                    <div class="prediction-description">虽有空袭报道，但整体局势趋向缓和，大规模冲突升级概率较低</div>
+                    <div class="probability-bar-container">
+                        <div class="probability-label">
+                            <span>可能性</span>
+                            <span class="probability-value">22%</span>
+                        </div>
+                        <div class="probability-bar">
+                            <div class="probability-fill" style="width: 22%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </section>
+        
+        <!-- Polymarket 預測市場 -->
+        <section class="section">
+            <h2 class="section-title" style="--section-accent: #06b6d4;">
+                <span class="section-title-icon">📊</span>
+                Polymarket 預測市場（基於真實交易）
+            </h2>
+            
+            <div class="polymarket-grid">
+                <div class="polymarket-card">
+                    <div class="polymarket-question">
+                        美伊停火協議在4月21日前破裂？
+                    </div>
+                    <div class="polymarket-odds">
+                        <div class="odds-option">
+                            <div class="odds-label">是</div>
+                            <div class="odds-value">52%</div>
+                        </div>
+                        <div class="odds-option">
+                            <div class="odds-label">否</div>
+                            <div class="odds-value">48%</div>
+                        </div>
+                    </div>
+                    <div class="polymarket-description">
+                        黎巴嫩衝突升級、美以伊分歧加劇，停火協議面臨嚴峻考驗。CNN警告「瀕臨崩潰」。
+                    </div>
+                    <div class="polymarket-volume">交易量: <strong>$18.5M</strong></div>
+                </div>
+                
+                <div class="polymarket-card">
+                    <div class="polymarket-question">
+                        WTI油價4月內突破$105？
+                    </div>
+                    <div class="polymarket-odds">
+                        <div class="odds-option">
+                            <div class="odds-label">是</div>
+                            <div class="odds-value">100%</div>
+                        </div>
+                        <div class="odds-option">
+                            <div class="odds-label">否</div>
+                            <div class="odds-value">0%</div>
+                        </div>
+                    </div>
+                    <div class="polymarket-description">
+                        地緣風險溢價顯著，霍爾木茲僵局持續，市場一致預期油價將突破$105。82%機率突破$110。
+                    </div>
+                    <div class="polymarket-volume">交易量: <strong>$12.3M</strong></div>
+                </div>
+                
+                <div class="polymarket-card">
+                    <div class="polymarket-question">
+                        霍爾木茲海峽4月底前恢復正常？
+                    </div>
+                    <div class="polymarket-odds">
+                        <div class="odds-option">
+                            <div class="odds-label">是</div>
+                            <div class="odds-value">14%</div>
+                        </div>
+                        <div class="odds-option">
+                            <div class="odds-label">否</div>
+                            <div class="odds-value">86%</div>
+                        </div>
+                    </div>
+                    <div class="polymarket-description">
+                        油輪/貨船觀望，可能存在水雷威脅需清理。馬士基警告恢復需「數週甚至數月」。
+                    </div>
+                    <div class="polymarket-volume">交易量: <strong>$9.7M</strong></div>
+                </div>
+                
+                <div class="polymarket-card">
+                    <div class="polymarket-question">
+                        黎巴嫩衝突持續至4月底？
+                    </div>
+                    <div class="polymarket-odds">
+                        <div class="odds-option">
+                            <div class="odds-label">是</div>
+                            <div class="odds-value">97%</div>
+                        </div>
+                        <div class="odds-option">
+                            <div class="odds-label">否</div>
+                            <div class="odds-value">3%</div>
+                        </div>
+                    </div>
+                    <div class="polymarket-description">
+                        內塔尼亞胡明確「黎巴嫩沒有停火」，以色列本週發動戰爭以來最大規模空襲。美以伊存在根本性分歧。
+                    </div>
+                    <div class="polymarket-volume">交易量: <strong>$15.2M</strong></div>
+                </div>
+                
+                <div class="polymarket-card">
+                    <div class="polymarket-question">
+                        川普6月前宣布伊朗戰爭結束？
+                    </div>
+                    <div class="polymarket-odds">
+                        <div class="odds-option">
+                            <div class="odds-label">是</div>
+                            <div class="odds-value">15%</div>
+                        </div>
+                        <div class="odds-option">
+                            <div class="odds-label">否</div>
+                            <div class="odds-value">85%</div>
+                        </div>
+                    </div>
+                    <div class="polymarket-description">
+                        當前局勢複雜，黎巴嫩問題是最大障礙。停火協議面臨崩潰風險，6月前實現全面和平可能性較低。
+                    </div>
+                    <div class="polymarket-volume">交易量: <strong>$8.9M</strong></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 黃金市場分析 -->
+        <section class="section">
+            <h2 class="section-title" style="--section-accent: #f59e0b;">
+                <span class="section-title-icon">✨</span>
+                黃金市場分析
+            </h2>
+            
+            <div class="market-subsection">
+                <div class="market-grid">
+                    <!-- 金价指标 -->
+                    <div class="market-card-wrapper">
+                        <div class="market-card-title current">💰 現貨黃金</div>
+                        <div class="market-card gold-card">
+                        <div class="market-value">$4,830 (+0.8%)<span class="market-unit">/盎司</span></div>
+                        </div>
+                        <div class="market-change positive">▲ +2.8%</div>
+                        <div class="market-meta">
+                            <span>4月14日 00:40</span>
+                            <span class="market-peak">避險需求升溫</span>
+                        </div></div>
+                    
+                    <!-- 金价预测开始 -->
+                                        <div class="market-card-wrapper prediction-price">
+                        <div class="market-card-title prediction">📊 短期預測（7日）</div>
+                        <div class="market-card gold-card prediction-card">
+                        <div class="market-value">$4,850-4,950</div>
+                        </div>
+                        <div class="market-change positive">▲ 預測上漲 +2-4%</div>
+                        <div class="market-meta">
+                            <span>7日內</span>
+                            <span class="market-peak">避險情緒主導</span>
+                        </div></div>
+                    
+                    <div class="market-card-wrapper prediction-price">
+                        <div class="market-card-title prediction">📊 悲觀情境（停火破裂）</div>
+                        <div class="market-card gold-card prediction-card">
+                        <div class="market-value">$5,100-5,300</div>
+                        </div>
+                        <div class="market-change positive">▲ 暴漲 +7-11%</div>
+                        <div class="market-meta">
+                            <span>數日內</span>
+                            <span class="market-recovery">機率：52%</span>
+                        </div></div>
+                    </div>
+                    
+                    <div class="market-card stock-analysis">
+                        <div class="analysis-title">📊 金價驅動因素</div>
+                        <ul class="analysis-list">
+                            <li><strong>地緣風險溢價</strong>：停火協議面臨崩潰風險（52%機率破裂），黎巴嫩衝突升級，避險需求升溫</li>
+                            <li><strong>美元走弱預期</strong>：若停火破裂，Fed可能延遲加息，利好黃金</li>
+                            <li><strong>央行購金持續</strong>：新興市場央行持續增持黃金儲備，支撐長期需求</li>
+                            <li><strong>技術面強勢</strong>：突破$4,750阻力位，下一目標$5,000</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 油價市場分析 -->
+        <section class="section">
+            <h2 class="section-title" style="--section-accent: #10b981;">
+                <span class="section-title-icon">🛢️</span>
+                國際油價分析（7日預測）
+            </h2>
+            
+            <div class="market-subsection">
+                <div class="market-grid">
+                    <div class="market-card-wrapper current-price">
+                        <div class="market-card-title current oil">💰 當前 WTI 原油</div>
+                        <div class="market-card oil-card">
+                        <div class="market-value">$96-104<span class="market-unit">/桶</span></div>
+                        </div>
+                        <div class="market-change positive">▲ 近期高點$104.4</div>
+                        <div class="market-meta">
+                            <span>4月13日 09:33</span>
+                            <span class="market-peak">地緣風險溢價</span>
+                        </div></div>
+                    
+                    <div class="market-card-wrapper current-price">
+                        <div class="market-card-title current oil">💰 當前 Brent 原油</div>
+                        <div class="market-card oil-card">
+                        <div class="market-value">$95-103<span class="market-unit">/桶</span></div>
+                        </div>
+                        <div class="market-change positive">▲ 近期高點$102.3</div>
+                        <div class="market-meta">
+                            <span>4月13日 09:33</span>
+                            <span class="market-peak">停火脆弱擔憂</span>
+                        </div></div>
+                    
+                    <!-- 油价预测开始 -->
+                                        <div class="market-card-wrapper prediction-price">
+                        <div class="market-card-title prediction">📊 樂觀情境（停火成功）</div>
+                        <div class="market-card oil-card prediction-card">
+                        <div class="market-value">$92-98</div>
+                        </div>
+                        <div class="market-change negative">▼ 預測回落 -4%</div>
+                        <div class="market-meta">
+                            <span>7日內</span>
+                            <span class="market-trend">機率：15%</span>
+                        </div></div>
+                    
+                    <div class="market-card-wrapper prediction-price">
+                        <div class="market-card-title prediction">📊 基準情境（僵局持續）</div>
+                        <div class="market-card oil-card prediction-card">
+                        <div class="market-value">$98-107</div>
+                        </div>
+                        <div class="market-change positive">▲ 預測震盪 ±3%</div>
+                        <div class="market-meta">
+                            <span>7日內</span>
+                            <span class="market-note">機率：33%</span>
+                        </div></div>
+                    
+                    <div class="market-card-wrapper prediction-price">
+                        <div class="market-card-title prediction">📊 悲觀情境（停火破裂）</div>
+                        <div class="market-card oil-card prediction-card">
+                        <div class="market-value">$115-125</div>
+                        </div>
+                        <div class="market-change negative">▲ 預測暴漲 +15%</div>
+                        <div class="market-meta">
+                            <span>數日內</span>
+                            <span class="market-recovery">機率：52%</span>
+                        </div></div>
+                    </div>
+                    
+                    <div class="market-card oil-analysis">
+                        <div class="analysis-title">📊 油價預測分析</div>
+                        <ul class="analysis-list">
+                            <li><strong>地緣風險溢價顯著</strong>：WTI原油徘徊在<strong>$96-104區間</strong>（近期高點$104.4），Polymarket預測<strong>100%機率</strong>4月內突破$105，<strong>82%機率</strong>突破$110。黎巴嫩問題成為最大威脅：以色列本週在黎巴嫩發動<strong>戰爭以來最大規模空襲</strong>（數百架次），內塔尼亞胡明確表示「黎巴嫩沒有停火」。CNN警告停火協議「瀕臨崩潰」。市場預期<strong>52%機率</strong>停火可能在4月21日前破裂，油價可能飆升至$115-125</li>
+                            <li><strong>霍爾木茲海峽仍未完全開放</strong>：油輪/貨船繼續觀望，只有俄羅斯油輪通過。<strong>可能存在水雷威脅</strong>，需清理作業。馬士基集團表示運營恢復可能需要<strong>數週甚至數月</strong>。Polymarket預測<strong>僅14%機率</strong>霍爾木茲海峽4月底前恢復正常。JP Morgan警告若霍爾木茲僵局持續至7月，油價可能衝破<strong>$120</strong>。Goldman警告：再關閉一個月，2026年全年Brent將維持<strong>$100+</strong>。油價維持高位反映市場對霍爾木茲風險的擔憂</li>
+                            <li><strong>三大情境預測</strong>：<strong>悲觀情境（52%）</strong>：停火數日內破裂，油價飆升至$115-125。<strong>基準情境（33%）</strong>：僵局持續但隨時可能破裂，油價震盪$98-107。<strong>樂觀情境（15%）</strong>：停火奇蹟成功，油價回落至$92-98。市場傾向悲觀情境，油價維持高位</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+<!-- 市場洞察 -->
+            <div class="market-insight">
+                <h3 class="insight-title">🔍 深度解析：停火協議面臨嚴峻考驗</h3>
+                
+                <div class="insight-grid">
+                    <div class="insight-card">
+                        <div class="insight-icon">🇱🇧</div>
+                        <div class="insight-label">黎巴嫩問題無解</div>
+                        <p class="insight-text">
+                            美以伊三方對<strong>黎巴嫩是否包含在停火範圍內</strong>存在公開分歧。以色列本週在黎巴嫩發動<strong>戰爭以來最大規模空襲</strong>（數百架次），內塔尼亞胡明確表示「黎巴嫩沒有停火」。伊朗堅持黎巴嫩必須涵蓋在停火範圍。CNN警告停火協議「瀕臨崩潰」。加薩停火經驗顯示<strong>明確範圍</strong>是持續的關鍵，但伊朗停火協議在這方面存在<strong>根本性缺陷</strong>。<strong>97%機率</strong>黎巴嫩衝突持續。
+                        </p>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <div class="insight-icon">✅</div>
+                        <div class="insight-label">加薩停火6個月經驗</div>
+                        <p class="insight-text">
+                            4月11日週五標誌著加薩停火協議<strong>滿6個月</strong>（自2025年10月11日起生效）。儘管6個月內仍有<strong>738人死亡</strong>（加薩衛生部數據），但停火協議基本穩定。加薩停火為伊朗停火提供經驗借鑒：<strong>明確範圍、執行機制、監督方可持續</strong>。然而，伊朗停火協議在範圍界定（黎巴嫩問題）上存在<strong>根本性分歧</strong>，崩潰風險遠高於加薩停火。市場擔憂伊朗停火協議比加薩停火<strong>脆弱得多</strong>。
+                        </p>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <div class="insight-icon">🛢️</div>
+                        <div class="insight-label">地緣風險溢價顯著</div>
+                        <p class="insight-text">
+                            WTI原油徘徊在<strong>$96-104區間</strong>（近期高點$104.4），Polymarket預測<strong>100%機率</strong>4月內突破$105，<strong>82%機率</strong>突破$110。地緣風險溢價維持高位。黎巴嫩衝突升級、停火協議脆弱等因素支撐油價。霍爾木茲海峽<strong>仍未完全重新開放</strong>（僅14%機率4月底前恢復正常）：油輪/貨船繼續觀望，只有俄羅斯油輪通過。<strong>可能存在水雷威脅</strong>，需清理作業。JP Morgan警告：若霍爾木茲僵局持續至7月，油價可能衝破<strong>$120</strong>。若停火破裂，油價可能飆升至$115-125。
+                        </p>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <div class="insight-icon">🇮🇱</div>
+                        <div class="insight-label">內塔尼亞胡政治風暴</div>
+                        <p class="insight-text">
+                            以色列總理內塔尼亞胡在國內遭遇<strong>史無前例的政治風暴</strong>，被指犯下「以色列歷史上<strong>最嚴重的政治災難</strong>」。反對派指控他被川普「強迫接受停火」，未能實現戰爭目標（摧毀真主黨、解除伊朗核威脅）。內塔尼亞胡在國內愈發孤立，執政聯盟岌岌可危。他明確表示「<strong>黎巴嫩沒有停火</strong>」以平息國內批評，但這一立場與伊朗存在根本性矛盾。
+                        </p>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <div class="insight-icon">🛢️</div>
+                        <div class="insight-label">霍爾木茲風險未消</div>
+                        <p class="insight-text">
+                            霍爾木茲海峽<strong>仍未完全重新開放</strong>：油輪/貨船繼續觀望，只有俄羅斯油輪通過。<strong>可能存在水雷威脅</strong>，需清理作業。馬士基集團表示運營恢復可能需要<strong>數週甚至數月</strong>。Polymarket預測<strong>僅14%機率</strong>霍爾木茲海峽4月底前恢復正常。JP Morgan警告：若霍爾木茲僵局持續至7月，油價可能衝破<strong>$120</strong>。Goldman警告：再關閉一個月，2026年全年Brent將維持<strong>$100+</strong>。歐洲航空燃料短缺預計持續數週甚至數月。油價維持高位反映市場對霍爾木茲風險的擔憂。
+                        </p>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <div class="insight-icon">🔮</div>
+                        <div class="insight-label">7日三大情境</div>
+                        <p class="insight-text">
+                            <strong>悲觀情境（52%）</strong>：停火數日內破裂（黎巴嫩危機升級），油價衝破$115-125，防務股暴漲15-20%。<strong>基準情境（33%）</strong>：僵局持續但隨時可能破裂，油價震盪$98-107，防務股上漲5-8%。<strong>樂觀情境（15%）</strong>：停火奇蹟成功，油價回落至$92-98，防務股震盪±3%。<strong>市場傾向悲觀情境</strong>，樂觀情境機率較低。油價徘徊在$96-104區間，反映市場對停火協議脆弱性的擔憂。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 時間線 -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-title-icon">📅</span>
+                完整時間線
+            </h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">2026年2月28日</div>
+                    <div class="timeline-content">
+                        <h3>衝突爆發 - "史詩怒火"行動</h3>
+                        <ul>
+                            <li>德黑蘭多地遭空襲，伊朗最高領袖<span class="alert">哈梅內伊遇襲身亡</span></li>
+                            <li>以色列宣佈對伊朗發動<span class="highlight">先發制人打擊</span></li>
+                            <li>美國將行動命名為"史詩怒火"（Operation Epic Fury）</li>
+                            <li>伊朗啟動<span class="highlight">"真實承諾-4"</span>反擊行動</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">3月1-7日</div>
+                    <div class="timeline-content">
+                        <h3>全面戰爭 - 能力摧毀階段</h3>
+                        <ul>
+                            <li>美以<span class="highlight">摧毀75%伊朗導彈發射器</span>，打擊3000+目標</li>
+                            <li>伊朗導彈/無人機攻擊減少<span class="alert">90%/83%</span></li>
+                            <li>美軍擊沉伊朗<span class="highlight">58艘軍艦</span>（含1艘潛艇）</li>
+                            <li>伊朗摧毀<span class="highlight">7部美軍薩德雷達</span>，擊落82架無人機</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">4月8日</div>
+                    <div class="timeline-content">
+                        <h3>🔥 兩週停火協議達成</h3>
+                        <ul>
+                            <li>川普宣佈<span class="highlight">兩週停火協議</span>（至4月21日），由巴基斯坦調解</li>
+                            <li>川普派遣<span class="highlight">副總統萬斯</span>於本週末前往伊斯蘭堡會談</li>
+                            <li>Polymarket平台交易員通過<span class="alert">精準押注</span>獲利近百萬美元，CFTC啟動初步調查</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">4月8日（停火宣佈後）</div>
+                    <div class="timeline-content">
+                        <h3>🚨 以色列在黎巴嫩發動最大規模空襲</h3>
+                        <ul>
+                            <li>停火宣佈後，以色列在黎巴嫩發動<span class="alert">戰爭以來最大規模空襲</span>（數百架次）</li>
+                            <li>內塔尼亞胡明確表示「<span class="alert">黎巴嫩沒有停火</span>」，將繼續打擊真主黨</li>
+                            <li>美以伊三方對<span class="highlight">黎巴嫩是否包含在停火範圍內</span>存在公開分歧</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">4月9日（週三）</div>
+                    <div class="timeline-content">
+                        <h3>黎巴嫩衝突升級</h3>
+                        <ul>
+                            <li>以色列持續在黎巴嫩發動大規模空襲</li>
+                            <li>伊朗批評美國提出的停火協議條款「不合理」，堅持黎巴嫩必須涵蓋在停火範圍內</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">4月10日（週四）</div>
+                    <div class="timeline-content">
+                        <h3>內塔尼亞胡政治風暴</h3>
+                        <ul>
+                            <li>內塔尼亞胡在以色列國內遭遇<span class="alert">史無前例的政治風暴</span>，被指犯下「史上最嚴重政治災難」</li>
+                            <li>反對派指控他被川普「強迫接受停火」，未能實現戰爭目標</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">4月11日（週五）</div>
+                    <div class="timeline-content">
+                        <h3>📊 加薩停火協議滿6個月</h3>
+                        <ul>
+                            <li>加薩停火協議滿<span class="highlight">6個月</span>（自2025年10月11日起生效）</li>
+                            <li>儘管停火協議持續，6個月內仍有<span class="alert">738人在以色列攻擊中死亡</span>（加薩衛生部數據）</li>
+                            <li>整個加以衝突已造成<strong>超過4.9萬人死亡</strong></li>
+                            <li>加薩停火為伊朗停火提供經驗借鑒：<strong>明確範圍、執行機制、監督方可持續</strong></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">4月12日（週六）</div>
+                    <div class="timeline-content">
+                        <h3>🤝 副總統萬斯會談巴基斯坦總理</h3>
+                        <ul>
+                            <li>美國副總統萬斯與巴基斯坦總理會談，討論停火協議執行細節</li>
+                            <li>重點包括黎巴嫩衝突問題</li>
+                            <li>內塔尼亞胡授權與黎巴嫩談判，但以色列在黎巴嫩的攻擊未停止</li>
+                            <li>國會調查Polymarket精準押注獲利事件：超過<strong>$185M+</strong>流入伊朗停火相關市場</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">4月13日（週日）</div>
+                    <div class="timeline-content">
+                        <h3>📈 油價徘徊高位 + 市場擔憂加劇</h3>
+                        <ul>
+                            <li>油價徘徊在<span class="alert">$96-104區間</span>（近期高點$104.4）</li>
+                            <li>Polymarket預測<strong>100%機率</strong>4月內突破$105，<strong>82%機率</strong>突破$110</li>
+                            <li>市場預測<strong>52%機率</strong>停火可能在4月21日前破裂</li>
+                            <li>CNN警告伊朗戰爭的停火協議「<span class="alert">瀕臨崩潰</span>」</li>
+                            <li>馬士基集團表示運營恢復可能需要<strong>數週甚至數月</strong></li>
+                            <li>霍爾木茲海峽<span class="highlight">仍未完全重新開放</span>：油輪/貨船繼續觀望，只有俄羅斯油輪通過</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-date">4月14日（週一）🆕</div>
+                    <div class="timeline-content">
+                        <h3>⚡️ 當前局勢</h3>
+                        <ul>
+                            <li>黃金價格飆升至<strong>$4,787/盎司</strong>（+2.8%），避險需求升溫</li>
+                            <li><strong>停火協議僅剩7天</strong>（4月21日到期），破裂風險極高</li>
+                            <li>黎巴嫩衝突持續，<strong>97%機率</strong>衝突將持續至4月底</li>
+                            <li>霍爾木茲僵局持續，<strong>僅14%機率</strong>4月底前恢復正常</li>
+                            <li>市場情緒謹慎：<strong>僅15%機率</strong>停火成功</li>
+                            <li>沙特SATORP煉油廠和東西石油管道遭攻擊關閉，加劇能源供應擔憂</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </section>
+        
+        <footer>
+            <p><strong>數據來源</strong>：Reuters · AP News · CNN · NPR · U.S. News · Independent · Politico · CTV News · Times of Israel · The National · CNBC · Maersk · UN News · Soufan Center · OilPrice.com · JP Morgan · Goldman Sachs · 加薩衛生部 · 黎巴嫩政府 · TradingEconomics · Investing.com · MarketBeat · Polymarket · CFTC</p>
+            <p style="margin-top: 12px;">本頁面每小時自動更新 | 下次更新：<span id="countdown">--:--</span></p>
+            <p style="margin-top: 12px; color: var(--color-accent-primary);">🌐 地緣政治情報儀表板 · 由 AI 自動編譯 · <strong>停火協議脆弱 | 黎巴嫩成威脅 | 加薩停火6個月</strong></p>
+        </footer>
+    </div>
+    
+    <script>
+        // 自动刷新倒计时
+        function updateCountdown() {
+            const now = new Date();
+            const nextHour = new Date(now);
+            nextHour.setHours(now.getHours() + 1, 0, 0, 0);
+            
+            const diff = nextHour - now;
+            const minutes = Math.floor(diff / 60000);
+            const seconds = Math.floor((diff % 60000) / 1000);
+            
+            const countdownEl = document.getElementById('countdown');
+            if (countdownEl) {
+                countdownEl.textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }
+        
+        // 每秒更新倒计时
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // 页面加载时间
+        console.log('页面加载时间:', new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' }));
+    </script>
+</body>
+</html>

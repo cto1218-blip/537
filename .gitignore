@@ -1,0 +1,15 @@
+# OpenClaw 内部目录
+.openclaw/
+openclaw-internal/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# 临时文件
+*.tmp
+.DS_Store
+
+# 日志
+*.log
