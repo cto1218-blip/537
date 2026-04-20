@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《蘋果在中國》閱讀框架與導讀</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e1e1e 0%, #434343 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .header .subtitle {
+            font-size: 24px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .meta {
+            font-size: 16px;
+            opacity: 0.7;
+            margin-top: 20px;
+        }
+
+        /* Book Info */
+        .book-info {
+            padding: 40px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+            border-bottom: 3px solid #667eea;
+        }
+
+        .book-info h2 {
+            font-size: 28px;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-item {
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-item strong {
+            color: #667eea;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Core Themes */
+        .core-themes {
+            padding: 40px;
+            background: white;
+        }
+
+        .core-themes h2 {
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .theme-card {
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+            border-radius: 16px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+        }
+
+        .theme-card h3 {
+            font-size: 22px;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .theme-card p {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Chapter Structure */
+        .chapter-structure {
+            padding: 40px;
+            background: #f8f9ff;
+        }
+
+        .chapter-structure h2 {
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .part {
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .part-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .part-chapters {
+            padding: 30px;
+        }
+
+        .chapter {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: #f8f9ff;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .chapter:hover {
+            background: #e8ebff;
+            transform: translateX(5px);
+        }
+
+        .chapter-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .chapter-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Reading Tips */
+        .reading-tips {
+            padding: 40px;
+            background: white;
+        }
+
+        .reading-tips h2 {
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .tips-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .tip-card {
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .tip-card h3 {
+            font-size: 20px;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tip-card h3::before {
+            content: "💡";
+            font-size: 28px;
+            margin-right: 10px;
+        }
+
+        .tip-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tip-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e5ff;
+            color: #555;
+            font-size: 15px;
+        }
+
+        .tip-card li:last-child {
+            border-bottom: none;
+        }
+
+        .tip-card li::before {
+            content: "▸ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px;
+            background: linear-gradient(135deg, #1e1e1e 0%, #434343 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 16px;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .header .subtitle {
+                font-size: 18px;
+            }
+
+            .themes-grid,
+            .tips-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🍎 蘋果在中國</h1>
+            <div class="subtitle">美國科技巨頭如何造就中國製造霸權</div>
+            <div class="meta">
+                作者：派翠克·麥奇 (Patrick McGee) | 譯者：鍾玉玨<br>
+                出版社：商業周刊 | 語言：繁體中文
+            </div>
+        </div>
+
+        <!-- Book Info -->
+        <div class="book-info">
+            <h2>📚 本書概要</h2>
+            <p style="font-size: 18px; line-height: 2; color: #333; margin: 20px 0;">
+                這是一本揭露蘋果如何以中國為基地成為全球最有價值公司的故事，同時也是蘋果如何將自身命運與一個專制國家牢牢綁在一起的警世之作。書中詳述從1997年瀕臨破產到今日市值3兆美元的巨擘，蘋果如何一步步將生產線從美國轉移到中國，並在這個過程中培養了一個反過來制約它的製造帝國。
+            </p>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>核心議題</strong>
+                    蘋果的中國化進程與地緣政治風險
+                </div>
+                <div class="info-item">
+                    <strong>時間跨度</strong>
+                    1976年車庫創業至2025年當代困境
+                </div>
+                <div class="info-item">
+                    <strong>關鍵人物</strong>
+                    賈伯斯、庫克、郭台銘、習近平
+                </div>
+                <div class="info-item">
+                    <strong>重要數據</strong>
+                    年投資550億美元、培訓2800萬工人
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Themes -->
+        <div class="core-themes">
+            <h2>🎯 核心主題解析</h2>
+            <div class="themes-grid">
+                <div class="theme-card">
+                    <h3>1️⃣ 從「美國製造」到「中國製造」</h3>
+                    <p>蘋果如何從1976年堅持自主生產，到1997年開始外包，最終在2009年將90%產品生產集中在中國。這不僅是生產線的遷移，更是一場涉及技術轉移、人才培訓、供應鏈重組的地緣政治大戲。</p>
+                </div>
+
+                <div class="theme-card">
+                    <h3>2️⃣ 富士康：硬體的矽谷</h3>
+                    <p>台商富士康如何利用中國廉價勞動力，將美國1960年代的代工模式發展到極致。蘋果大規模派遣工程師赴中國傳授技術，打造了全球無可匹敵的製造基地，年營收超過Meta與輝達總和。</p>
+                </div>
+
+                <div class="theme-card">
+                    <h3>3️⃣ 「中國通」的誕生與庫克的崛起</h3>
+                    <p>從IBM轉戰蘋果的庫克，如何建立起無與倫比的營運效率。他被賈伯斯欽點為接班人，不是因為創新能力，而是因為他掌握了中國這張王牌。這也標誌著蘋果戰略從產品創新轉向規模擴張。</p>
+                </div>
+
+                <div class="theme-card">
+                    <h3>4️⃣ 2013年的「315晚會」警鐘</h3>
+                    <p>習近平上台後首次對蘋果的政治打壓，揭露蘋果對中國的依賴已成為最大軟肋。18天內從無人能撼動跌入恐慌深淵，庫克被迫公開道歉，標誌著權力天平的逆轉。</p>
+                </div>
+
+                <div class="theme-card">
+                    <h3>5️⃣ 紅色供應鏈的崛起</h3>
+                    <p>北京如何利用蘋果培養本土製造能力，讓國家補貼的「紅色供應鏈」企業逐步取代美日台供應商。蘋果親手培植了一個製造帝國，如今這個帝國反過來用這本領對付它。</p>
+                </div>
+
+                <div class="theme-card">
+                    <h3>6️⃣ 台積電：最後的矽盾</h3>
+                    <p>台灣半導體巨頭如何成為蘋果（以及全球）最關鍵的晶片供應商，也是台灣對抗中國入侵的戰略核心。這條供應鏈的脆弱性，正是蘋果「中國困境」的最大未知數。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapter Structure -->
+        <div class="chapter-structure">
+            <h2>📖 章節結構與閱讀導航</h2>
+
+            <!-- 序 -->
+            <div class="part">
+                <div class="part-header">序：「無與倫比」的傲慢</div>
+                <div class="part-chapters">
+                    <div class="chapter">
+                        <div class="chapter-title">核心事件：2013年315消費者權益日風波</div>
+                        <div class="chapter-desc">
+                            習近平上台隔天，央視砲轟蘋果售後服務，引發數位閃電戰。18天後庫克被迫公開道歉，標誌蘋果在中國從主導地位到從屬地位的轉折。揭露蘋果高層對中國政治生態的無知與戰略缺失。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第1部 -->
+            <div class="part">
+                <div class="part-header">第1部：拯救蘋果 (1976-1999)</div>
+                <div class="part-chapters">
+                    <div class="chapter">
+                        <div class="chapter-title">第1章：瀕臨破產</div>
+                        <div class="chapter-desc">1997年蘋果陷入生存危機，從輝煌到破產邊緣的墜落過程</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第2章：外包歷險記——日本與台灣</div>
+                        <div class="chapter-desc">蘋果開始放棄自主生產，首次嘗試在日本和台灣外包製造</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第3章：天價的收購計畫</div>
+                        <div class="chapter-desc">蘋果探索各種收購方案以求生存</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第4章：哥倫布——發現運算領域的新大陸</div>
+                        <div class="chapter-desc">尋找新的製造模式與技術突破</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第5章：「做不出來」—— iMac誕生</div>
+                        <div class="chapter-desc">賈伯斯回歸後首款成功產品iMac的誕生故事</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第2部 -->
+            <div class="part">
+                <div class="part-header">第2部：蘋果向中國的長征 (1997-2003)</div>
+                <div class="part-chapters">
+                    <div class="chapter">
+                        <div class="chapter-title">第6章：走出亞洲金融風暴——韓國</div>
+                        <div class="chapter-desc">韓國LG如何在金融危機後成為蘋果的合作夥伴</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第7章：LG走向全球——威爾斯與墨西哥</div>
+                        <div class="chapter-desc">蘋果在歐洲與美洲的生產布局嘗試</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第8章：台商——進軍中國大陸的台灣人</div>
+                        <div class="chapter-desc">台灣電子製造商如何成為中國與蘋果之間的橋樑</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第9章：硬體的矽谷——「富士康這名字可不是叫假的」</div>
+                        <div class="chapter-desc">郭台銘的富士康帝國崛起，成為全球最大電子代工廠</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第10章：IBM人才西進蘋果——庫克崛起</div>
+                        <div class="chapter-desc">庫克如何從IBM轉戰蘋果，建立起精密的供應鏈系統</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第11章：富士康布局全球——中國、美國加州與捷克</div>
+                        <div class="chapter-desc">富士康的全球擴張策略與蘋果的深度合作</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第12章：告別自製時代</div>
+                        <div class="chapter-desc">蘋果正式結束自主生產，全面轉向外包模式</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第3部 -->
+            <div class="part">
+                <div class="part-header">第3部：海妖之歌——整合潮 (2001-2007)</div>
+                <div class="part-chapters">
+                    <div class="chapter">
+                        <div class="chapter-title">第13章：一千首歌——在台灣製造iPod</div>
+                        <div class="chapter-desc">iPod革命性產品的製造故事，台灣扮演關鍵角色</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第14章：亞洲製造——打造極致酷炫的iMac G4</div>
+                        <div class="chapter-desc">亞洲製造業如何實現蘋果的極致工藝要求</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第15章：「你們必須用『中國的成本價』結算」</div>
+                        <div class="chapter-desc">蘋果如何利用中國低廉成本壓縮供應商利潤</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第16章：復刻成功——拿到iPod訂單,在中國製造</div>
+                        <div class="chapter-desc">iPod生產線全面轉移中國的過程與影響</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第17章：紫色計畫在亞洲</div>
+                        <div class="chapter-desc">iPhone秘密研發計畫（代號Purple）的亞洲製造故事</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第18章：那台裝置</div>
+                        <div class="chapter-desc">iPhone首次亮相與其製造挑戰</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第19章：蘋果衝擊</div>
+                        <div class="chapter-desc">iPhone對全球供應鏈與電子製造業的顛覆性影響</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第4部 -->
+            <div class="part">
+                <div class="part-header">第4部：驚人的需求—— iPhone 在中國 (2007-2013)</div>
+                <div class="part-chapters">
+                    <div class="chapter">
+                        <div class="chapter-title">第20章：傳教士</div>
+                        <div class="chapter-desc">蘋果如何在中國市場傳播品牌與產品理念</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第21章：縫紉機修理店</div>
+                        <div class="chapter-desc">中國山寨蘋果店與維修市場的混亂現象</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第22章：水貨市場裡的黃牛</div>
+                        <div class="chapter-desc">iPhone在中國的灰色市場與黃牛經濟</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第23章：「把那混蛋開除掉！」</div>
+                        <div class="chapter-desc">蘋果內部管理衝突與中國市場的挑戰</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第24章：雙重賭注——富士康與台積電</div>
+                        <div class="chapter-desc">蘋果同時依賴富士康組裝與台積電晶片的雙重風險</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第25章：「海豹部隊」</div>
+                        <div class="chapter-desc">蘋果精銳工程師團隊在中國的秘密任務</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第5部 -->
+            <div class="part">
+                <div class="part-header">第5部：政治覺醒 (2010-2017)</div>
+                <div class="part-chapters">
+                    <div class="chapter">
+                        <div class="chapter-title">第26章：獨裁者</div>
+                        <div class="chapter-desc">習近平上台後的威權轉向與對外企的政策收緊</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第27章：八人幫</div>
+                        <div class="chapter-desc">蘋果內部對中國策略的分歧與權力鬥爭</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第28章：中國通</div>
+                        <div class="chapter-desc">蘋果如何培養熟悉中國政治與商業環境的專家</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第29章：假自願，真強制</div>
+                        <div class="chapter-desc">富士康工廠的勞工問題與強制加班爭議</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第30章：蘋果壓榨</div>
+                        <div class="chapter-desc">蘋果對供應商的嚴苛要求與利潤壓榨</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第31章：中國的馬歇爾計畫</div>
+                        <div class="chapter-desc">蘋果在中國的巨額投資如何成為培養製造帝國的「馬歇爾計畫」</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第32章：官僚保護</div>
+                        <div class="chapter-desc">中國地方政府如何保護蘋果供應鏈免受勞工法規約束</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第6部 -->
+            <div class="part">
+                <div class="part-header">第6部：紅蘋果 (2017-2025)</div>
+                <div class="part-chapters">
+                    <div class="chapter">
+                        <div class="chapter-title">第33章：認知失調——供應商責任</div>
+                        <div class="chapter-desc">蘋果在「企業社會責任」與「中國依賴」之間的矛盾</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第34章：傀儡人物——葛越</div>
+                        <div class="chapter-desc">蘋果大中華區負責人葛越的角色與爭議</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第35章：紅色供應鏈</div>
+                        <div class="chapter-desc">中國本土供應商如何在國家扶植下取代外資企業</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第36章：「五級火災警報」</div>
+                        <div class="chapter-desc">蘋果內部對中國風險的最高級別警告</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第37章：華為威脅</div>
+                        <div class="chapter-desc">華為崛起對蘋果在中國市場地位的挑戰</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第38章：全球疫情</div>
+                        <div class="chapter-desc">COVID-19疫情暴露蘋果供應鏈的脆弱性</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第39章：「蘋果前所未有的惡夢」</div>
+                        <div class="chapter-desc">中美對抗升級下蘋果的兩難困境</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第40章：B計畫——印度製造？</div>
+                        <div class="chapter-desc">蘋果嘗試將部分產能轉移印度的挑戰與限制</div>
+                    </div>
+                    <div class="chapter">
+                        <div class="chapter-title">第41章：驚人的脆弱性——台積電</div>
+                        <div class="chapter-desc">台積電作為蘋果（與全球）最關鍵晶片供應商的地緣政治風險</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 結論 -->
+            <div class="part">
+                <div class="part-header">結論：未竟的傳承</div>
+                <div class="part-chapters">
+                    <div class="chapter">
+                        <div class="chapter-title">蘋果的「中國困境」與庫克的歷史評價</div>
+                        <div class="chapter-desc">
+                            總結蘋果如何走到今日的困境：全球沒有任何國家能取代中國的製造能力，而庫比蒂諾也不會輕易放棄中國這個700億美元的市場。這個困境不僅是蘋果面臨的最大風險，也是對執行長庫克歷史評價的關鍵未知數，更是華府迫在眉睫的嚴峻挑戰。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reading Tips -->
+        <div class="reading-tips">
+            <h2>💡 閱讀建議與思考方向</h2>
+            <div class="tips-container">
+                <div class="tip-card">
+                    <h3>閱讀順序建議</h3>
+                    <ul>
+                        <li>先讀序言，了解2013年的轉折點事件</li>
+                        <li>第1-2部可快速瀏覽，重點是理解蘋果如何從美國製造轉向外包</li>
+                        <li>第3-4部是核心，詳述iPhone如何改變一切</li>
+                        <li>第5-6部最關鍵，揭露權力天平逆轉與當代困境</li>
+                        <li>結論必讀，總結全書要義與未來展望</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <h3>關鍵問題思考</h3>
+                    <ul>
+                        <li>蘋果的「中國化」是主動選擇還是被動依賴？</li>
+                        <li>富士康與台積電在這場大戲中扮演什麼角色？</li>
+                        <li>為何全球沒有第二個國家能取代中國製造？</li>
+                        <li>蘋果是否培養了一個反過來制約它的帝國？</li>
+                        <li>印度與越南能否成為真正的替代方案？</li>
+                        <li>台海局勢對蘋果供應鏈的威脅有多大？</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <h3>延伸思考方向</h3>
+                    <ul>
+                        <li>對比美國其他科技巨頭（Google、Meta）的中國策略</li>
+                        <li>中美科技戰對蘋果的長期影響</li>
+                        <li>台灣在全球科技供應鏈的戰略地位</li>
+                        <li>跨國企業在威權國家的道德困境</li>
+                        <li>製造業回流美國的可能性與挑戰</li>
+                        <li>庫克時代vs賈伯斯時代的戰略差異</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>「沒有中國就沒有今天的蘋果；但沒有蘋果，或許也沒有今天的中國。」</strong></p>
+            <p style="margin-top: 20px; opacity: 0.6;">閱讀框架由 AI 生成 | 基於 epub 原書結構整理</p>
+        </div>
+    </div>
+</body>
+</html>

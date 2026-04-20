@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《蘋果在中國》六部曲閱讀指南 - 綠色版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #2d6a4f 0%, #1b4332 100%);
+            color: #333;
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .header .subtitle {
+            font-size: 26px;
+            opacity: 0.95;
+            margin-bottom: 15px;
+        }
+
+        .header .description {
+            font-size: 16px;
+            opacity: 0.85;
+            max-width: 800px;
+            margin: 20px auto 0;
+        }
+
+        /* Part Section */
+        .part-section {
+            padding: 50px 40px;
+            border-bottom: 2px solid #d8f3dc;
+        }
+
+        .part-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .part-section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .part-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .part-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #40916c 0%, #2d6a4f 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .part-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1b4332;
+            margin-bottom: 10px;
+        }
+
+        .part-timespan {
+            font-size: 18px;
+            color: #52b788;
+            font-weight: 600;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #d8f3dc 0%, #fff 100%);
+            padding: 35px;
+            border-radius: 16px;
+            border-left: 6px solid #52b788;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .summary-box h3 {
+            color: #2d6a4f;
+            font-size: 22px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .summary-box h3::before {
+            content: "📖";
+            font-size: 28px;
+            margin-right: 12px;
+        }
+
+        .summary-box p {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.9;
+            margin-bottom: 15px;
+        }
+
+        .summary-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .summary-box strong {
+            color: #1b4332;
+            font-weight: 600;
+        }
+
+        /* Quotes Grid */
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .quote-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #74c69d;
+            transition: transform 0.3s ease;
+        }
+
+        .quote-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(82, 183, 136, 0.25);
+        }
+
+        .quote-card h4 {
+            color: #2d6a4f;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .quote-card h4::before {
+            content: "💬";
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .quote-text {
+            background: #f1faee;
+            padding: 20px;
+            border-left: 4px solid #52b788;
+            border-radius: 10px;
+            font-style: italic;
+            color: #1b4332;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .quote-source {
+            text-align: right;
+            color: #74c69d;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .quote-insight {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .quote-insight strong {
+            color: #2d6a4f;
+        }
+
+        /* Key Chapters */
+        .key-chapters {
+            background: #e8f5e9;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .key-chapters h4 {
+            color: #1b4332;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .key-chapters ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-chapters li {
+            padding: 8px 0;
+            color: #2d6a4f;
+            font-size: 14px;
+            border-bottom: 1px solid #d8f3dc;
+        }
+
+        .key-chapters li:last-child {
+            border-bottom: none;
+        }
+
+        .key-chapters li::before {
+            content: "▸";
+            color: #52b788;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .footer blockquote {
+            font-size: 24px;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 36px;
+            }
+            
+            .part-title {
+                font-size: 28px;
+            }
+
+            .quotes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🍎 蘋果在中國</h1>
+            <div class="subtitle">美國科技巨頭如何造就中國製造霸權</div>
+            <div class="description">
+                從1976年車庫創業到2025年地緣政治困境，一部跨越50年的製造業史詩。
+                本書揭露蘋果如何親手培養了一個反過來制約它的製造帝國。
+            </div>
+        </div>
+
+        <!-- 序言 -->
+        <div class="part-section" style="background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);">
+            <div class="part-header">
+                <div class="part-number">序言</div>
+                <h2 class="part-title">「無與倫比」的傲慢</h2>
+                <p class="part-timespan">2013年3月 · 權力天平逆轉的歷史時刻</p>
+            </div>
+
+            <div class="summary-box">
+                <h3>核心事件</h3>
+                <p>
+                    <strong>2013年3月15日，習近平就任隔天</strong>，央視「315消費者權益日」砲轟蘋果售後服務差別待遇。18天內，蘋果從「無人能撼動」跌入「恐慌深淵」：銷售量從上季成長67%驟降至8%，6月季度萎縮14%。
+                </p>
+                <p>
+                    <strong>屈辱道歉：</strong>庫克被迫公開道歉，承認「溝通不足」導致傲慢。更諷刺的是，新換機政策比美國消費者享有的權益還優渥。這不是消費者維權，而是一場精心策劃的政治表演，標誌著蘋果從主導地位到從屬地位的轉折。
+                </p>
+                <p>
+                    <strong>深層問題：</strong>蘋果在中國生產設備總價值73億美元（超過美國本土所有資產），卻沒有一個高階主管長駐中國，連最基本的問題都無法回答：「我們在中國的政府關係策略是什麼？」
+                </p>
+            </div>
+
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <h4>金句 #1</h4>
+                    <div class="quote-text">
+                        「沒有中國就沒有今天的蘋果，未免流於陳腔濫調。然而，本書提出的觀點更令人玩味——沒有蘋果，或許也沒有今天的中國。」
+                    </div>
+                    <div class="quote-source">——作者核心論點</div>
+                    <div class="quote-insight">
+                        <strong>💡 為何重要：</strong>挑戰「中國成就蘋果」的主流敘事。蘋果年投資550億美元（超過拜登晶片法案四年總預算），培訓2800萬工人（超過加州全部勞動人口）。這是堪比「國家建設」級別的技術轉移。
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <h4>金句 #2</h4>
+                    <div class="quote-text">
+                        「我們親手培植了一整個國家的製造本領，而今這個國家反過來用這本領對付我們。」
+                    </div>
+                    <div class="quote-source">——前蘋果工程師</div>
+                    <div class="quote-insight">
+                        <strong>💡 為何重要：</strong>全書最痛心的反思。蘋果原以為在「利用」中國廉價勞動力，實際上是中國在「利用」蘋果的技術、管理經驗和全球供應鏈。這是短期利益vs長期戰略的經典教訓。
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <h4>金句 #3</h4>
+                    <div class="quote-text">
+                        「僅蘋果一家公司就在中國創造了500萬個就業機會——超過整個中國對美國就業的貢獻（100萬至260萬）。」
+                    </div>
+                    <div class="quote-source">——庫克估算</div>
+                    <div class="quote-insight">
+                        <strong>💡 為何重要：</strong>一家企業對中國的貢獻超過整個中國對美國的貢獻，揭示了蘋果在中國的「準國家」地位——不僅是公司，更是經濟引擎、全國性的「製造大學」。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第1部 -->
+        <div class="part-section">
+            <div class="part-header">
+                <div class="part-number">第1部</div>
+                <h2 class="part-title">拯救蘋果</h2>
+                <p class="part-timespan">1976-1999 · 從破產邊緣到iMac重生</p>
+            </div>
+
+            <div class="summary-box">
+                <h3>本部摘要</h3>
+                <p>
+                    <strong>生死一線（1996）：</strong>蘋果虧損7億美元，現金僅剩5億，聘請破產律師研究《破產法》第十一章。執行長阿米里奧無能，誤判病因：問題不是營運效率，而是缺乏熱賣產品。
+                </p>
+                <p>
+                    <strong>賈伯斯回歸（1997）：</strong>4億美元收購NeXT，賈伯斯重返蘋果。將研發項目從40個驟減到4個（桌上型/筆記型×消費版/專業版），與艾夫命運相遇，啟動「哥倫布計畫」。
+                </p>
+                <p>
+                    <strong>iMac誕生（1998）：</strong>「讓人看了就想舔一口」的設計讓工程師驚呼「做不出來」。賈伯斯暴怒：「九千五百個飯碗全指望你們！」強制重新啟動後，六週內賣出27.8萬台，創Mac系列最快銷售紀錄。
+                </p>
+                <p>
+                    <strong>外包歷險（1990s）：</strong>從日本佳能（LaserWriter）到索尼（PowerBook 100），從台灣英業達（牛頓）到韓國LG（iMac）。蘋果開始學習製造外包，為中國時代鋪路。
+                </p>
+            </div>
+
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <h4>金句 #1：設計哲學</h4>
+                    <div class="quote-text">
+                        「不先挑戰黑鑽三線，怎知道滑過藍道會這麼輕鬆？」
+                    </div>
+                    <div class="quote-source">——蘋果ID團隊</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>蘋果「設計驅動」文化的本質：不是技術決定設計，而是設計倒逼技術突破。這需要極大勇氣——淘汰所有說「不行」的人，找到能說「我試試看」的人。
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <h4>金句 #2：聚焦策略</h4>
+                    <div class="quote-text">
+                        「告訴我，這家公司出了什麼問題？是產品有問題！這些產品爛透了！」
+                    </div>
+                    <div class="quote-source">——賈伯斯，1997年7月</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>當公司有40個研發項目時，等於沒有重點；縮減到4個，才能做出偉大產品。這是賈伯斯核心管理哲學：說「不」比說「是」更重要。
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <h4>金句 #3：外包起點</h4>
+                    <div class="quote-text">
+                        「我剛到日本五分鐘，就立刻明白——蘋果根本沒有什麼能教給日本人。」
+                    </div>
+                    <div class="quote-source">——喬．歐蘇利文，1993</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>標誌蘋果從「自製傲慢」到「虛心學習」的轉折。索尼僅憑半張紙上的規格，13個月就把Mac桌機內部塞進5磅重筆電，震撼蘋果工程師。
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-chapters">
+                <h4>📚 關鍵章節</h4>
+                <ul>
+                    <li>第1章：瀕臨破產 - 「週四我們誰都領不到薪水」</li>
+                    <li>第2章：外包歷險記 - LaserWriter拯救Mac</li>
+                    <li>第3章：天價收購 - NeXT用負4億併購蘋果</li>
+                    <li>第4章：哥倫布計畫 - 發現運算領域的新大陸</li>
+                    <li>第5章：iMac誕生 - 「做不出來」到強制重新啟動</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 第2部 -->
+        <div class="part-section" style="background: #f8f9fa;">
+            <div class="part-header">
+                <div class="part-number">第2部</div>
+                <h2 class="part-title">蘋果向中國的長征</h2>
+                <p class="part-timespan">1997-2003 · 從韓國LG到富士康崛起</p>
+            </div>
+
+            <div class="summary-box">
+                <h3>本部摘要</h3>
+                <p>
+                    <strong>韓國試水（1999）：</strong>LG在金融風暴中接單iMac代工，工廠掛著「活命」(SURVIVE)橫幅。龜尾廠環境惡劣，旅館像「豬圈」，庫克睡覺「只能站著」。蘋果派遣「人員駐守和平號」，24小時監督生產。
+                </p>
+                <p>
+                    <strong>全球布局失敗（2000）：</strong>LG在威爾斯建廠被戲稱「烤麵包機生產線」（電容器起火），墨西哥廠因文化衝突與顏色管理混亂而失敗。LG態度傲慢，企圖用掌握的設計文件要脅蘋果。
+                </p>
+                <p>
+                    <strong>富士康登場：</strong>郭台銘打電話給庫克：「我可以搞定。」承諾每台比LG低40美元，免費開發模具，並在25天內做出iMac模具（業界通常需12週）。土城小工廠到深圳「硬體矽谷」的崛起。
+                </p>
+                <p>
+                    <strong>庫克革命（1998）：</strong>IBM人才西進蘋果，庫克以「強勢且不講理」的談判哲學改造營運。週五例會長達13小時，要求精準到每個螺絲。「千萬不要害怕提出不講理的要求」成為蘋果供應鏈鐵律。
+                </p>
+            </div>
+
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <h4>金句 #1：中國速度</h4>
+                    <div class="quote-text">
+                        「25天後，所有模具準備就緒，品質還出奇的好。他們真是厲害得要命，讓我們由衷佩服。」
+                    </div>
+                    <div class="quote-source">——韋恩．米勒，蘋果PD經理</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>業界通常需12週製造模具，富士康25天完成且品質優異。「中國速度」不是神話，而是郭台銘軍事化管理+地方政府補貼+廉價勞動力的結果。
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <h4>金句 #2：垂直整合策略</h4>
+                    <div class="quote-text">
+                        「富士康叫『Fox-con』（狐狸騙子）不是沒有道理。郭台銘是賭徒，他把名字改成Foxconn，因為他是隻老狐狸（fox），也是騙子（con artist）。」
+                    </div>
+                    <div class="quote-source">——前蘋果工程師</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>富士康的商業模式：免費開發模具「引你進門」，然後透過掌控零組件採購（PPV差價）賺錢。像電信公司免費送手機，再靠兩年合約賺回來。一旦上鉤，插翅難飛。
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <h4>金句 #3：庫克的鐵腕</h4>
+                    <div class="quote-text">
+                        「還有50件呢？」（經理說20萬件如期出貨，庫克質問：上週預估是20萬零50件）
+                    </div>
+                    <div class="quote-source">——庫克在週五例會</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>庫克對精準的極致要求。他記得每個細節，能在戰略高度和微小細節之間切換自如。這種「過目不忘+零容忍」的管理風格，重塑蘋果供應鏈。
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-chapters">
+                <h4>📚 關鍵章節</h4>
+                <ul>
+                    <li>第6章：走出亞洲金融風暴 - LG的韓國血淚</li>
+                    <li>第7章：LG走向全球 - 威爾斯與墨西哥的災難</li>
+                    <li>第8章：台商 - 進軍中國大陸的橋樑</li>
+                    <li>第9章：硬體的矽谷 - 富士康這名字可不是叫假的</li>
+                    <li>第10章：IBM人才西進 - 庫克崛起</li>
+                    <li>第11章：富士康布局全球 - 樞紐模式創新</li>
+                    <li>第12章：告別自製時代 - 2000年達康泡沫危機</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 第3部 -->
+        <div class="part-section">
+            <div class="part-header">
+                <div class="part-number">第3部</div>
+                <h2 class="part-title">海妖之歌——整合潮</h2>
+                <p class="part-timespan">2001-2007 · 從iPod到iPhone改變世界</p>
+            </div>
+
+            <div class="summary-box">
+                <h3>本部摘要</h3>
+                <p>
+                    <strong>iPod革命（2001）：</strong>「一千首歌裝進口袋」，台灣英業達代工。2003年iTunes登陸Windows，銷量暴增235%，蘋果營收寫下四年新高20億美元，再也未曾低於這水準。
+                </p>
+                <p>
+                    <strong>「中國成本優勢」顯現：</strong>深圳工廠「到處都是起重機」，富士康龍華園區從農田變身製造帝國。郭台銘向蘋果工程師描繪願景：招聘數十萬員工，建設充滿生氣的園區。當時看似瘋言瘋語，後來全部實現。
+                </p>
+                <p>
+                    <strong>紫色計畫（2007）：</strong>iPhone秘密研發（代號Purple），跨國分散組裝的複雜性：線材在中國擠壓成型→馬來西亞加裝金屬零件→回中國組裝→空運台灣最終組裝→寄加州給賈伯斯體驗。「我無法形容這種供應鏈有多荒謬。」
+                </p>
+                <p>
+                    <strong>蘋果衝擊：</strong>iPhone不僅顛覆手機產業，更徹底改寫全球電子製造業格局。蘋果從PC小眾品牌，蛻變為消費電子巨頭。供應鏈更加集中於中國。
+                </p>
+            </div>
+
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <h4>金句 #1：iTunes戰略轉折</h4>
+                    <div class="quote-text">
+                        「iTunes進軍PC平台是『讓蘋果成為今日巨頭的最關鍵戰略決策，沒有之一』。在Windows平台使用iTunes就像在地獄喝到冰水。」
+                    </div>
+                    <div class="quote-source">——歐蘇利文 & 賈伯斯</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>打破封閉生態的勇氣。賈伯斯原本堅持Mac獨佔，但為了iPod成功，放下傲慢讓iTunes登陸Windows。這個「妥協」成就了蘋果未來十年的霸業。
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <h4>金句 #2：供應鏈荒謬性</h4>
+                    <div class="quote-text">
+                        「先在中國生產500根線材，裁切後用行李箱手提到馬來西亞加裝金屬零件，再分裝行李箱手提回中國組裝，然後空運台灣最終組裝，完成後寄加州給賈伯斯體驗。」
+                    </div>
+                    <div class="quote-source">——iPhone早期原型機製造流程</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>全球化供應鏈的極致複雜性與脆弱性。為了「最佳成本」，零組件跨越四個國家、行李箱手提運輸、海關扣押風險。這種「荒謬」後來被富士康整合，但代價是更深的中國依賴。
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <h4>金句 #3：深圳崛起</h4>
+                    <div class="quote-text">
+                        「深圳之所以成為今天的深圳，完全是因為郭台銘。如果沒有他的雄心壯志，深圳不可能成為如今的製造業重鎮。」
+                    </div>
+                    <div class="quote-source">——代工製造業高層主管</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>個人vs城市的共生關係。郭台銘不僅建工廠，更建「城中城」（宿舍、餐廳、娛樂設施）。與地方政府交換：就業機會換土地+補貼+設備。深圳從7萬人漁村暴增至700萬人口（25年增百倍）。
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-chapters">
+                <h4>📚 關鍵章節</h4>
+                <ul>
+                    <li>第13章：一千首歌 - 在台灣製造iPod</li>
+                    <li>第14-16章：亞洲製造 - iMac G4到iPod在中國量產</li>
+                    <li>第17章：紫色計畫 - iPhone秘密研發的亞洲之旅</li>
+                    <li>第18-19章：那台裝置 - iPhone首次亮相與蘋果衝擊</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 第4部 -->
+        <div class="part-section" style="background: #f8f9fa;">
+            <div class="part-header">
+                <div class="part-number">第4部</div>
+                <h2 class="part-title">驚人的需求—— iPhone在中國</h2>
+                <p class="part-timespan">2007-2013 · 從傳教士到雙重賭注</p>
+            </div>
+
+            <div class="summary-box">
+                <h3>本部摘要</h3>
+                <p>
+                    <strong>中國市場爆發：</strong>「傳教士」般推廣iPhone，卻面對山寨蘋果店、水貨黃牛市場的混亂。品牌該叫Apple還是「蘋果」？福特認為英文名更有魅力，但本地團隊擔心冒犯。
+                </p>
+                <p>
+                    <strong>製造挑戰升級：</strong>iPhone 4採用自研晶片、前置鏡頭、Retina螢幕、不鏽鋼邊框天線。「就讓下一代iPhone難以仿冒，讓他們想抄都得發瘋或破產！」富士康接受「無條件保固」苛刻條款（東尼．布萊文斯特製條款）。
+                </p>
+                <p>
+                    <strong>富士康與台積電雙重賭注：</strong>2010年富士康六名工人自殺（四人死亡），郭台銘承諾在鄭州、成都建新園區，將工人從沿海遷往內陸。iPhone出貨量2009-2011年翻四倍達9300萬支，蘋果最重要兩款產品（iPhone/iPad）生產牢牢綁定中國。
+                </p>
+                <p>
+                    <strong>「海豹部隊」：</strong>蘋果精銳工程師團隊在中國的秘密任務，24小時駐守工廠，確保品質與進度。與台灣黑道有牽連的次級供應商浮現，睜一隻眼閉一隻眼成為常態。
+                </p>
+            </div>
+
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <h4>金句 #1：無條件保固</h4>
+                    <div class="quote-text">
+                        「富士康接受『東尼．布萊文斯特製條款』：對iPhone售出後12個月內的任何故障承擔全責。如果有人退貨，我們就寄給富士康，由你們負責維修。」
+                    </div>
+                    <div class="quote-source">——蘋果知情人士</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>蘋果將品質風險完全轉嫁給代工廠。這種「霸王條款」驅使富士康不敢耍小聰明、不敢用未授權供應商。但也揭示權力不對等：富士康為了拿下iPhone訂單，願意接受任何條件。
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <h4>金句 #2：內陸大遷徙</h4>
+                    <div class="quote-text">
+                        「郭台銘預期兩年內將有一半富士康工人在內陸工作生活（當時只有20%）。賭注獲得豐厚回報，唯一缺點是：蘋果最重要兩款產品，生產更牢牢綁定中國。」
+                    </div>
+                    <div class="quote-source">——2010年富士康戰略</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>富士康用「逃離沿海自殺潮」危機，換取更深的內陸布局。地方政府提供更優惠土地+補貼，工人成本更低。蘋果獲得更大產能，但失去了供應鏈多元化的可能。
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <h4>金句 #3：黑道滲透</h4>
+                    <div class="quote-text">
+                        「從他們的穿著、舉止、說話方式就能看出端倪。部分與蘋果合作的次級供應商，與台灣黑道有牽連。之前的團隊或許也知情，但消息從未傳回總部。」
+                    </div>
+                    <div class="quote-source">——蘋果工程師希爾曼</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>供應鏈的「灰色地帶」。當你依賴成千上萬家次級供應商時，無法完全掌控每個環節。黑道、貪污、走私成為「睜一隻眼閉一隻眼」的潛規則。這是規模化的代價。
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-chapters">
+                <h4>📚 關鍵章節</h4>
+                <ul>
+                    <li>第20章：傳教士 - 在中國推廣iPhone</li>
+                    <li>第21-22章：山寨與水貨 - 縫紉機修理店與黃牛經濟</li>
+                    <li>第23-24章：內部衝突 - 「把那混蛋開除掉」與雙重賭注</li>
+                    <li>第25章：海豹部隊 - 精銳工程師的秘密任務</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 第5部 -->
+        <div class="part-section">
+            <div class="part-header">
+                <div class="part-number">第5部</div>
+                <h2 class="part-title">政治覺醒</h2>
+                <p class="part-timespan">2010-2017 · 從獨裁者到中國馬歇爾計畫</p>
+            </div>
+
+            <div class="summary-box">
+                <h3>本部摘要</h3>
+                <p>
+                    <strong>習近平上台（2012）：</strong>威權轉向與對外企政策收緊。2013年315事件（見序言）標誌蘋果從主導地位到從屬地位的徹底逆轉。「蘋果時代已輕易結束，中國人可以輕易抬舉它，也可以隨時打壓它。」
+                </p>
+                <p>
+                    <strong>八人幫權力鬥爭：</strong>蘋果內部對中國策略分歧嚴重。培養「中國通」成為關鍵，但如何平衡商業利益與價值觀？Think Different廣告在亞洲版刪除達賴喇嘛是第一次妥協，往後還有更多。
+                </p>
+                <p>
+                    <strong>勞工問題爆發：</strong>富士康「假自願、真強制」加班，工人跳樓自殺潮震驚世界。蘋果發布《供應商責任報告》，但「蘋果壓榨」供應商的嚴苛要求與利潤壓榨，是問題根源之一。
+                </p>
+                <p>
+                    <strong>中國的馬歇爾計畫：</strong>蘋果在中國的巨額投資（年550億美元）、培訓2800萬工人，堪比二戰後美國對歐洲的援助。但這次是企業版，而且培養了一個反過來制約它的製造帝國。地方政府「官僚保護」讓蘋果供應鏈免受勞工法規約束。
+                </p>
+            </div>
+
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <h4>金句 #1：認知失調</h4>
+                    <div class="quote-text">
+                        「蘋果在『企業社會責任』與『中國依賴』之間陷入認知失調。它發布供應商責任報告，卻對地方政府保護供應鏈免受勞工法規約束睜一隻眼閉一隻眼。」
+                    </div>
+                    <div class="quote-source">——本部核心矛盾</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>當商業利益與價值觀衝突時，前者幾乎總是獲勝。蘋果標榜「不同凡想」，卻在中國問題上選擇沉默。這不是個別企業的問題，而是資本主義邏輯的必然結果。
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <h4>金句 #2：馬歇爾計畫</h4>
+                    <div class="quote-text">
+                        「蘋果在中國的投資規模與培訓人數，堪比二戰後美國對歐洲的馬歇爾計畫。只不過這次是企業版，而且培養了一個反過來用這本領對付它的帝國。」
+                    </div>
+                    <div class="quote-source">——歷史類比</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>技術轉移的長期後果。馬歇爾計畫幫助歐洲重建，讓它們成為美國盟友；蘋果「中國計畫」幫助中國建立製造能力，卻讓它們成為競爭對手（紅色供應鏈）。歷史在重演，只是主角換了。
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <h4>金句 #3：官僚保護</h4>
+                    <div class="quote-text">
+                        「中國地方政府為了保住蘋果供應鏈，對富士康等工廠提供『官僚保護』，讓它們免受勞工法規約束。創造就業機會的政績，比工人權益更重要。」
+                    </div>
+                    <div class="quote-source">——地方政府邏輯</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>「廣東模式」的陰暗面。地方官員考核看GDP，所以願意為外資企業開綠燈，甚至犧牲勞工權益。蘋果從這種體制中獲益，卻很難說自己是被動的。這是結構性共謀。
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-chapters">
+                <h4>📚 關鍵章節</h4>
+                <ul>
+                    <li>第26章：獨裁者 - 習近平上台後的威權轉向</li>
+                    <li>第27-28章：八人幫與中國通 - 內部權力鬥爭</li>
+                    <li>第29-30章：假自願真強制 - 富士康勞工問題</li>
+                    <li>第31-32章：中國的馬歇爾計畫與官僚保護</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 第6部 -->
+        <div class="part-section" style="background: #f8f9fa;">
+            <div class="part-header">
+                <div class="part-number">第6部</div>
+                <h2 class="part-title">紅蘋果</h2>
+                <p class="part-timespan">2017-2025 · 從紅色供應鏈到台積電風險</p>
+            </div>
+
+            <div class="summary-box">
+                <h3>本部摘要</h3>
+                <p>
+                    <strong>紅色供應鏈崛起：</strong>北京利用蘋果培養本土製造能力，國家補貼的「紅色供應鏈」企業逐步取代美日台供應商。蘋果親手培植了一個製造帝國，如今這個帝國反過來用這本領對付它。
+                </p>
+                <p>
+                    <strong>葛越爭議：</strong>蘋果大中華區負責人葛越被批評為「傀儡人物」，過度配合北京要求。下架VPN、配合審查、將iCloud資料中心遷至雲上貴州，引發隱私與人權爭議。
+                </p>
+                <p>
+                    <strong>「五級火災警報」：</strong>蘋果內部對中國風險發出最高級別警告。華為崛起威脅iPhone在中國市場地位，COVID-19疫情暴露供應鏈脆弱性，中美對抗升級讓蘋果陷入兩難。
+                </p>
+                <p>
+                    <strong>B計畫失敗：</strong>蘋果嘗試將產能轉移印度，但面臨基礎設施不足、勞動力素質低、政府效率差等問題。「印度製造」短期內無法取代中國。台積電作為蘋果（與全球）最關鍵晶片供應商，成為最大地緣政治風險。
+                </p>
+            </div>
+
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <h4>金句 #1：紅色供應鏈</h4>
+                    <div class="quote-text">
+                        「中國本土供應商在國家扶植下，逐步取代外資企業。蘋果曾是它們的老師，現在它們成了蘋果的競爭對手。學徒殺死了師傅。」
+                    </div>
+                    <div class="quote-source">——紅色供應鏈邏輯</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>這是「中國製造2025」的核心戰略。引進外資→學習技術→扶植本土企業→取代外資。蘋果不是第一個受害者，也不會是最後一個。這是國家資本主義vs自由市場資本主義的對決。
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <h4>金句 #2：蘋果的惡夢</h4>
+                    <div class="quote-text">
+                        「COVID-19疫情、中美對抗、華為崛起、供應鏈武器化——這些風險疊加起來，構成『蘋果前所未有的惡夢』。但蘋果不會輕易放棄中國這個700億美元的市場。」
+                    </div>
+                    <div class="quote-source">——2020年代困境</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>蘋果陷入「人質困境」：想離開卻離不開。中國既是最大製造基地，也是第二大市場。任何「脫鉤」都會傷害蘋果利潤，股東不會答應。這是全球化不可逆的證明。
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <h4>金句 #3：台積電風險</h4>
+                    <div class="quote-text">
+                        「台積電作為蘋果（與全球）最關鍵的晶片供應商，其地緣政治風險是蘋果『驚人的脆弱性』。一旦台海爆發衝突，全球供應鏈將崩潰。」
+                    </div>
+                    <div class="quote-source">——最大未知數</div>
+                    <div class="quote-insight">
+                        <strong>💡 啟發：</strong>台積電是全球科技業的「單點故障」(single point of failure)。它壟斷先進製程，所有頂級晶片都依賴它。台灣因此成為「矽盾」——中國不敢武統，因為會摧毀台積電。但這也讓蘋果（與全球）暴露在台海風險之下。
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-chapters">
+                <h4>📚 關鍵章節</h4>
+                <ul>
+                    <li>第33-34章：認知失調與葛越爭議</li>
+                    <li>第35-37章：紅色供應鏈、五級火災警報、華為威脅</li>
+                    <li>第38-39章：全球疫情與蘋果的惡夢</li>
+                    <li>第40-41章：B計畫（印度製造）失敗與台積電風險</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 思考篇章 -->
+        <div class="part-section" style="background: linear-gradient(135deg, #fff 0%, #f1faee 100%);">
+            <div class="part-header">
+                <div class="part-number">💭 思考篇章</div>
+                <h2 class="part-title">從蘋果看世界</h2>
+                <p class="part-subtitle">將歷史智慧連接到2026年的現實</p>
+            </div>
+
+            <div class="summary-box" style="background: linear-gradient(135deg, #fff3cd 0%, #fff 100%); border-left-color: #ffc107;">
+                <h3 style="color: #856404;">🌍 當前時事連接（2026）</h3>
+                <p>
+                    <strong>1. 美中科技戰升級：</strong>2026年美國《晶片與科學法案2.0》要求所有接受補貼的企業，必須在5年內將中國產能降至30%以下。蘋果面臨「選邊站」的終極考驗——留在中國=失去美國補貼+國安審查風險；撤離中國=短期產能崩潰+失去700億市場。
+                </p>
+                <p style="margin-top: 10px;">
+                    <strong>💡 思考：</strong>這正是書中預言的「人質困境」成真。當一家公司的供應鏈過度集中於地緣政治對手，它就失去了議價權。對你的啟示：無論是職業（過度依賴單一雇主）、投資（過度集中單一市場）還是人際關係，<em>過度依賴=脆弱性</em>。
+                </p>
+            </div>
+
+            <div class="summary-box" style="background: linear-gradient(135deg, #d1ecf1 0%, #fff 100%); border-left-color: #0c5460;">
+                <h3 style="color: #0c5460;">📱 與你相關的日常觀察</h3>
+                <p>
+                    <strong>2. iPhone「印度製造」的尷尬：</strong>你手上的iPhone 16可能標著「Assembled in India」，但打開外殼會發現：螢幕來自韓國、晶片來自台灣、相機模組來自日本、精密零件仍是中國製。真正的「Made in India」可能只有外殼組裝+包裝盒。
+                </p>
+                <p style="margin-top: 10px;">
+                    <strong>💡 思考：</strong>「製造」不只是組裝，更是生態系統。中國用30年培養的技術工人、供應鏈協同、基礎設施，印度短期內無法複製。對職場的啟示：<em>真正的核心競爭力不是單一技能，而是不可替代的生態位</em>。
+                </p>
+            </div>
+
+            <div class="summary-box" style="background: linear-gradient(135deg, #f8d7da 0%, #fff 100%); border-left-color: #721c24;">
+                <h3 style="color: #721c24;">⚠️ 歷史正在重演的警訊</h3>
+                <p>
+                    <strong>3. 台積電的「矽盾」正在瓦解：</strong>2026年美國亞利桑那廠、日本熊本二廠、德國德勒斯登廠陸續量產，先進製程不再只有台灣能做。北京對台灣的「不敢打」（怕毀掉台積電）正在失效，台海風險反而上升。
+                </p>
+                <p style="margin-top: 10px;">
+                    <strong>💡 思考：</strong>當你的「不可替代性」被複製，你的安全反而降低。對個人的啟示：不要把職業安全建立在「只有我會」之上，而要建立在<em>持續學習的能力</em>之上。今天的護城河，明天可能變成陷阱。
+                </p>
+            </div>
+
+            <div class="quotes-grid" style="margin-top: 40px;">
+                <div class="quote-card" style="border-top-color: #ffc107;">
+                    <h4 style="color: #856404;">🤔 思考問題 #1：供應鏈 vs 價值觀</h4>
+                    <div class="quote-text" style="background: #fff3cd;">
+                        「如果你是庫克，在美國政府要求『撤出中國』與蘋果股東要求『保護利潤』之間，你會如何選擇？更重要的是：你認為企業應該有國籍嗎？跨國公司對哪個國家負責？」
+                    </div>
+                    <div class="quote-insight">
+                        <strong>延伸思考：</strong>這不只是蘋果的問題。特斯拉、耐吉、星巴克都面臨相同困境。在你的職業生涯中，你是否也會面對「商業利益vs個人價值觀」的衝突？你會如何抉擇？
+                    </div>
+                </div>
+
+                <div class="quote-card" style="border-top-color: #0c5460;">
+                    <h4 style="color: #0c5460;">🤔 思考問題 #2：技術轉移的兩難</h4>
+                    <div class="quote-text" style="background: #d1ecf1;">
+                        「蘋果『培養了反過來制約它的製造帝國』。如果你是2000年代的蘋果決策者，知道今天的後果，你還會選擇全面外包到中國嗎？短期效率vs長期風險，如何平衡？」
+                    </div>
+                    <div class="quote-insight">
+                        <strong>延伸思考：</strong>這個困境在你的工作中也存在：是否該培養可能取代你的下屬？是否該分享可能被競爭對手學走的經驗？「教會徒弟、餓死師傅」vs「藏私導致團隊停滯」，你選哪個？
+                    </div>
+                </div>
+
+                <div class="quote-card" style="border-top-color: #721c24;">
+                    <h4 style="color: #721c24;">🤔 思考問題 #3：個人的「中國依賴」</h4>
+                    <div class="quote-text" style="background: #f8d7da;">
+                        「蘋果過度依賴中國製造，你的人生是否也過度依賴某些『單點』？單一收入來源、單一專業技能、單一人際網絡、單一投資標的？如果明天這個『單點』消失，你能活下來嗎？」
+                    </div>
+                    <div class="quote-insight">
+                        <strong>延伸思考：</strong>這是最實用的啟發。供應鏈多元化=風險分散。對個人而言：多條收入來源、跨領域技能組合、不同圈子的人脈、分散的投資組合——這些都是你的「B計畫」。
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-chapters" style="margin-top: 40px; background: #e2e3e5;">
+                <h4 style="color: #383d41;">📝 閱讀後的行動清單</h4>
+                <ul style="color: #383d41;">
+                    <li><strong>職業安全檢查：</strong>你的核心技能是否過度依賴單一雇主/行業？如何建立可遷移的能力？</li>
+                    <li><strong>投資組合審查：</strong>你的資產是否過度集中（單一市場/行業/公司）？如何分散風險？</li>
+                    <li><strong>供應鏈思維：</strong>觀察你日常用的產品（手機、電腦、汽車），追溯它們的供應鏈，理解全球化的脆弱性。</li>
+                    <li><strong>地緣政治敏感度：</strong>關注美中關係、台海局勢、晶片戰爭——這些不是遙遠的新聞，而是影響你工作、投資、生活的現實。</li>
+                    <li><strong>「B計畫」演練：</strong>如果明天你的主要收入來源消失，你能撐多久？如何建立備用方案？</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <blockquote>
+                「全球沒有任何國家能取代中國的製造能力，<br>
+                而庫比蒂諾也不會輕易放棄中國這個700億美元的市場。<br>
+                這個困境不僅是蘋果面臨的最大風險，<br>
+                也是對執行長庫克歷史評價的關鍵未知數，<br>
+                更是華府迫在眉睫的嚴峻挑戰。」
+            </blockquote>
+            <p style="margin-top: 30px;">
+                《蘋果在中國》· 派翠克·麥奇 著 · 鍾玉玨 譯<br>
+                深度閱讀指南 · 綠色主題版 · 2026
+            </p>
+        </div>
+    </div>
+</body>
+</html>

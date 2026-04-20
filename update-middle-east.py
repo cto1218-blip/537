@@ -11,7 +11,9 @@ def s2tw(text):
     """简体转繁体"""
     return cc.convert(text)
 
-data = json.loads(sys.argv[1])
+# Read JSON from file
+with open(sys.argv[1], 'r', encoding='utf-8') as f:
+    data = json.load(f)
 
 with open('middle-east-tracker-zh-TW.html', 'r', encoding='utf-8') as f:
     content = f.read()
@@ -36,9 +38,14 @@ if 'news' in data and data['news']:
                 </div>'''
         for n in news_items
     ])
+    
+    # Use lambda to avoid backreference issues
+    def replace_news(m):
+        return m.group(1) + '\n' + new_news + '\n            ' + m.group(3)
+    
     content = re.sub(
         r'(<div class="news-grid">)(.*?)(</div>\s*</section>)',
-        f'\\1\n{new_news}\n            \\3',
+        replace_news,
         content, flags=re.DOTALL, count=1
     )
 
@@ -46,21 +53,30 @@ if 'news' in data and data['news']:
 if 'market' in data:
     m = data['market']
     if 'gold' in m:
+        gold_val = s2tw(m["gold"])
+        def replace_gold(match):
+            return match.group(1) + gold_val
         content = re.sub(
             r'(gold-card">\s*<div class="market-value">)[^<]+',
-            f'\\1{s2tw(m["gold"])}',
+            replace_gold,
             content, count=1, flags=re.DOTALL
         )
     if 'oil_wti' in m:
+        wti_val = s2tw(m["oil_wti"])
+        def replace_wti(match):
+            return match.group(1) + wti_val
         content = re.sub(
             r'(wti-card">\s*<div class="market-value">)[^<]+',
-            f'\\1{s2tw(m["oil_wti"])}',
+            replace_wti,
             content, count=1, flags=re.DOTALL
         )
     if 'oil_brent' in m:
+        brent_val = s2tw(m["oil_brent"])
+        def replace_brent(match):
+            return match.group(1) + brent_val
         content = re.sub(
             r'(brent-card">\s*<div class="market-value">)[^<]+',
-            f'\\1{s2tw(m["oil_brent"])}',
+            replace_brent,
             content, count=1, flags=re.DOTALL
         )
 

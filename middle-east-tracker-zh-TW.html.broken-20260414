@@ -290,7 +290,7 @@
         
         .predictions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
         
@@ -522,12 +522,15 @@
             gap: 16px;
         }
         
-        /* 现价卡片和预测卡片：统一大小，允许3个并排 */
-        .market-subsection .market-grid > .market-card-wrapper.current-price,
-        .market-subsection .market-grid > .market-card-wrapper.prediction-price {
-            min-width: 240px;
+        /* 现价卡片：稍大一些 */
+        .market-subsection .market-grid > .market-card-wrapper.current-price {
+            min-width: 260px;
         }
-
+        
+        /* 预测卡片：较小，允许3个一行或2+1两行 */
+        .market-subsection .market-grid > .market-card-wrapper.prediction-price {
+            min-width: 220px;
+        }
         
 .market-grid {
             display: flex;
@@ -989,14 +992,14 @@
         <header class="header">
             <h1>🌐 2026 美以伊衝突追蹤</h1>
             <p>中東地緣政治局勢情報儀表板</p>
-            <div class="timestamp">最後更新：2026年4月15日 16:00</div>
+            <div class="timestamp">最後更新：2026年4月14日 17:00 (UTC+8) | 自動更新</div>
         </header>
         
         <div class="stats-grid">
             <div class="stat-card" style="--card-accent: var(--color-conflict);">
-                <div class="stat-value">⚠️ 高位</div>
-                <div class="stat-label">地缘风险</div>
-                <div class="stat-meta">以伊冲突 + 美伊谈判</div>
+                <div class="stat-value">📉 單日-13%</div>
+                <div class="stat-label">油價暴跌</div>
+                <div class="stat-meta">2020年來最大跌幅</div>
             </div>
             
             <div class="stat-card" style="--card-accent: var(--color-success);">
@@ -1027,22 +1030,40 @@
             
             <div class="news-grid">
                 <div class="news-card">
-                    <span class="news-source">AP News</span>
-                    <span class="news-date">2026-04-20</span>
-                    <div class="news-title">以色列在加薩城啟動新一輪地面攻勢，居民被迫撤離</div>
-                    <div class="news-description">以色列軍方週二對加薩城發起新一輪地面攻勢，這座巴勒斯坦地區最大城市的一個又一個街區已遭摧毀。軍方警告仍留在城內的居民必須向南撤離。據估計，在撤離警告發布前約有100萬巴勒斯坦人居住在加薩城地區，以色列軍方估計已有35萬人撤離，聯合國數據顯示過去一個月已有超過22萬人逃離加薩北部，但仍有數十萬人選擇留下。此次行動標誌著衝突的又一次升級，儘管經過數月外交努力，任何潛在的停火協議仍遙不可及。以色列媒體暗示此次攻勢可能持續數月。</div>
+                    <span class="news-source">UN News</span>
+                    <span class="news-date">2026-04-08</span>
+                    <div class="news-title">UN News: 美伊停火協議宣布，為期兩週</div>
+                    <div class="news-description">經過40天激烈衝突後，美國與伊朗宣布為期兩週停火，但以色列持續空襲黎巴嫩引發擔憂</div>
                 </div>
                 <div class="news-card">
-                    <span class="news-source">UN Human Rights Council</span>
-                    <span class="news-date">2026-04-20</span>
-                    <div class="news-title">聯合國委員會指控以色列在加薩實施種族滅絕</div>
-                    <div class="news-description">聯合國人權理事會委託的三人獨立專家小組週二發布報告，認定以色列在加薩實施種族滅絕行為，呼籲國際社會立即結束種族滅絕並對相關責任人採取懲罰措施。這是針對以色列總理內塔尼亞胡政府的最新種族滅絕指控。以色列拒絕與該委員會合作，並指責其存在反以色列偏見。聯合國秘書長古特雷斯雖未直接認同該認定，但表示加薩地面局勢令人無法容忍，並警告以色列似乎對停火談判不感興趣。</div>
+                    <span class="news-source">CNN</span>
+                    <span class="news-date">2026-04-09</span>
+                    <div class="news-title">CNN: 以色列黎巴嫩大規模攻擊威脅停火</div>
+                    <div class="news-description">以色列本週在貝魯特及黎巴嫩其他地區的大規模攻擊，可能破壞與美國和伊朗的脆弱停火協議</div>
                 </div>
                 <div class="news-card">
-                    <span class="news-source">Egypt State Information</span>
-                    <span class="news-date">2026-04-20</span>
-                    <div class="news-title">埃及升級對以色列的言論，總統首次稱以色列為「敵人」</div>
-                    <div class="news-description">埃及與以色列維持了數十年的和平協議並一直在戰爭中扮演調解角色，但現在似乎正在失去耐心。埃及總統塞西週一在卡塔爾峰會上的激烈演講中將以色列描述為「敵人」，這是自1979年兩國建交以來埃及領導人首次使用該詞。埃及國家信息局局長迪亞·拉什萬證實了這一歷史性表述。埃及是第一個與以色列建交的阿拉伯國家，兩國和平條約被視為該動蕩地區穩定的基石。此番言論升級顯示埃及對當前衝突局勢的嚴重關切。</div>
+                    <span class="news-source">Wikipedia</span>
+                    <span class="news-date">2026-04-08</span>
+                    <div class="news-title">Wikipedia: 4月8日黎巴嫩襲擊事件</div>
+                    <div class="news-description">巴基斯坦斡旋的停火協議中，黎巴嫩是否包含在內引發爭議。以色列總理內塔尼亞胡否認黎巴嫩在停火範圍內</div>
+                </div>
+                <div class="news-card">
+                    <span class="news-source">US News</span>
+                    <span class="news-date">2026-04-10</span>
+                    <div class="news-title">US News: 加沙停火6個月為伊朗戰爭提供教訓</div>
+                    <div class="news-description">加沙停火協議已維持6個月。伊朗戰爭停火協議細節的混亂已在黎巴嫩造成致命後果</div>
+                </div>
+                <div class="news-card">
+                    <span class="news-source">NYT</span>
+                    <span class="news-date">2026-04-09</span>
+                    <div class="news-title">NYT: 以色列同意與黎巴嫩談判但持續打擊真主黨</div>
+                    <div class="news-description">伊朗堅稱黎巴嫩包含在停火協議中，而美國和以色列否認，威脅停火協議穩定性</div>
+                </div>
+                <div class="news-card">
+                    <span class="news-source">Forbes</span>
+                    <span class="news-date">2026-04-13</span>
+                    <div class="news-title">Forbes: 油價今日WTI $95.59, Brent $96.11</div>
+                    <div class="news-description">4月13日WTI原油期貨開盤價$95.59/桶，布倫特原油$96.11/桶。停火協議宣布後油價暴跌13%</div>
                 </div>
             </div>
       </section>
@@ -1058,22 +1079,8 @@
             <div class="predictions-grid">
                 <div class="prediction-card">
                     <span class="prediction-actor">AI 模型預測</span>
-                    <div class="prediction-title">美伊谈判在4月底前达成框架协议</div>
-                    <div class="prediction-description">基于特朗普「接近结束」表态和第二轮谈判计划，但军事部署仍在增加显示谨慎态度</div>
-                    <div class="probability-bar-container">
-                        <div class="probability-label">
-                            <span>可能性</span>
-                            <span class="probability-value">42%</span>
-                        </div>
-                        <div class="probability-bar">
-                            <div class="probability-fill" style="width: 42%"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="prediction-card">
-                    <span class="prediction-actor">AI 模型預測</span>
-                    <div class="prediction-title">霍尔木兹海峡5月内恢复正常通航</div>
-                    <div class="prediction-description">目前商业交通受限但部分船只仍在通行，完全恢复需要正式和平协议支持</div>
+                    <div class="prediction-title">停火持續至4/21</div>
+                    <div class="prediction-description"><strong>分析：</strong>當前停火協議面臨嚴峻考驗。黎巴嫩問題是最大變數——美以伊三方對「黎巴嫩是否包含在停火範圍內」存在公開分歧。以色列本週在黎巴嫩發動戰爭以來最大規模空襲，內塔尼亞胡明確「黎巴嫩沒有停火」；伊朗堅持黎巴嫩必須涵蓋。CNN警告協議「瀕臨崩潰」。內塔尼亞胡在國內遭遇史無前例的政治風暴，需要通過強硬立場平息批評。Polymarket顯示52%機率停火破裂。綜合評估：<strong>黎巴嫩衝突升級風險極高，協議持續至4/21的可能性較低</strong>。</div>
                     <div class="probability-bar-container">
                         <div class="probability-label">
                             <span>可能性</span>
@@ -1082,12 +1089,38 @@
                         <div class="probability-bar">
                             <div class="probability-fill" style="width: 35%"></div>
                         </div>
+                </div>
+                <div class="prediction-card">
+                    <span class="prediction-actor">AI 模型預測</span>
+                    <div class="prediction-title">霍爾木茲4月恢復</div>
+                    <div class="prediction-description"><strong>分析：</strong>霍爾木茲海峽重新開放進展緩慢。儘管川普宣布「非伊朗船隻可通過」，但油輪/貨船繼續觀望，只有俄羅斯油輪通過。<strong>可能存在水雷威脅</strong>需要清理作業。馬士基集團警告運營恢復可能需要「數週甚至數月」。Polymarket顯示僅14%機率4月底前恢復正常。JP Morgan警告：若僵局持續至7月，油價可能衝破$120。Goldman警告：再關閉一個月，2026年全年Brent將維持$100+。綜合評估：<strong>安全擔憂和地緣不確定性將延緩恢復進程</strong>。</div>
+                    <div class="probability-bar-container">
+                        <div class="probability-label">
+                            <span>可能性</span>
+                            <span class="probability-value">42%</span>
+                        </div>
+                        <div class="probability-bar">
+                            <div class="probability-fill" style="width: 42%"></div>
+                        </div>
+                </div>
+                <div class="prediction-card">
+                    <span class="prediction-actor">AI 模型預測</span>
+                    <div class="prediction-title">黎巴嫩衝突持續</div>
+                    <div class="prediction-description"><strong>分析：</strong>黎巴嫩衝突幾乎確定持續。內塔尼亞胡明確表示「黎巴嫩沒有停火」，授權與黎巴嫩談判但攻擊未停止。以色列本週在黎巴嫩發動戰爭以來最大規模空襲（數百架次），超160人死亡。美以伊三方對黎巴嫩問題存在<strong>根本性分歧</strong>：以色列認為不在停火範圍內，伊朗堅持必須涵蓋。內塔尼亞胡在國內遭遇政治風暴，需要通過對黎巴嫩的強硬立場證明「並非完全投降」。Polymarket顯示97%機率黎巴嫩衝突持續。綜合評估：<strong>黎巴嫩衝突是當前中東局勢最大的不穩定因素</strong>。</div>
+                    <div class="probability-bar-container">
+                        <div class="probability-label">
+                            <span>可能性</span>
+                            <span class="probability-value">78%</span>
+                        </div>
+                        <div class="probability-bar">
+                            <div class="probability-fill" style="width: 78%"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="prediction-card">
                     <span class="prediction-actor">AI 模型預測</span>
-                    <div class="prediction-title">油价在5月回落至80美元以下</div>
-                    <div class="prediction-description">当前WTI约92美元，若谈判成功且海峡通航恢复，供应压力缓解将推动油价下行</div>
+                    <div class="prediction-title">川普6月宣布結束</div>
+                    <div class="prediction-description"><strong>分析：</strong>川普6月前宣布戰爭結束的可能性極低。當前停火協議是兩週試驗性質，距離「戰爭結束」還有<strong>巨大差距</strong>。黎巴嫩問題未解決、霍爾木茲海峽未完全開放、以色列國內政治危機、伊朗核問題懸而未決——任何一個變數都可能引發協議崩潰。加薩停火已持續6個月但暴力未完全停止，顯示「停火」與「戰爭結束」之間存在鴻溝。Polymarket僅15%機率6月前宣布結束。綜合評估：<strong>短期內實現全面和平的可能性微乎其微</strong>。</div>
                     <div class="probability-bar-container">
                         <div class="probability-label">
                             <span>可能性</span>
@@ -1095,20 +1128,6 @@
                         </div>
                         <div class="probability-bar">
                             <div class="probability-fill" style="width: 28%"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="prediction-card">
-                    <span class="prediction-actor">AI 模型預測</span>
-                    <div class="prediction-title">以色列与黎巴嫩边境冲突升级</div>
-                    <div class="prediction-description">虽有空袭报道，但整体局势趋向缓和，大规模冲突升级概率较低</div>
-                    <div class="probability-bar-container">
-                        <div class="probability-label">
-                            <span>可能性</span>
-                            <span class="probability-value">22%</span>
-                        </div>
-                        <div class="probability-bar">
-                            <div class="probability-fill" style="width: 22%"></div>
                         </div>
                     </div>
                 </div>
@@ -1238,7 +1257,7 @@
                     <div class="market-card-wrapper">
                         <div class="market-card-title current">💰 現貨黃金</div>
                         <div class="market-card gold-card">
-                        <div class="market-value">暫無數據<span class="market-unit">/盎司</span></div>
+                        <div class="market-value">$4,787<span class="market-unit">/盎司</span></div>
                         </div>
                         <div class="market-change positive">▲ +2.8%</div>
                         <div class="market-meta">

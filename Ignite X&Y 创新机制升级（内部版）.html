@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ignite创新项目机制 - IgniteX & IgniteY</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 20px;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Two Column Layout */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.15);
+            border-color: #667eea;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .card-icon.x {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .card-icon.y {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .card-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .card-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .card-content {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .card-content p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box strong {
+            color: #667eea;
+            font-size: 18px;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            margin-bottom: 80px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        th {
+            padding: 20px;
+            text-align: left;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        th:first-child {
+            width: 25%;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background: #f8f9ff;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        td {
+            padding: 20px;
+            font-size: 15px;
+            color: #555;
+        }
+
+        td:first-child {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        /* Key Differences */
+        .key-differences {
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+            padding: 50px;
+            border-radius: 16px;
+            margin-bottom: 80px;
+            border: 2px solid #e0e5ff;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .diff-item {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .diff-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .diff-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .diff-x {
+            color: #667eea;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .diff-y {
+            color: #f5576c;
+            font-size: 16px;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            margin-bottom: 80px;
+        }
+
+        .timeline-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 25px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline.y .timeline-item::before {
+            background: #f5576c;
+            box-shadow: 0 0 0 3px #f5576c;
+        }
+
+        .timeline.y::before {
+            background: linear-gradient(180deg, #f093fb, #f5576c);
+        }
+
+        .timeline-stage {
+            font-size: 18px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .timeline.y .timeline-stage {
+            color: #f5576c;
+        }
+
+        .timeline-duration {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Reward Section */
+        .reward-section {
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+            padding: 50px;
+            border-radius: 16px;
+            margin-bottom: 80px;
+            border: 2px solid #e0e5ff;
+        }
+
+        .reward-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .reward-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .reward-header {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .reward-header.x {
+            color: #667eea;
+        }
+
+        .reward-header.y {
+            color: #f5576c;
+        }
+
+        .reward-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9ff;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .reward-item strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Result Standards Table */
+        .result-standards {
+            background: white;
+            padding: 50px;
+            border-radius: 16px;
+            margin-bottom: 80px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .standards-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        .standards-table thead {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .standards-table th {
+            padding: 20px;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .standards-table tbody tr {
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s ease;
+        }
+
+        .standards-table tbody tr:hover {
+            background: #fff5f8;
+        }
+
+        .standards-table td {
+            padding: 20px;
+            font-size: 15px;
+            color: #555;
+            vertical-align: top;
+        }
+
+        .standards-table td:first-child {
+            font-weight: 700;
+            color: #f5576c;
+            white-space: nowrap;
+        }
+
+        .standards-table td ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .standards-table td ul li {
+            margin-bottom: 8px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #f8f9ff;
+            border-radius: 16px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        footer strong {
+            color: #667eea;
+            font-size: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .diff-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-container {
+                grid-template-columns: 1fr;
+            }
+
+            .reward-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 36px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .card {
+                padding: 30px 20px;
+            }
+
+            .card-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+
+            .card-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Ignite 创新项目机制</h1>
+            <p>双轨驱动创新引擎：IgniteX 快速验证 + IgniteY 战略探索</p>
+        </header>
+
+        <!-- Overview Section -->
+        <div class="two-columns">
+            <!-- IgniteX Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon x">X</div>
+                    <div>
+                        <div class="card-title">IgniteX</div>
+                        <div class="card-subtitle">快速创新实验</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p><strong>定位：</strong>部门主航道以外的快速创新验证项目，鼓励成员自主提案，通过短周期迭代快速验证商业价值。</p>
+                    
+                    <div class="highlight-box">
+                        <strong>核心特点</strong>
+                        <ul style="margin-top: 10px; padding-left: 20px;">
+                            <li>项目来源：部门成员自主提案</li>
+                            <li>项目周期：3个月-1年</li>
+                            <li>Review频率：Stage 1/2 每2周一次，Stage 3 每月一次</li>
+                            <li>结项标准：MVP + 业务买单</li>
+                            <li>投入度：Owner + 2名成员强制全人力投入</li>
+                        </ul>
+                    </div>
+
+                    <p><strong>适用场景：</strong></p>
+                    <ul style="padding-left: 20px;">
+                        <li>业务痛点解决方案</li>
+                        <li>新技术在现有业务的快速落地</li>
+                        <li>流程优化、效率提升类项目</li>
+                        <li>小规模创新尝试</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- IgniteY Card -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon y">Y</div>
+                    <div>
+                        <div class="card-title">IgniteY</div>
+                        <div class="card-subtitle">战略探索项目</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p><strong>定位：</strong>由老板直接命题的战略探索型项目，聚焦长期、高挑战性方向，允许更长验证周期和更大试错空间。</p>
+                    
+                    <div class="highlight-box">
+                        <strong>核心特点</strong>
+                        <ul style="margin-top: 10px; padding-left: 20px;">
+                            <li>项目来源：老板命题</li>
+                            <li>项目周期：6个月-1年</li>
+                            <li>Review频率：Stage 1/2 每1个月一次</li>
+                            <li>结项标准：多维度（S/A/B/C级）</li>
+                            <li>投入度：弹性投入</li>
+                        </ul>
+                    </div>
+
+                    <p><strong>适用场景：</strong></p>
+                    <ul style="padding-left: 20px;">
+                        <li>前沿技术探索</li>
+                        <li>跨领域技术融合</li>
+                        <li>战略方向验证</li>
+                        <li>高不确定性创新</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Differences Section -->
+        <div class="key-differences">
+            <h2 class="section-title">关键差异</h2>
+            <div class="diff-grid">
+                <div class="diff-item">
+                    <div class="diff-icon">🎯</div>
+                    <div class="diff-title">定位</div>
+                    <div class="diff-x">X: 快速创新实验</div>
+                    <div class="diff-y">Y: 战略探索项目</div>
+                </div>
+
+                <div class="diff-item">
+                    <div class="diff-icon">📊</div>
+                    <div class="diff-title">评估标准</div>
+                    <div class="diff-x">X: MVP + 业务买单</div>
+                    <div class="diff-y">Y: 探索价值多维度</div>
+                </div>
+
+                <div class="diff-item">
+                    <div class="diff-icon">🔄</div>
+                    <div class="diff-title">Review频率</div>
+                    <div class="diff-x">X: 每2周-1个月</div>
+                    <div class="diff-y">Y: 每1-3个月</div>
+                </div>
+
+                <div class="diff-item">
+                    <div class="diff-icon">💡</div>
+                    <div class="diff-title">项目来源</div>
+                    <div class="diff-x">X: 成员提案</div>
+                    <div class="diff-y">Y: 老板命题</div>
+                </div>
+
+                <div class="diff-item">
+                    <div class="diff-icon">⚡</div>
+                    <div class="diff-title">投入强度</div>
+                    <div class="diff-x">X: Owner+2人全人力</div>
+                    <div class="diff-y">Y: 弹性投入</div>
+                </div>
+
+                <div class="diff-item">
+                    <div class="diff-icon">🎁</div>
+                    <div class="diff-title">激励机制</div>
+                    <div class="diff-x">X: 即时兑现（燃料）</div>
+                    <div class="diff-y">Y: 结项时兑现（激励额度）</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="comparison-section">
+            <h2 class="section-title">详细对比</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>对比维度</th>
+                        <th>IgniteX</th>
+                        <th>IgniteY</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>项目来源</td>
+                        <td>部门成员提案</td>
+                        <td>老板命题</td>
+                    </tr>
+                    <tr>
+                        <td>项目定位</td>
+                        <td>快速创新实验</td>
+                        <td>战略探索项目</td>
+                    </tr>
+                    <tr>
+                        <td>项目周期</td>
+                        <td>3个月-1年</td>
+                        <td>6个月-1年</td>
+                    </tr>
+                    <tr>
+                        <td>Stage 1 Review</td>
+                        <td>2周一次，共1次（2周）<br><strong>目标：</strong>确保团队、资源、目标到位</td>
+                        <td>1个月一次，共1次（1个月）<br><strong>目标：</strong>明确探索假设和验证计划</td>
+                    </tr>
+                    <tr>
+                        <td>Stage 2 Review</td>
+                        <td>2周一次，共3次（6周）<br><strong>目标：</strong>验证MVP核心功能闭环</td>
+                        <td>1个月一次，共3次（3个月）<br><strong>目标：</strong>验证核心假设，产出技术原型</td>
+                    </tr>
+                    <tr>
+                        <td>Stage 3 Review</td>
+                        <td>按里程碑，每月一次<br><strong>目标：</strong>业务落地，扩展优化</td>
+                        <td>按里程碑，跨度2-3个月<br><strong>目标：</strong>产出可交付成果</td>
+                    </tr>
+                    <tr>
+                        <td>结项标准</td>
+                        <td>MVP + 业务买单</td>
+                        <td>多维度结项（S/A/B/C级）</td>
+                    </tr>
+                    <tr>
+                        <td>投入度要求</td>
+                        <td>Owner + 2名成员强制全人力投入</td>
+                        <td>弹性投入</td>
+                    </tr>
+                    <tr>
+                        <td>BSC体现</td>
+                        <td>不纳入</td>
+                        <td>纳入（5-10%权重）</td>
+                    </tr>
+                    <tr>
+                        <td>激励来源</td>
+                        <td>部门创新池（燃料系统）</td>
+                        <td>绩效激励</td>
+                    </tr>
+                    <tr>
+                        <td>激励逻辑</td>
+                        <td>成果导向（即时兑现）</td>
+                        <td>探索价值导向（结项兑现）</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Timeline Comparison -->
+        <div class="timeline-section">
+            <h2 class="section-title">项目时间线对比</h2>
+            <div class="timeline-container">
+                <!-- IgniteX Timeline -->
+                <div>
+                    <h3 style="text-align: center; color: #667eea; font-size: 24px; margin-bottom: 30px;">IgniteX 时间线</h3>
+                    <div class="timeline x">
+                        <div class="timeline-item">
+                            <div class="timeline-stage">Stage 1: 项目筹备期</div>
+                            <div class="timeline-duration">2周，1次Review</div>
+                            <div class="timeline-desc">确保团队、资源、目标到位</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-stage">Stage 2: MVP验证期</div>
+                            <div class="timeline-duration">6周，每2周Review 1次（共3次）</div>
+                            <div class="timeline-desc">验证最小可行产品，核心功能闭环</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-stage">Stage 3: 稳定推进期</div>
+                            <div class="timeline-duration">按里程碑，每月一次</div>
+                            <div class="timeline-desc">业务落地，扩展优化</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-stage">结项</div>
+                            <div class="timeline-duration">总周期约3个月-1年</div>
+                            <div class="timeline-desc">达成MVP + 业务买单标准</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IgniteY Timeline -->
+                <div>
+                    <h3 style="text-align: center; color: #f5576c; font-size: 24px; margin-bottom: 30px;">IgniteY 时间线</h3>
+                    <div class="timeline y">
+                        <div class="timeline-item">
+                            <div class="timeline-stage">Stage 1: 项目筹备期</div>
+                            <div class="timeline-duration">1个月，1次Review</div>
+                            <div class="timeline-desc">明确探索假设和验证计划</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-stage">Stage 2: 探索验证期</div>
+                            <div class="timeline-duration">3个月，每月Review 1次（共3次）</div>
+                            <div class="timeline-desc">验证核心假设，产出技术原型</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-stage">Stage 3: 深度探索期</div>
+                            <div class="timeline-duration">6-9个月，每2-3个月Review 1次</div>
+                            <div class="timeline-desc">产出可交付成果（技术方案/专利/报告）</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-stage">结项</div>
+                            <div class="timeline-duration">总周期约6个月-1年</div>
+                            <div class="timeline-desc">多维度评估（S/A/B/C级）</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reward Mechanism -->
+        <div class="reward-section">
+            <h2 class="section-title">激励机制对比</h2>
+            <div class="reward-grid">
+                <!-- IgniteX Reward -->
+                <div class="reward-card">
+                    <div class="reward-header x">IgniteX 激励机制</div>
+                    <div class="reward-item">
+                        <strong>激励形式：</strong>燃料系统（10燃料=1元）
+                    </div>
+                    <div class="reward-item">
+                        <strong>兑现时机：</strong>即时兑现（每个阶段完成后）
+                    </div>
+                    <div class="reward-item">
+                        <strong>Stage 1完成：</strong>团队每人+1000燃料，Owner额外+1000
+                    </div>
+                    <div class="reward-item">
+                        <strong>Stage 2完成：</strong>团队+10000燃料（Owner分配）
+                    </div>
+                    <div class="reward-item">
+                        <strong>Stage 3完成：</strong>团队+10000燃料（Owner分配）
+                    </div>
+                    <div class="reward-item">
+                        <strong>结项验收：</strong>达标+800燃料，业务价值额外+1200
+                    </div>
+                    <div class="reward-item">
+                        <strong>年度总决赛：</strong>金奖+1000，银奖+800，铜奖+500
+                    </div>
+                </div>
+
+                <!-- IgniteY Reward -->
+                <div class="reward-card">
+                    <div class="reward-header y">IgniteY 激励机制</div>
+                    <div style="margin-bottom: 15px; padding: 12px; background: #fff5f8; border-left: 3px solid #f5576c; border-radius: 4px; font-size: 14px; color: #666;">
+                        <strong style="color: #f5576c;">💡 激励说明：</strong>以下额度为建议值，最终以绩效考核结果为准
+                    </div>
+                    <div class="reward-item">
+                        <strong>激励形式：</strong>激励额度（体现在年终奖等）
+                    </div>
+                    <div class="reward-item">
+                        <strong>兑现时机：</strong>结项时兑现 + 里程碑激励
+                    </div>
+                    <div class="reward-item">
+                        <strong>S级（战略突破）：</strong>团队10万<span style="color: #888; font-size: 13px;">（折算至年终绩效）</span> + Owner额外5万<span style="color: #888; font-size: 13px;">（折算至年终绩效）</span> + 晋升加分
+                    </div>
+                    <div class="reward-item">
+                        <strong>A级（技术沉淀）：</strong>团队6万<span style="color: #888; font-size: 13px;">（折算至年终绩效）</span> + Owner额外3万<span style="color: #888; font-size: 13px;">（折算至年终绩效）</span> + 专利奖励
+                    </div>
+                    <div class="reward-item">
+                        <strong>B级（洞察输出）：</strong>团队3万<span style="color: #888; font-size: 13px;">（折算至年终绩效）</span> + Owner额外1.5万<span style="color: #888; font-size: 13px;">（折算至年终绩效）</span>
+                    </div>
+                    <div class="reward-item">
+                        <strong>C级（假设验证/及时止损）：</strong>团队1万<span style="color: #888; font-size: 13px;">（折算至年终绩效）</span> + Owner额外5千<span style="color: #888; font-size: 13px;">（折算至年终绩效）</span>（探索奖）
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- IgniteY Result Standards -->
+        <div class="result-standards">
+            <h2 class="section-title" style="color: #f5576c;">IgniteY 结项标准（多维度评估）</h2>
+            <table class="standards-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">结项等级</th>
+                        <th style="width: 35%;">输出物要求</th>
+                        <th style="width: 50%;">定级标准</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>S级<br>战略突破</td>
+                        <td>
+                            <ul>
+                                <li>新业务线或产品</li>
+                                <li>集团采纳的解决方案</li>
+                                <li>战略级技术平台</li>
+                            </ul>
+                        </td>
+                        <td>
+                            项目成果已转化为部门新业务线或产品，或被集团采纳并推广应用，具有明确的战略价值和商业影响力。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>A级<br>技术沉淀</td>
+                        <td>
+                            <ul>
+                                <li>可复用技术方案/框架</li>
+                                <li>已授权专利（含申请中）</li>
+                                <li>开源项目（含社区贡献）</li>
+                            </ul>
+                        </td>
+                        <td>
+                            产出了可复用的技术方案、专利或开源项目，已被其他团队采用或在行业内获得认可，形成了可持续的技术价值。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B级<br>洞察输出</td>
+                        <td>
+                            <ul>
+                                <li>高质量行业报告或白皮书</li>
+                                <li>技术大会演讲（含录用论文）</li>
+                                <li>期刊论文发表</li>
+                            </ul>
+                        </td>
+                        <td>
+                            产出了高质量的行业洞察报告、白皮书，或在技术大会、学术期刊上发表成果，为行业或领域提供了有价值的知识贡献。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>C级<br>假设验证<br>及时止损</td>
+                        <td>
+                            <ul>
+                                <li>探索总结报告</li>
+                                <li>失败案例分析</li>
+                                <li>"避坑指南"文档</li>
+                            </ul>
+                        </td>
+                        <td>
+                            通过验证明确证明了某技术方向不可行，帮助公司避免后续资源浪费；或在中期Review时主动终止项目，及时止损节省资源，产出了有价值的探索洞察。
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 30px; padding: 20px; background: #fff5f8; border-left: 4px solid #f5576c; border-radius: 8px;">
+                <strong style="color: #f5576c; font-size: 16px;">评级说明：</strong>
+                <ul style="margin-top: 10px; padding-left: 20px; color: #666; font-size: 14px; line-height: 1.8;">
+                    <li>结项等级采用<strong>多选题</strong>模式，满足任意一项即可认定该等级</li>
+                    <li>输出物可以是多种形式的组合，不限于单一类型</li>
+                    <li>委员会将根据实际产出质量和战略价值综合评定最终等级</li>
+                    <li>C级不代表失败，而是鼓励探索和及时止损的正向激励</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>双轨并行，协同发展</strong></p>
+            <p>IgniteX 负责快速验证商业价值，IgniteY 负责长期战略探索</p>
+            <p style="margin-top: 20px; font-size: 14px; color: #888;">短期业务落地 + 长期技术储备 = 持续创新引擎</p>
+        </footer>
+    </div>
+</body>
+</html>

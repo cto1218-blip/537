@@ -1,0 +1,18 @@
+{
+  "pid": 67494,
+  "socketPath": "/Users/hoimanszeto/.mcporter/daemon/daemon-cf1654c468f0.sock",
+  "configPath": "/Users/hoimanszeto/.openclaw/workspace/config/mcporter.json",
+  "configLayers": [
+    {
+      "path": "/Users/hoimanszeto/.mcporter/mcporter.json",
+      "mtimeMs": 1776078047035.261
+    },
+    {
+      "path": "/Users/hoimanszeto/.openclaw/workspace/config/mcporter.json",
+      "mtimeMs": 1776063645883.1401
+    }
+  ],
+  "startedAt": 1776078055673,
+  "logPath": null,
+  "configMtimeMs": 1776063645883.1401
+}

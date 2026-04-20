@@ -1,0 +1,47 @@
+{
+  "mcpServers": {
+    "gongfeng": {
+      "url": "https://git.woa.com/api/mcp/mcp",
+      "headers": {
+        "OAUTH-TOKEN": "b9aa5a7e8ff21a5e6269d0a75c740697",
+        "X-USERNAME": "elenaszeto"
+      }
+    },
+    "iwiki": {
+      "url": "https://prod.mcp.it.woa.com/app_iwiki_mcp/mcp3",
+      "headers": {
+        "Authorization": "Bearer tai_pat_5BNw5dsz_ai5E6Bbwtnw8yusTadaZC8-XnGQxqkBtb8.N6ZqnlgPBek5lOIZ6NnRhxhoyVSBi-TPMzM-_BU8Tu0"
+      }
+    },
+    "lexiang": {
+      "url": "https://mcp.lexiang-app.com/mcp?company_from=csig&preset=meta",
+      "headers": {
+        "Authorization": "Bearer b9aa5a7e8ff21a5e6269d0a75c740697"
+      }
+    },
+    "tapd": {
+      "url": "http://mcp-idc.tapd.woa.com/mcp/",
+      "headers": {
+        "OAUTH-TOKEN": "b9aa5a7e8ff21a5e6269d0a75c740697",
+        "X-USERNAME": "elenaszeto",
+        "X-Tools-Set": "lookup_tapd_tool,lookup_tool_param_schema,proxy_execute_tool",
+        "X-Keep-Links": "true"
+      }
+    },
+    "itfs": {
+      "command": "itfscli",
+      "args": [
+        "mcp-server",
+        "--base-url",
+        "https://itfs.mcp.it.woa.com"
+      ],
+      "env": {
+        "ITFS_TAI_TOKEN": "tai_pat_5BNw5dsz_ai5E6Bbwtnw8yusTadaZC8-XnGQxqkBtb8.N6ZqnlgPBek5lOIZ6NnRhxhoyVSBi-TPMzM-_BU8Tu0"
+      }
+    },
+    "playwright": {
+      "baseUrl": "http://localhost:9090/mcp",
+      "description": "Playwright 浏览器自动化（HTTP 模式），支持导航、快照、点击、填写、截图等操作"
+    }
+  }
+}

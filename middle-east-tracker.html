@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026年美以伊冲突追踪 | 中东局势实时更新</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .update-time {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+        
+        .summary {
+            background: #f8f9fa;
+            padding: 30px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .summary h2 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        
+        .summary .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .key-point {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+        
+        .key-point h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .timeline {
+            padding: 40px;
+        }
+        
+        .timeline h2 {
+            color: #1e3c72;
+            margin-bottom: 30px;
+            font-size: 2em;
+            text-align: center;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            padding-bottom: 40px;
+            border-left: 3px solid #667eea;
+            margin-left: 20px;
+        }
+        
+        .timeline-item:last-child {
+            border-left: none;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: -13px;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 4px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+        
+        .timeline-date {
+            background: #667eea;
+            color: white;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .timeline-content {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .timeline-content h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .timeline-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .timeline-content li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .timeline-content li:last-child {
+            border-bottom: none;
+        }
+        
+        .timeline-content li:before {
+            content: "▸";
+            position: absolute;
+            left: 10px;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        .alert {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9em;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 15px;
+            min-width: 150px;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔴 2026年美以伊冲突追踪</h1>
+            <p>伊朗 / 以色列 / 美国 中东局势实时更新</p>
+            <div class="update-time">最后更新：2026年4月9日 10:05 北京时间</div>
+        </header>
+        
+        <section class="summary">
+            <h2>📊 冲突概况</h2>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">12+</div>
+                    <div class="stat-label">冲突天数</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">3方</div>
+                    <div class="stat-label">主要参战方</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">多国</div>
+                    <div class="stat-label">受影响地区</div>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <div class="key-point">
+                    <h3>🔥 最新消息（4月8-9日）</h3>
+                    <p>特朗普宣布同意<span class="highlight">暂停对伊朗轰炸两周</span>，前提是伊朗全面开放霍尔木兹海峡。伊朗、以色列、美国三方均同意<span class="highlight">暂时停火</span>，国际油价大跌超17%。</p>
+                </div>
+                
+                <div class="key-point">
+                    <h3>⚡ 冲突起源</h3>
+                    <p><span class="alert">2026年2月28日</span>，美国联合以色列对伊朗发动大规模军事打击。伊朗最高领袖哈梅内伊遇袭身亡，引发全面冲突。</p>
+                </div>
+                
+                <div class="key-point">
+                    <h3>🎯 主要目标</h3>
+                    <p>美以：打击伊朗<span class="highlight">核设施、导弹基地、军事总部</span><br>
+                    伊朗：反击<span class="highlight">以色列本土、美军基地、海峡封锁</span></p>
+                </div>
+                
+                <div class="key-point">
+                    <h3>🌍 影响范围</h3>
+                    <p>波及国家：伊朗、以色列、美国、巴林、卡塔尔、阿联酋、科威特、沙特、约旦、伊拉克、黎巴嫩等</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="timeline">
+            <h2>📅 详细时间线</h2>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-date">2026年2月28日</div>
+                <div class="timeline-content">
+                    <h3>冲突爆发 - "史诗怒火"行动</h3>
+                    <ul>
+                        <li>德黑兰多地遭空袭，伊朗最高领袖<span class="alert">哈梅内伊遇袭身亡</span></li>
+                        <li>以色列宣布对伊朗发动<span class="highlight">先发制人打击</span></li>
+                        <li>美国将行动命名为"史诗怒火"（Operation Epic Fury）</li>
+                        <li>伊朗启动<span class="highlight">"真实承诺-4"</span>反击行动，向以色列发射数百枚导弹</li>
+                        <li>伊朗袭击美军巴林第五舰队总部、卡塔尔和阿联酋美军基地</li>
+                        <li>也门胡塞武装加入，向以色列发射导弹</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-date">3月1日</div>
+                <div class="timeline-content">
+                    <h3>冲突升级 - 全面交火</h3>
+                    <ul>
+                        <li>伊朗向以色列发射<span class="highlight">第10轮导弹</span>，特拉维夫多地受袭</li>
+                        <li>以军向伊朗投掷超<span class="highlight">1200枚炸弹</span></li>
+                        <li>美军B-2隐形轰炸机袭击伊朗加固导弹设施</li>
+                        <li>伊朗击落美军MQ-9无人机，公布俘获以色列"赫尔墨斯"无人机</li>
+                        <li>德黑兰遭袭57人死亡，伊朗国家电视台大楼附近遭空袭</li>
+                        <li>迪拜和阿布扎比机场遇袭，1死11伤</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-date">3月2-3日</div>
+                <div class="timeline-content">
+                    <h3>打击升级 - 战略目标</h3>
+                    <ul>
+                        <li>以军声称<span class="alert">摧毁哈梅内伊地下掩体</span></li>
+                        <li>以军袭击伊朗<span class="highlight">纳坦兹核设施</span></li>
+                        <li>伊朗向美军"林肯"号航母发射4枚导弹（美方否认击中）</li>
+                        <li>美军摧毁伊朗<span class="alert">11艘军舰</span>，包括1艘潜艇</li>
+                        <li>伊朗宣布摧毁3套美军<span class="highlight">"萨德"反导系统雷达</span></li>
+                        <li>以军投掷超<span class="highlight">4000枚炸弹</span>，空袭次数超2500次</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-date">3月4-5日</div>
+                <div class="timeline-content">
+                    <h3>海上交锋与民用设施遭袭</h3>
+                    <ul>
+                        <li>美军潜艇在斯里兰卡海域<span class="alert">击沉伊朗"迪纳"号护卫舰</span>，130名军人遇难</li>
+                        <li>伊朗宣布<span class="highlight">封锁霍尔木兹海峡</span>，击沉多艘油轮</li>
+                        <li>以军摧毁德黑兰<span class="alert">燃料储存设施</span>，影响民用供应</li>
+                        <li>伊朗袭击以色列<span class="highlight">贝特谢梅什防空洞</span>，造成平民伤亡</li>
+                        <li>特朗普宣布美军已击沉<span class="highlight">42艘伊朗舰艇</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-date">3月6-7日</div>
+                <div class="timeline-content">
+                    <h3>雷达战与能源战</h3>
+                    <ul>
+                        <li>伊朗宣布摧毁<span class="highlight">7部美军防空预警雷达</span>（包括4套萨德雷达）</li>
+                        <li>以军袭击伊朗<span class="alert">海法炼油厂</span>和多处石油设施</li>
+                        <li>特朗普要求以色列<span class="highlight">停止攻击伊朗能源设施</span>（避免油价飙升）</li>
+                        <li>伊朗与黎巴嫩真主党<span class="highlight">首次协同攻击</span>以色列</li>
+                        <li>以军投掷超<span class="highlight">7500枚炸弹</span>，进行超3400次空袭</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-date">3月8-10日</div>
+                <div class="timeline-content">
+                    <h3>消耗战与平民伤亡</h3>
+                    <ul>
+                        <li>美军损失<span class="alert">11架MQ-9无人机</span>（总价值超3.3亿美元）</li>
+                        <li>伊朗击落<span class="highlight">82架美以无人机</span>和4架F-15战机</li>
+                        <li>美军打击超<span class="highlight">5500个伊朗目标</span></li>
+                        <li>伊朗全国<span class="alert">174个县、636个地点遭袭</span>，记录1332次袭击</li>
+                        <li>伊朗<span class="highlight">105处民用设施</span>和14家医疗机构受损</li>
+                        <li>伊朗世界文化遗产<span class="alert">古列斯坦王宫</span>和四十柱宫受损</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-date">3月11-12日</div>
+                <div class="timeline-content">
+                    <h3>持续消耗与联合作战</h3>
+                    <ul>
+                        <li>伊朗与黎巴嫩真主党<span class="highlight">联合作战5小时</span>，打击以色列超50个目标</li>
+                        <li>伊拉克"伊斯兰抵抗组织"对美军发动<span class="alert">291次袭击</span>，造成13名美军死亡</li>
+                        <li>美军宣布击沉<span class="highlight">58艘伊朗海军舰艇</span></li>
+                        <li>伊朗宣布<span class="highlight">连环打击策略</span>，停止"对等反击"</li>
+                        <li>《纽约时报》确认<span class="alert">至少17处美军基地</span>在伊朗袭击中受损</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-date">4月8-9日 🆕</div>
+                <div class="timeline-content">
+                    <h3>停火谈判与局势缓和</h3>
+                    <ul>
+                        <li><span class="highlight">特朗普宣布暂停轰炸两周</span>，条件是伊朗全面开放霍尔木兹海峡</li>
+                        <li>美国、以色列、伊朗三方<span class="highlight">均同意暂时停火</span></li>
+                        <li>国际油价<span class="alert">大跌超17%</span></li>
+                        <li>联合国秘书长古特雷斯警告局势<span class="highlight">"可能失控"</span></li>
+                        <li>受影响地区难民已达<span class="alert">2500万人</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p><strong>数据来源</strong>：综合中国官方媒体（新华社、央视新闻）、中东媒体、国际通讯社报道</p>
+            <p style="margin-top:10px;">⚠️ 战争信息复杂多变，部分数据可能存在冲突，请以官方最新消息为准</p>
+            <p style="margin-top:10px;">本页面每天下午6点（北京时间）自动更新</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "lastUpdate": "2026-04-09T12:23:07.141Z",
+  "news": [],
+  "polymarket": [],
+  "market": {
+    "XLE": {
+      "price": 58.05,
+      "change": -3.210000000000001,
+      "changePercent": "-5.24",
+      "currency": "USD",
+      "name": "能源ETF"
+    },
+    "LMT": {
+      "price": 628.5,
+      "change": 24.110000000000014,
+      "changePercent": "3.99",
+      "currency": "USD",
+      "name": "洛克希德马丁"
+    },
+    "NOC": {
+      "price": 687.47,
+      "change": 5.230000000000018,
+      "changePercent": "0.77",
+      "currency": "USD",
+      "name": "诺斯罗普格鲁曼"
+    },
+    "RTX": {
+      "price": 203.48,
+      "change": 10.579999999999984,
+      "changePercent": "5.48",
+      "currency": "USD",
+      "name": "雷神科技"
+    },
+    "CL=F": {
+      "price": 99,
+      "change": -13.409999999999997,
+      "changePercent": "-11.93",
+      "currency": "USD",
+      "name": "原油期货"
+    }
+  }
+}

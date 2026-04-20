@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《蘋果在中國》深度閱讀指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e1e1e 0%, #434343 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .header .subtitle {
+            font-size: 24px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        /* Part Header */
+        .part {
+            margin-bottom: 50px;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .part-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 40px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .part-content {
+            padding: 40px;
+        }
+
+        /* Chapter Block */
+        .chapter-block {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: #f8f9ff;
+            border-radius: 16px;
+            border-left: 5px solid #667eea;
+        }
+
+        .chapter-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .chapter-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .chapter-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .chapter-summary {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .chapter-summary h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .chapter-summary p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        /* Insight Cards */
+        .insight-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .insight-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid #f5576c;
+            transition: transform 0.3s ease;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.2);
+        }
+
+        .insight-card h5 {
+            color: #f5576c;
+            margin-bottom: 12px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .insight-card h5::before {
+            content: "💡";
+            font-size: 20px;
+            margin-right: 8px;
+        }
+
+        .insight-quote {
+            background: #fff5f8;
+            padding: 15px;
+            border-left: 3px solid #f5576c;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-style: italic;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .insight-analysis {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .insight-analysis strong {
+            color: #f5576c;
+        }
+
+        /* Key Quote Box */
+        .key-quote-box {
+            background: linear-gradient(135deg, #fff5f8 0%, #fff 100%);
+            padding: 30px;
+            border-radius: 16px;
+            margin: 30px 0;
+            border-left: 5px solid #f5576c;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .key-quote-box h4 {
+            color: #f5576c;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .key-quote-box blockquote {
+            font-size: 18px;
+            font-style: italic;
+            color: #333;
+            line-height: 1.8;
+            padding-left: 20px;
+            border-left: 4px solid #f5576c;
+            margin: 15px 0;
+        }
+
+        .key-quote-box .quote-source {
+            text-align: right;
+            color: #888;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        /* Navigation */
+        .chapter-nav {
+            padding: 40px;
+            background: #f8f9ff;
+        }
+
+        .chapter-nav h2 {
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .insight-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🍎 蘋果在中國</h1>
+            <div class="subtitle">深度閱讀指南 · 章節摘要與觀點洞察</div>
+        </div>
+
+        <!-- Chapter Navigation -->
+        <div class="chapter-nav">
+            <h2>📖 章節導航與深度解析</h2>
+
+            <!-- 序言 -->
+            <div class="part">
+                <div class="part-header">序言：「無與倫比」的傲慢</div>
+                <div class="part-content">
+                    <div class="chapter-block">
+                        <div class="chapter-header">
+                            <div class="chapter-number">序</div>
+                            <div class="chapter-title">2013年315消費者權益日風波</div>
+                        </div>
+
+                        <div class="chapter-summary">
+                            <h4>📝 章節摘要</h4>
+                            <p>
+                                <strong>歷史轉折點：</strong>2013年3月15日，習近平就任中國國家主席隔天，央視「315晚會」砲轟蘋果售後服務存在差別待遇。這不是單純的消費者投訴，而是一場精心策劃的政治表演。
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>18天的屈辱：</strong>蘋果從「無人能撼動」跌入「恐慌深淵」。多家官媒發動數位閃電戰，《人民日報》頭版社論痛批蘋果「打掉『無與倫比』的傲慢」。銷售量從上季成長67%驟降至僅8%，6月季度更萎縮14%。
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>被迫道歉：</strong>4月1日，庫克親自寫公開道歉信，承認「溝通不足」導致蘋果顯得傲慢。更諷刺的是，新換機政策甚至比美國消費者享有的權益還優渥。
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>深層問題暴露：</strong>蘋果猛然驚覺，連最基本的問題都無法回答：「我們在中國的政府關係策略是什麼？」在中國的生產設備總價值73億美元（超過美國本土所有資產總和），卻沒有一個高階主管長駐中國。
+                            </p>
+                        </div>
+
+                        <div class="key-quote-box">
+                            <h4>🎯 核心金句</h4>
+                            <blockquote>
+                                「蘋果時代已輕易結束，中國人可以輕易抬舉它，也可以隨時打壓它。」
+                            </blockquote>
+                            <div class="quote-source">——《人民日報》社論，2013年3月</div>
+                        </div>
+
+                        <div class="insight-cards">
+                            <div class="insight-card">
+                                <h5>觀點節錄 #1</h5>
+                                <div class="insight-quote">
+                                    「沒有中國就沒有今天的蘋果，未免流於陳腔濫調。然而，本書提出的觀點更令人玩味——沒有蘋果，或許也沒有今天的中國。」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這是全書最核心的thesis。作者挑戰「中國成就蘋果」的主流敘事，提出一個驚人的反向論證：蘋果在中國的投資規模驚人，年投資550億美元（超過拜登《晶片法案》四年總預算520億），培訓2800萬工人（超過加州全部勞動人口）。這不是簡單的代工關係，而是堪比「國家建設」級別的技術轉移與人才培養。
+                                </div>
+                            </div>
+
+                            <div class="insight-card">
+                                <h5>觀點節錄 #2</h5>
+                                <div class="insight-quote">
+                                    「央視播出『315晚會』後引發一連串不利蘋果的尖銳批評，導致蘋果在中國市場的銷量驟降，莫不暴露蘋果過度依賴中國這個單一市場已成為其最大的軟肋與風險。」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這揭示了一個殘酷的真相：當你的供應鏈和市場都集中在一個威權國家時，你已經失去議價能力。蘋果在2012年營收暴增2830%後，突然發現自己被「俘獲」了——中國既是它最大的製造基地，也是它最大的市場（230億美元）。這種雙重依賴讓蘋果在政治壓力面前毫無還手之力。
+                                </div>
+                            </div>
+
+                            <div class="insight-card">
+                                <h5>觀點節錄 #3</h5>
+                                <div class="insight-quote">
+                                    「一位前蘋果工程師直言：『我們親手培植了一整個國家的製造本領，而今這個國家反過來用這本領對付我們。』」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這是全書最痛心的反思。蘋果原本以為自己在「利用」中國的廉價勞動力，但實際上是中國在「利用」蘋果的技術、管理經驗和全球供應鏈。當蘋果大規模派遣工程師傳授自動化技術、精密製造工藝時，它實際上在為未來的競爭對手（紅色供應鏈）培訓「學徒」。這是一個關於短期利益vs長期戰略的經典教訓。
+                                </div>
+                            </div>
+
+                            <div class="insight-card">
+                                <h5>觀點節錄 #4</h5>
+                                <div class="insight-quote">
+                                    「蘋果的規模與影響力至今仍未被充分理解。根據庫克估計，僅蘋果一家公司就在中國創造了500萬個就業機會——其中300萬在製造業，另外180萬在應用程式開發領域。這個數字超過整個中國對美國就業的貢獻（100萬至260萬）。」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這個對比令人咋舌。一家超級企業對中國就業的貢獻，竟超過整個中國對美國的貢獻。這揭示了蘋果在中國的「準國家」地位——它不僅是一家公司，更像是一個經濟引擎、一所全國性的「製造大學」。這也解釋了為何北京對蘋果既扶植又打壓：它需要蘋果的技術和資金，但又警惕蘋果的影響力。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第1部 -->
+            <div class="part">
+                <div class="part-header">第1部：拯救蘋果 (1976-1999)</div>
+                <div class="part-content">
+                    
+                    <!-- 第1章 -->
+                    <div class="chapter-block">
+                        <div class="chapter-header">
+                            <div class="chapter-number">1</div>
+                            <div class="chapter-title">瀕臨破產</div>
+                        </div>
+
+                        <div class="chapter-summary">
+                            <h4>📝 章節摘要</h4>
+                            <p>
+                                <strong>生死一線：</strong>1996年3月，蘋果宣布虧損7億美元，創史上最嚴重虧損。負責出售科羅拉多州泉谷工廠的歐蘇利文被上司告知：「必須速戰速決，否則你週四領不到薪水——不，你不明白，週四我們誰都領不到薪水。」
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>死亡螺旋：</strong>蘋果已聘請破產法律顧問，研究《破產法》第十一章的出路。現金儲備僅剩5億美元，1.5億美元貸款即將到期。為了清庫存，產品降價30%，每賣一台就虧一台。
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>根本原因：</strong>蘋果是最後一家堅持自己生產的電腦公司。當競爭對手外包生產、採用標準化組件時，蘋果仍使用客製化組件、自建工廠。這種「垂直整合」策略在1980年代曾是優勢，但在Windows 95橫掃全球後，成了致命弱點。
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>IBM的教訓：</strong>1981年賈伯斯看到IBM PC時不屑一顧，稱它是「一堆垃圾」。他完全誤判了PC之爭的戰場——不是在易用性與設計美學，而是在開放式架構、規模經濟與第三方生態系統。
+                            </p>
+                        </div>
+
+                        <div class="key-quote-box">
+                            <h4>🎯 核心金句</h4>
+                            <blockquote>
+                                「蘋果的管理層應該為戰爭罪受審判。」
+                            </blockquote>
+                            <div class="quote-source">——一位創投人士評論，1996年</div>
+                        </div>
+
+                        <div class="insight-cards">
+                            <div class="insight-card">
+                                <h5>觀點節錄 #1</h5>
+                                <div class="insight-quote">
+                                    「SCI（Space Craft Inc.）才是真正讓PC產業起飛的關鍵推手——它引進了自動化製造技術『表面黏著技術』，讓IBM能夠大規模、低成本生產個人電腦。」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這揭示了一個容易被忽略的事實：PC革命的勝利不是因為更好的設計，而是因為更好的製造。當沃茲尼克的妹妹在客廳沙發上手工組裝Apple II電路板時，SCI已經在用火箭製造技術做電路板。這種製造能力的差距，最終決定了PC戰爭的勝負。蘋果輸在了它最不擅長的領域——大規模量產。
+                                </div>
+                            </div>
+
+                            <div class="insight-card">
+                                <h5>觀點節錄 #2</h5>
+                                <div class="insight-quote">
+                                    「賈伯斯與蘋果董事長麥克．馬庫拉詢問彼此：『我們為什麼要讓別人利用我們賺錢？』於是蘋果開始『對抗、打壓』所有第三方開發商。」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這是蘋果早期最致命的戰略錯誤。Apple II之所以成功，正是因為開放生態系統吸引了大量第三方開發商。但賈伯斯的控制慾和「沒有人能做得比蘋果更好」的傲慢，讓蘋果走向封閉。諷刺的是，30年後的iPhone成功，恰恰是因為App Store重新擁抱了第三方生態。這是一個關於「控制vs開放」的深刻教訓。
+                                </div>
+                            </div>
+
+                            <div class="insight-card">
+                                <h5>觀點節錄 #3</h5>
+                                <div class="insight-quote">
+                                    「代工這個構想很快站穩腳跟。SCI的營收從1981年的4500萬美元，飆升至1985年的5億美元。客戶愈多，就愈能有效調度資源，團隊也能不斷累積製造技術（know-how）。」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這解釋了為何代工模式最終戰勝垂直整合。代工廠的「規模經濟」和「學習曲線」是指數級的——每多一個客戶，它的成本就更低、技術就更精進。這就是為何富士康最終能超越所有自建工廠的電腦公司。這個模式後來被台積電複製到半導體領域，成為台灣的「護國神山」。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第2章 -->
+                    <div class="chapter-block">
+                        <div class="chapter-header">
+                            <div class="chapter-number">2</div>
+                            <div class="chapter-title">外包歷險記——日本與台灣</div>
+                        </div>
+
+                        <div class="chapter-summary">
+                            <h4>📝 章節摘要</h4>
+                            <p>
+                                <strong>LaserWriter的救命稻草：</strong>1984年初代Mac銷售慘淡（月銷量從預期8萬台跌至5千台），直到蘋果委託日本佳能代工LaserWriter雷射印表機，才重新找到市場定位——開啟「桌上型出版」時代。
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>日本製造的震撼教育：</strong>1991年，索尼僅憑蘋果「半張紙上列出的規格」，13個月內就把Mac桌上型電腦內部元件塞進5磅重的PowerBook 100筆電。蘋果工程師驚覺：「他們太優秀了，我們美國人根本沒辦法競爭得過。」
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>從日本到台灣：</strong>1994年，日圓升值導致成本暴增（美元兌日圓跌破100）。菲爾．貝克開始尋找替代方案，在台灣找到英業達。台灣廠商「學習態度積極、配合意願高」，為了蘋果投入80萬美元購入昂貴設備。
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>艾夫登場：</strong>第二代牛頓（Newton）交由英業達代工，設計則交給剛加入蘋果的強納森．艾夫。雖然牛頓市場失利，但艾夫贏得業界肯定，開啟傳奇生涯序章。
+                            </p>
+                        </div>
+
+                        <div class="key-quote-box">
+                            <h4>🎯 核心金句</h4>
+                            <blockquote>
+                                「我剛到日本五分鐘，就立刻明白——蘋果根本沒有什麼能教給日本人。」
+                            </blockquote>
+                            <div class="quote-source">——喬．歐蘇利文，蘋果營運副總裁，1993年</div>
+                        </div>
+
+                        <div class="insight-cards">
+                            <div class="insight-card">
+                                <h5>觀點節錄 #1</h5>
+                                <div class="insight-quote">
+                                    「委託索尼製造PowerBook 100，是經過『一場他媽的激烈的辯論』後做出的決定，因為這是蘋果首次在CPU等關鍵領域開放其他公司參與設計產品藍圖。」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這標誌著蘋果從「完全自製」到「戰略外包」的關鍵轉折。當時蘋果內部有人批評這是「反美」行為，但結果證明索尼在製造小型電子產品方面的經驗遠超蘋果。這個決定為後來全面轉向亞洲製造埋下伏筆。它證明了：在全球化時代，「誰製造」比「在哪製造」更重要。
+                                </div>
+                            </div>
+
+                            <div class="insight-card">
+                                <h5>觀點節錄 #2</h5>
+                                <div class="insight-quote">
+                                    「台灣廠商比日本工廠更靈活，行動更快速。日本擁有數十年經驗，習慣按照自己的方式作業；台灣廠商學習態度積極，配合意願也高。」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這揭示了台灣代工產業崛起的秘訣：不是最先進，而是最靈活。當日本廠商堅持「我們的方式」時，台灣廠商願意說「按您的要求來」。這種「客戶導向」的文化，最終讓台灣成為全球電子製造中心。富士康後來繼承並發揚了這種精神——為了蘋果，什麼都願意做。
+                                </div>
+                            </div>
+
+                            <div class="insight-card">
+                                <h5>觀點節錄 #3</h5>
+                                <div class="insight-quote">
+                                    「當夏普利用從蘋果學到的技術，推出自家品牌的PDA與蘋果打對台時，蘋果感覺自己被出賣與背叛。」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這是「技術外洩」的早期案例。當你把製造外包時，你不僅外包了生產，也外包了技術。日本廠商學會了，就會用來對付你。這個教訓在20年後的中國被重演，只不過規模大了100倍——紅色供應鏈學會蘋果的技術後，開始蠶食台日韓供應商的訂單。這是外包模式永恆的兩難：效率vs控制。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第3章 -->
+                    <div class="chapter-block">
+                        <div class="chapter-header">
+                            <div class="chapter-number">3</div>
+                            <div class="chapter-title">天價的收購計畫</div>
+                        </div>
+
+                        <div class="chapter-summary">
+                            <h4>📝 章節摘要</h4>
+                            <p>
+                                <strong>執行長阿米里奧的無能：</strong>1996年2月接任執行長的吉爾．阿米里奧承認蘋果問題的「廣度與嚴重程度」遠超預期，把加入蘋果比喻為「搭上鐵達尼號」。他需要100天時間「從長計議」，結果14週過去仍提不出方案。
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>誤判病因：</strong>董事會認為蘋果的問題是「營運效率不彰」，但實際問題是「缺乏熱賣產品」。1995-1998年，營收從111億美元腰斬至59億美元。阿米里奧專注於次要議題，對「足以撞沉整艘船的冰山」視而不見。
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>賈伯斯的荒野歲月：</strong>離開蘋果8年，賈伯斯創立NeXT卻屢屢失敗。NeXT電腦售價6500美元、月銷量不及蘋果單日銷量，最終被迫結束硬體業務、裁掉300人。唯一的成功是皮克斯《玩具總動員》讓他成為億萬富翁。
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>4億美元的豪賭：</strong>1996年12月，蘋果花4億多美元收購NeXT（年營收僅5000萬美元），董事會認為價格「高得離譜」，但別無選擇。賈伯斯重返蘋果，1997年7月阿米里奧被解職。
+                            </p>
+                        </div>
+
+                        <div class="key-quote-box">
+                            <h4>🎯 核心金句</h4>
+                            <blockquote>
+                                「沒有人相信賈伯斯會甘心當二把手，不論在哪裡都不可能，尤其是他21歲創辦的蘋果，更不可能。」
+                            </blockquote>
+                            <div class="quote-source">——NeXT員工預言，1996年底</div>
+                        </div>
+
+                        <div class="insight-cards">
+                            <div class="insight-card">
+                                <h5>觀點節錄 #1</h5>
+                                <div class="insight-quote">
+                                    「NeXT『全面且不幸地體現了賈伯斯在蘋果時期最糟糕的一面』：售價高達6500美元、幾乎沒有第三方軟體支援、斥資興建月產萬台的工廠但產能過剩遠超市場需求。」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這揭示了賈伯斯的「雙面性」：他的完美主義既能催生突破（Mac、iPhone），也能導致崩潰（NeXT）。關鍵在於是否有「制衡機制」——在蘋果早期，沃茲尼克能平衡他的極端；在NeXT，沒有人能阻止他。這是一個關於「天才需要約束」的教訓。後來重返蘋果後，艾夫成了那個「既懂他、又能挑戰他」的人。
+                                </div>
+                            </div>
+
+                            <div class="insight-card">
+                                <h5>觀點節錄 #2</h5>
+                                <div class="insight-quote">
+                                    「雖然NeXT不是成功的企業，但它的作業系統卻非常出色。昇陽電腦高管艾瑞克．施密特形容這套系統『領先業界五到七年』。可惜時機不對，找不到市場立足之地。」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這是「技術vs市場」永恆矛盾的經典案例。NeXT的作業系統確實先進（提姆．伯納斯－李用它發明了WWW），但在Windows壟斷的PC世界毫無立足之地。直到被蘋果收購，這套系統才找到歸宿，最終演化成今天的macOS和iOS。這說明：再好的技術，沒有合適的「載體」也是空談。
+                                </div>
+                            </div>
+
+                            <div class="insight-card">
+                                <h5>觀點節錄 #3</h5>
+                                <div class="insight-quote">
+                                    「事實證明，這是一場天作之合。NeXT提供了領先業界五到七年的作業系統，還帶來『300位頂尖人才』。圈內開玩笑地說：其實是NeXT用負4億美元的代價併購了蘋果。」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這是史上最聰明的「逆向收購」案例。表面上是蘋果花4億買NeXT，實際上是賈伯斯用一家失敗的公司重新奪回蘋果控制權。更妙的是，他不僅拿了錢，還帶回一支精銳團隊和一套先進系統。這證明：在併購中，「誰主導後續整合」比「誰出錢」更重要。18個月後，賈伯斯成為CEO，NeXT團隊主導蘋果未來十年。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第4章 -->
+                    <div class="chapter-block">
+                        <div class="chapter-header">
+                            <div class="chapter-number">4</div>
+                            <div class="chapter-title">哥倫布——發現運算領域的新大陸</div>
+                        </div>
+
+                        <div class="chapter-summary">
+                            <h4>📝 章節摘要</h4>
+                            <p>
+                                <strong>深陷掙扎的賈伯斯：</strong>1997年夏天，賈伯斯先前被掃地出門的創傷讓他猶豫不決：「我不知道蘋果是否還有救。」他不想成為「扼殺蘋果的罪人」，因此由財務長暫代執行長，自己則全面檢視公司各業務。
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>診斷病因：</strong>7月一系列內部會議紀錄（本書獨家首次公開）顯示，賈伯斯指出：「外界認為蘋果行動緩慢，但實際上，蘋果在無關緊要的項目上跑得飛快。」他將研發項目從40個驟減到4個（桌上型與筆記型×消費版和專業版）。
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>與艾夫的命運相遇：</strong>8月中旬，賈伯斯原本打算解雇首席設計師艾夫，卻意外發現工作室「擺滿令人驚豔的模型」。艾夫團隊已用半透明塑料實驗數月，展現驚人創意。賈伯斯驚呼：「你們他媽的也太沒效率了吧？」（在他的語言裡，這是讚美）
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>「哥倫布計畫」啟動：</strong>兩人當天就開始合作開發代號「哥倫布」的一體式電腦，象徵發現新大陸。賈伯斯拎著保齡球袋四處展示原型機（泡棉板模型），驚豔所有人——iMac雛形誕生。
+                            </p>
+                        </div>
+
+                        <div class="key-quote-box">
+                            <h4>🎯 核心金句</h4>
+                            <blockquote>
+                                「我們將賭上整間公司的未來，網路電腦絕對會大紅。發明PC的公司，現在要重新定義PC，讓PC改頭換面！」
+                            </blockquote>
+                            <div class="quote-source">——賈伯斯，1997年8月內部會議</div>
+                        </div>
+
+                        <div class="insight-cards">
+                            <div class="insight-card">
+                                <h5>觀點節錄 #1</h5>
+                                <div class="insight-quote">
+                                    「賈伯斯站在數十位員工面前問：『告訴我，這家公司出了什麼問題？』沒等回應，自己便高聲喊道：『是產品有問題！這些產品爛透了！』接著在白板上畫出二乘二方格圖，宣稱蘋果今後只做四種電腦。」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這是「聚焦」的經典教科書案例。當公司有40個研發項目時，等於沒有重點；當縮減到4個時，才有可能做出偉大產品。這個決策看似簡單粗暴，但需要極大勇氣——因為你要對39個團隊說「不」。這是賈伯斯最核心的管理哲學：說「不」比說「是」更重要。
+                                </div>
+                            </div>
+
+                            <div class="insight-card">
+                                <h5>觀點節錄 #2</h5>
+                                <div class="insight-quote">
+                                    「艾夫的團隊已準備大顯身手，展示精心設計的草圖和原型。整個工作室擺滿了令人驚豔的模型，可惜前任高層膽子太小，不敢採用。賈伯斯『被眼前模型展現的創意、講究細節的程度大為讚賞』。」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這揭示了「好產品被扼殺」的真相：不是設計師沒能力，而是領導層沒眼光、沒膽識。艾夫在阿米里奧時代幾乎要辭職，工程師嘲笑他的設計「電子元件根本塞不進去」。但賈伯斯一眼就看出這些設計的價值。這說明：創新需要的不僅是人才，更需要能識別、支持創新的領導者。
+                                </div>
+                            </div>
+
+                            <div class="insight-card">
+                                <h5>觀點節錄 #3</h5>
+                                <div class="insight-quote">
+                                    「Think Different（不同凡想）廣告在亞洲撤掉了達賴喇嘛，改用美國飛行員愛蜜莉亞．艾爾哈特。這是蘋果第一次向中國低頭。往後，還有更多。」
+                                </div>
+                                <div class="insight-analysis">
+                                    <strong>💡 啟發點：</strong>這是一個充滿諷刺的細節。蘋果用「不同凡想」廣告標榜自己支持「瘋狂的人、特立獨行、離經叛道」，卻在亞洲版廣告中刪除達賴喇嘛，因為「擔心觸怒中國」。這預示了蘋果未來20年的兩難：一邊宣稱價值觀，一邊向威權政權妥協。1997年這個小小的讓步，為2017年下架VPN、2020年配合審查埋下伏筆。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 提示：其他章節格式相同，可繼續添加 -->
+            <div style="padding: 40px; background: #f8f9ff; text-align: center;">
+                <p style="color: #667eea; font-size: 18px; font-weight: 600;">
+                    📖 其他章節解析持續更新中...
+                </p>
+                <p style="color: #888; font-size: 14px; margin-top: 10px;">
+                    基於 epub 原書內容生成，包含章節摘要、觀點節錄與啟發點分析
+                </p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

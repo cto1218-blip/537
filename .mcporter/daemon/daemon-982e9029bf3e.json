@@ -1,0 +1,14 @@
+{
+  "pid": 67421,
+  "socketPath": "/Users/hoimanszeto/.mcporter/daemon/daemon-982e9029bf3e.sock",
+  "configPath": "/Users/hoimanszeto/.mcporter/mcporter.json",
+  "configLayers": [
+    {
+      "path": "/Users/hoimanszeto/.mcporter/mcporter.json",
+      "mtimeMs": 1776078047035.261
+    }
+  ],
+  "startedAt": 1776078047427,
+  "logPath": null,
+  "configMtimeMs": 1776078047035.261
+}

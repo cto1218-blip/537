@@ -219,7 +219,7 @@
         
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 24px;
             margin-bottom: 48px;
         }
@@ -290,15 +290,15 @@
         
         .predictions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
         }
         
         .prediction-card {
             background: var(--color-surface);
             border: 1px solid var(--color-border);
             border-radius: 16px;
-            padding: 20px;
+            padding: 28px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
         }
@@ -338,19 +338,16 @@
         }
         
         .prediction-title {
-            font-size: 1rem;
+            font-size: 1.125rem;
             font-weight: 700;
             margin-bottom: 12px;
         }
         
         .prediction-description {
-            font-size: 0.8rem;
+            font-size: 0.875rem;
             color: var(--color-text-secondary);
-            line-height: 1.5;
-            margin-bottom: 16px;
-            max-height: 120px;
-            overflow-y: auto;
-            overflow-x: hidden;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
         
         .probability-bar-container {
@@ -391,7 +388,7 @@
         
         .polymarket-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 24px;
             margin-bottom: 48px;
         }
@@ -462,7 +459,7 @@
         }
         
         .odds-value {
-            font-size: 2rem; min-width: 80px; text-align: center;
+            font-size: 2.5rem;
             font-weight: 900;
             background: linear-gradient(135deg, #06b6d4, #0891b2);
             -webkit-background-clip: text;
@@ -509,47 +506,9 @@
             font-size: 1.75rem;
         }
         
-        
-        /* 金价/油价板块：强制分两行显示 */
-        .market-subsection 
-        
-        
-
-        /* 金价/油价：分组显示，自适应换行 */
-        .market-subsection .market-grid {
+        .market-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 16px;
-        }
-        
-        /* 现价卡片和预测卡片：统一大小，允许3个并排 */
-        .market-subsection .market-grid > .market-card-wrapper.current-price,
-        .market-subsection .market-grid > .market-card-wrapper.prediction-price {
-            min-width: 240px;
-        }
-
-        
-.market-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-        
-        .market-subsection .market-grid > .market-card-wrapper,
-        .market-subsection .market-grid > * {
-            width: 100%;
-        }
-        
-        /* 当遇到注释"预测开始"时，前面的卡片为一组 */
-        .market-subsection .market-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-.market-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 24px;
         }
         
@@ -570,57 +529,6 @@
         .oil-card {
             border-left: 4px solid #f59e0b;
         }
-        
-        .gold-card {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border-left: 4px solid #f59e0b;
-        }
-        
-        .gold-card .market-value {
-            color: #92400e;
-        }
-        
-        /* 卡片内的 market-value 调整（无 header 包装时） */
-        .market-card > .market-value {
-            margin-bottom: 12px;
-            font-size: 2.25rem;
-            font-weight: 800;
-        }
-        
-        .gold-card .market-peak {
-            color: #b45309;
-        }
-        
-        /* 预测卡片样式 */
-        .market-card.prediction-card {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border: 2px dashed #0ea5e9;
-            opacity: 0.92;
-        }
-        
-        .market-card.prediction-card .market-label {
-            color: #0369a1;
-            font-weight: 600;
-        }
-        
-        .market-card.prediction-card .market-value {
-            color: #0284c7;
-            font-style: italic;
-        }
-        
-        .market-card.prediction-card .market-meta {
-            color: #0369a1;
-        }
-        
-        
-        
-        /* 当前价格卡片加强 */
-        .market-card.gold-card:not(.prediction-card)::before,
-        
-        
-        
-        
-        
         
         .stock-card {
             border-left: 4px solid #3b82f6;
@@ -758,7 +666,7 @@
         
         .insight-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 24px;
         }
         
@@ -989,14 +897,14 @@
         <header class="header">
             <h1>🌐 2026 美以伊衝突追蹤</h1>
             <p>中東地緣政治局勢情報儀表板</p>
-            <div class="timestamp">最後更新：2026年4月15日 16:00</div>
+            <div class="timestamp">最後更新：2026年4月13日 11:30 (UTC+8) | 自動更新</div>
         </header>
         
         <div class="stats-grid">
             <div class="stat-card" style="--card-accent: var(--color-conflict);">
-                <div class="stat-value">⚠️ 高位</div>
-                <div class="stat-label">地缘风险</div>
-                <div class="stat-meta">以伊冲突 + 美伊谈判</div>
+                <div class="stat-value">⚠️ 停火協議脆弱</div>
+                <div class="stat-label">黎巴嫩衝突成最大威脅</div>
+                <div class="stat-meta">美以伊停火協議面臨<strong>嚴峻考驗</strong>：以色列與黎巴嫩真主黨的衝突<strong>未停止</strong>，成為停火破裂的最大威脅。以色列在黎巴嫩發動本次戰爭以來<strong>最大規模空襲</strong>（數百架次），真主黨繼續對以色列發射火箭彈。三方對<strong>黎巴嫩是否包含在停火範圍內</strong>存在分歧。內塔尼亞胡國內政治壓力巨大，被批「歷史上最嚴重政治災難」。CNN警告停火協議「瀕臨崩潰」。停火協議<strong>有效期至4月21日</strong>，但黎巴嫩問題可能導致提前破裂。</div>
             </div>
             
             <div class="stat-card" style="--card-accent: var(--color-success);">
@@ -1026,27 +934,56 @@
             </h2>
             
             <div class="news-grid">
-                <div class="news-card">
-                    <span class="news-source">AP News</span>
-                    <span class="news-date">2026-04-20</span>
-                    <div class="news-title">以色列在加薩城啟動新一輪地面攻勢，居民被迫撤離</div>
-                    <div class="news-description">以色列軍方週二對加薩城發起新一輪地面攻勢，這座巴勒斯坦地區最大城市的一個又一個街區已遭摧毀。軍方警告仍留在城內的居民必須向南撤離。據估計，在撤離警告發布前約有100萬巴勒斯坦人居住在加薩城地區，以色列軍方估計已有35萬人撤離，聯合國數據顯示過去一個月已有超過22萬人逃離加薩北部，但仍有數十萬人選擇留下。此次行動標誌著衝突的又一次升級，儘管經過數月外交努力，任何潛在的停火協議仍遙不可及。以色列媒體暗示此次攻勢可能持續數月。</div>
+                <div class="news-item">
+                    <div class="news-header">
+                        <span class="news-source">CNN</span>
+                        <span class="news-date">2026-04-09</span>
+                    </div>
+                    <div class="news-title">以色列猛烈轟炸黎巴嫩威脅美伊停火協議</div>
+                    <div class="news-desc">以色列本周大規模空襲貝魯特等地，危及美國與伊朗的脆弱停火</div>
                 </div>
-                <div class="news-card">
-                    <span class="news-source">UN Human Rights Council</span>
-                    <span class="news-date">2026-04-20</span>
-                    <div class="news-title">聯合國委員會指控以色列在加薩實施種族滅絕</div>
-                    <div class="news-description">聯合國人權理事會委託的三人獨立專家小組週二發布報告，認定以色列在加薩實施種族滅絕行為，呼籲國際社會立即結束種族滅絕並對相關責任人採取懲罰措施。這是針對以色列總理內塔尼亞胡政府的最新種族滅絕指控。以色列拒絕與該委員會合作，並指責其存在反以色列偏見。聯合國秘書長古特雷斯雖未直接認同該認定，但表示加薩地面局勢令人無法容忍，並警告以色列似乎對停火談判不感興趣。</div>
+                <div class="news-item">
+                    <div class="news-header">
+                        <span class="news-source">CBS</span>
+                        <span class="news-date">2026-04-09</span>
+                    </div>
+                    <div class="news-title">美伊兩週停火協議遭指違反</div>
+                    <div class="news-desc">伊朗指控美國違反停火，以色列繼續攻擊黎巴嫩真主黨</div>
                 </div>
-                <div class="news-card">
-                    <span class="news-source">Egypt State Information</span>
-                    <span class="news-date">2026-04-20</span>
-                    <div class="news-title">埃及升級對以色列的言論，總統首次稱以色列為「敵人」</div>
-                    <div class="news-description">埃及與以色列維持了數十年的和平協議並一直在戰爭中扮演調解角色，但現在似乎正在失去耐心。埃及總統塞西週一在卡塔爾峰會上的激烈演講中將以色列描述為「敵人」，這是自1979年兩國建交以來埃及領導人首次使用該詞。埃及國家信息局局長迪亞·拉什萬證實了這一歷史性表述。埃及是第一個與以色列建交的阿拉伯國家，兩國和平條約被視為該動蕩地區穩定的基石。此番言論升級顯示埃及對當前衝突局勢的嚴重關切。</div>
+                <div class="news-item">
+                    <div class="news-header">
+                        <span class="news-source">UN News</span>
+                        <span class="news-date">2026-04-08</span>
+                    </div>
+                    <div class="news-title">聯合國宣布中東地區停火生效</div>
+                    <div class="news-desc">經40天激戰後，美伊達成兩週停火，平民傷亡嚴重</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-header">
+                        <span class="news-source">NPR</span>
+                        <span class="news-date">2026-04-10</span>
+                    </div>
+                    <div class="news-title">內塔尼亞胡同意與黎巴嫩談判但持續攻擊</div>
+                    <div class="news-desc">以總理同意開啟談判但誓言繼續打擊真主黨</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-header">
+                        <span class="news-source">Independent</span>
+                        <span class="news-date">2026-04-09</span>
+                    </div>
+                    <div class="news-title">內塔尼亞胡國內面臨政治風暴</div>
+                    <div class="news-desc">停火協議在以色列引發批評，稱其為「歷史上最糟糕的政治災難」</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-header">
+                        <span class="news-source">NPR</span>
+                        <span class="news-date">2026-04-10</span>
+                    </div>
+                    <div class="news-title">Polymarket伊朗賭盤引發內線交易調查</div>
+                    <div class="news-desc">停火前新帳戶精準下注，國會要求調查</div>
                 </div>
             </div>
-      </section>
-        
+        </section>
         
         <!-- AI 預測分析 -->
         <section class="section">
@@ -1057,63 +994,23 @@
             
             <div class="predictions-grid">
                 <div class="prediction-card">
-                    <span class="prediction-actor">AI 模型預測</span>
-                    <div class="prediction-title">美伊谈判在4月底前达成框架协议</div>
-                    <div class="prediction-description">基于特朗普「接近结束」表态和第二轮谈判计划，但军事部署仍在增加显示谨慎态度</div>
-                    <div class="probability-bar-container">
-                        <div class="probability-label">
-                            <span>可能性</span>
-                            <span class="probability-value">42%</span>
-                        </div>
-                        <div class="probability-bar">
-                            <div class="probability-fill" style="width: 42%"></div>
-                        </div>
-                    </div>
+                    <div class="prediction-label">停火持续至4/21</div>
+                    <div class="prediction-value warning">38%</div>
                 </div>
                 <div class="prediction-card">
-                    <span class="prediction-actor">AI 模型預測</span>
-                    <div class="prediction-title">霍尔木兹海峡5月内恢复正常通航</div>
-                    <div class="prediction-description">目前商业交通受限但部分船只仍在通行，完全恢复需要正式和平协议支持</div>
-                    <div class="probability-bar-container">
-                        <div class="probability-label">
-                            <span>可能性</span>
-                            <span class="probability-value">35%</span>
-                        </div>
-                        <div class="probability-bar">
-                            <div class="probability-fill" style="width: 35%"></div>
-                        </div>
-                    </div>
+                    <div class="prediction-label">霍爾木茲4月恢復</div>
+                    <div class="prediction-value danger">52%</div>
                 </div>
                 <div class="prediction-card">
-                    <span class="prediction-actor">AI 模型預測</span>
-                    <div class="prediction-title">油价在5月回落至80美元以下</div>
-                    <div class="prediction-description">当前WTI约92美元，若谈判成功且海峡通航恢复，供应压力缓解将推动油价下行</div>
-                    <div class="probability-bar-container">
-                        <div class="probability-label">
-                            <span>可能性</span>
-                            <span class="probability-value">28%</span>
-                        </div>
-                        <div class="probability-bar">
-                            <div class="probability-fill" style="width: 28%"></div>
-                        </div>
-                    </div>
+                    <div class="prediction-label">黎巴嫩衝突持續</div>
+                    <div class="prediction-value danger">74%</div>
                 </div>
                 <div class="prediction-card">
-                    <span class="prediction-actor">AI 模型預測</span>
-                    <div class="prediction-title">以色列与黎巴嫩边境冲突升级</div>
-                    <div class="prediction-description">虽有空袭报道，但整体局势趋向缓和，大规模冲突升级概率较低</div>
-                    <div class="probability-bar-container">
-                        <div class="probability-label">
-                            <span>可能性</span>
-                            <span class="probability-value">22%</span>
-                        </div>
-                        <div class="probability-bar">
-                            <div class="probability-fill" style="width: 22%"></div>
-                        </div>
-                    </div>
+                    <div class="prediction-label">川普6月宣布結束</div>
+                    <div class="prediction-value info">29%</div>
                 </div>
             </div>
-      </section>
+        </section>
         
         <!-- Polymarket 預測市場 -->
         <section class="section">
@@ -1124,49 +1021,61 @@
             
             <div class="polymarket-grid">
                 <div class="polymarket-card">
-                    <div class="polymarket-question">
-                        美伊停火協議在4月21日前破裂？
-                    </div>
+                    <div class="polymarket-question">美伊永久和平協議何時達成？</div>
                     <div class="polymarket-odds">
                         <div class="odds-option">
-                            <div class="odds-label">是</div>
-                            <div class="odds-value">52%</div>
+                            <div class="odds-label">6月30日前</div>
+                            <div class="odds-value">41%</div>
                         </div>
                         <div class="odds-option">
-                            <div class="odds-label">否</div>
-                            <div class="odds-value">48%</div>
+                            <div class="odds-label">5月31日前</div>
+                            <div class="odds-value">27%</div>
                         </div>
                     </div>
-                    <div class="polymarket-description">
-                        黎巴嫩衝突升級、美以伊分歧加劇，停火協議面臨嚴峻考驗。CNN警告「瀕臨崩潰」。
-                    </div>
-                    <div class="polymarket-volume">交易量: <strong>$18.5M</strong></div>
+                    <p class="polymarket-description">
+                        市場認為<strong>41%機率</strong>美伊將在6月30日前達成永久和平協議，<strong>27%機率</strong>在5月31日前達成。市場對停火協議的信心不足，黎巴嫩問題成為最大障礙：以色列本週在黎巴嫩發動<strong>戰爭以來最大規模空襲</strong>，內塔尼亞胡明確表示「黎巴嫩沒有停火」。CNN警告停火協議「瀕臨崩潰」。市場交易量<strong>$2M+</strong>（系列市場總量更高）。
+                    </p>
+                    <div class="polymarket-volume">預測交易量：<strong>$2M+</strong></div>
                 </div>
                 
                 <div class="polymarket-card">
-                    <div class="polymarket-question">
-                        WTI油價4月內突破$105？
-                    </div>
+                    <div class="polymarket-question">WTI原油4月觸及什麼價位？</div>
                     <div class="polymarket-odds">
                         <div class="odds-option">
-                            <div class="odds-label">是</div>
+                            <div class="odds-label">突破$105</div>
                             <div class="odds-value">100%</div>
                         </div>
                         <div class="odds-option">
-                            <div class="odds-label">否</div>
-                            <div class="odds-value">0%</div>
+                            <div class="odds-label">突破$110</div>
+                            <div class="odds-value">82%</div>
                         </div>
                     </div>
-                    <div class="polymarket-description">
-                        地緣風險溢價顯著，霍爾木茲僵局持續，市場一致預期油價將突破$105。82%機率突破$110。
-                    </div>
-                    <div class="polymarket-volume">交易量: <strong>$12.3M</strong></div>
+                    <p class="polymarket-description">
+                        市場認為<strong>100%機率</strong>WTI原油將在4月突破$77.1 (-4.9%)<strong>82%機率</strong>突破$110。<strong>當前WTI徘徊在$96-104區間</strong>（近期高點$104.4），地緣風險溢價顯著。若停火破裂（52%機率），油價可能飆升至$115-125。霍爾木茲海峽仍未完全重新開放（僅14%機率4月底前恢復），可能存在水雷威脅。JP Morgan警告：若霍爾木茲僵局持續至7月，油價可能衝破<strong>$120</strong>。
+                    </p>
+                    <div class="polymarket-volume">預測交易量：<strong>$26M+</strong></div>
                 </div>
                 
                 <div class="polymarket-card">
-                    <div class="polymarket-question">
-                        霍爾木茲海峽4月底前恢復正常？
+                    <div class="polymarket-question">伊朗-以色列/美國衝突何時結束？</div>
+                    <div class="polymarket-odds">
+                        <div class="odds-option">
+                            <div class="odds-label">12月31日前</div>
+                            <div class="odds-value">94%</div>
+                        </div>
+                        <div class="odds-option">
+                            <div class="odds-label">6月30日前</div>
+                            <div class="odds-value">79%</div>
+                        </div>
                     </div>
+                    <p class="polymarket-description">
+                        市場認為<strong>94%機率</strong>伊朗-以色列/美國衝突將在2026年12月31日前結束，<strong>79%機率</strong>在6月30日前結束。這反映了市場對停火協議最終成功的長期信心，但黎巴嫩問題使短期不確定性增加。加薩停火協議滿6個月（738人死亡但停火協議穩定），為伊朗停火提供借鑒。然而，黎巴嫩問題、內塔尼亞胡政治風暴等因素可能導致停火多次破裂與重啟。
+                    </p>
+                    <div class="polymarket-volume">預測交易量：<strong>$37M+</strong></div>
+                </div>
+                
+                <div class="polymarket-card">
+                    <div class="polymarket-question">霍爾木茲海峽4月底前恢復正常？</div>
                     <div class="polymarket-odds">
                         <div class="odds-option">
                             <div class="odds-label">是</div>
@@ -1177,191 +1086,177 @@
                             <div class="odds-value">86%</div>
                         </div>
                     </div>
-                    <div class="polymarket-description">
-                        油輪/貨船觀望，可能存在水雷威脅需清理。馬士基警告恢復需「數週甚至數月」。
-                    </div>
-                    <div class="polymarket-volume">交易量: <strong>$9.7M</strong></div>
+                    <p class="polymarket-description">
+                        市場認為<strong>僅14%機率</strong>霍爾木茲海峽將在4月底前恢復正常交通。這反映了市場對停火協議脆弱性的深度擔憂。霍爾木茲海峽仍未完全重新開放：油輪/貨船繼續觀望，只有俄羅斯油輪通過。<strong>可能存在水雷威脅</strong>，需清理作業。馬士基集團表示運營恢復可能需要<strong>數週甚至數月</strong>。黎巴嫩問題成為停火協議最大威脅，若危機升級，霍爾木茲海峽可能再次關閉。
+                    </p>
+                    <div class="polymarket-volume">預測交易量：<strong>$7M+</strong></div>
                 </div>
-                
+
                 <div class="polymarket-card">
-                    <div class="polymarket-question">
-                        黎巴嫩衝突持續至4月底？
-                    </div>
+                    <div class="polymarket-question">Polymarket交易爭議引發調查</div>
                     <div class="polymarket-odds">
                         <div class="odds-option">
-                            <div class="odds-label">是</div>
-                            <div class="odds-value">97%</div>
+                            <div class="odds-label">國會調查進行中</div>
+                            <div class="odds-value">高</div>
                         </div>
                         <div class="odds-option">
-                            <div class="odds-label">否</div>
-                            <div class="odds-value">3%</div>
+                            <div class="odds-label">CFTC初步調查</div>
+                            <div class="odds-value">中</div>
                         </div>
                     </div>
-                    <div class="polymarket-description">
-                        內塔尼亞胡明確「黎巴嫩沒有停火」，以色列本週發動戰爭以來最大規模空襲。美以伊存在根本性分歧。
-                    </div>
-                    <div class="polymarket-volume">交易量: <strong>$15.2M</strong></div>
-                </div>
-                
-                <div class="polymarket-card">
-                    <div class="polymarket-question">
-                        川普6月前宣布伊朗戰爭結束？
-                    </div>
-                    <div class="polymarket-odds">
-                        <div class="odds-option">
-                            <div class="odds-label">是</div>
-                            <div class="odds-value">15%</div>
-                        </div>
-                        <div class="odds-option">
-                            <div class="odds-label">否</div>
-                            <div class="odds-value">85%</div>
-                        </div>
-                    </div>
-                    <div class="polymarket-description">
-                        當前局勢複雜，黎巴嫩問題是最大障礙。停火協議面臨崩潰風險，6月前實現全面和平可能性較低。
-                    </div>
-                    <div class="polymarket-volume">交易量: <strong>$8.9M</strong></div>
+                    <p class="polymarket-description">
+                        國會議員呼籲調查Polymarket平台，因多個新賬戶通過<strong>精準押注伊朗戰爭事件</strong>獲利數十萬美元。超過<strong>$185M+</strong>流入與美伊停火相關的預測市場。部分新賬戶在4月7日（停火宣佈前一天）精準押注停火日期，引發內幕交易質疑。CFTC已啟動初步調查。Polymarket伊朗戰爭相關交易總額超過<strong>$1.1B+</strong>，成為地緣政治預測市場的重要指標，但精準押注事件引發對預測市場透明度和公平性的質疑。
+                    </p>
+                    <div class="polymarket-volume">總交易量（伊朗戰爭）：<strong>$1.1B+</strong> | 爭議交易獲利：~$1M</div>
                 </div>
             </div>
         </section>
         
-        <!-- 黃金市場分析 -->
-        <section class="section">
-            <h2 class="section-title" style="--section-accent: #f59e0b;">
-                <span class="section-title-icon">✨</span>
-                黃金市場分析
-            </h2>
-            
-            <div class="market-subsection">
-                <div class="market-grid">
-                    <!-- 金价指标 -->
-                    <div class="market-card-wrapper">
-                        <div class="market-card-title current">💰 現貨黃金</div>
-                        <div class="market-card gold-card">
-                        <div class="market-value">暫無數據<span class="market-unit">/盎司</span></div>
-                        </div>
-                        <div class="market-change positive">▲ +2.8%</div>
-                        <div class="market-meta">
-                            <span>4月14日 00:40</span>
-                            <span class="market-peak">避險需求升溫</span>
-                        </div></div>
-                    
-                    <!-- 金价预测开始 -->
-                                        <div class="market-card-wrapper prediction-price">
-                        <div class="market-card-title prediction">📊 短期預測（7日）</div>
-                        <div class="market-card gold-card prediction-card">
-                        <div class="market-value">$4,850-4,950</div>
-                        </div>
-                        <div class="market-change positive">▲ 預測上漲 +2-4%</div>
-                        <div class="market-meta">
-                            <span>7日內</span>
-                            <span class="market-peak">避險情緒主導</span>
-                        </div></div>
-                    
-                    <div class="market-card-wrapper prediction-price">
-                        <div class="market-card-title prediction">📊 悲觀情境（停火破裂）</div>
-                        <div class="market-card gold-card prediction-card">
-                        <div class="market-value">$5,100-5,300</div>
-                        </div>
-                        <div class="market-change positive">▲ 暴漲 +7-11%</div>
-                        <div class="market-meta">
-                            <span>數日內</span>
-                            <span class="market-recovery">機率：52%</span>
-                        </div></div>
-                    </div>
-                    
-                    <div class="market-card stock-analysis">
-                        <div class="analysis-title">📊 金價驅動因素</div>
-                        <ul class="analysis-list">
-                            <li><strong>地緣風險溢價</strong>：停火協議面臨崩潰風險（52%機率破裂），黎巴嫩衝突升級，避險需求升溫</li>
-                            <li><strong>美元走弱預期</strong>：若停火破裂，Fed可能延遲加息，利好黃金</li>
-                            <li><strong>央行購金持續</strong>：新興市場央行持續增持黃金儲備，支撐長期需求</li>
-                            <li><strong>技術面強勢</strong>：突破$4,750阻力位，下一目標$5,000</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 油價市場分析 -->
+        <!-- 市場波動分析 -->
         <section class="section">
             <h2 class="section-title" style="--section-accent: #10b981;">
-                <span class="section-title-icon">🛢️</span>
-                國際油價分析（7日預測）
+                <span class="section-title-icon">📈</span>
+                市場波動分析（7日預測）
             </h2>
             
+            <!-- 油價波動 -->
             <div class="market-subsection">
+                <h3 class="market-subtitle">
+                    <span class="market-icon">🛢️</span>
+                    國際油價 7 日預測
+                </h3>
+                
                 <div class="market-grid">
-                    <div class="market-card-wrapper current-price">
-                        <div class="market-card-title current oil">💰 當前 WTI 原油</div>
-                        <div class="market-card oil-card">
-                        <div class="market-value">$96-104<span class="market-unit">/桶</span></div>
+                    <div class="market-card oil-card">
+                        <div class="market-card-header">
+                            <div class="market-label">當前 WTI 原油</div>
+                            <div class="market-value">$96-104<span class="market-unit">/桶</span></div>
                         </div>
                         <div class="market-change positive">▲ 近期高點$104.4</div>
                         <div class="market-meta">
                             <span>4月13日 09:33</span>
                             <span class="market-peak">地緣風險溢價</span>
-                        </div></div>
+                        </div>
+                    </div>
                     
-                    <div class="market-card-wrapper current-price">
-                        <div class="market-card-title current oil">💰 當前 Brent 原油</div>
-                        <div class="market-card oil-card">
-                        <div class="market-value">$95-103<span class="market-unit">/桶</span></div>
+                    <div class="market-card oil-card">
+                        <div class="market-card-header">
+                            <div class="market-label">當前 Brent 原油</div>
+                            <div class="market-value">$95-103<span class="market-unit">/桶</span></div>
                         </div>
                         <div class="market-change positive">▲ 近期高點$102.3</div>
                         <div class="market-meta">
                             <span>4月13日 09:33</span>
                             <span class="market-peak">停火脆弱擔憂</span>
-                        </div></div>
-                    
-                    <!-- 油价预测开始 -->
-                                        <div class="market-card-wrapper prediction-price">
-                        <div class="market-card-title prediction">📊 樂觀情境（停火成功）</div>
-                        <div class="market-card oil-card prediction-card">
-                        <div class="market-value">$92-98</div>
                         </div>
+                    </div>
+                    
+                    <div class="market-card oil-card">
+                        <div class="market-card-header">
+                            <div class="market-label">樂觀情境（停火成功）</div>
+                            <div class="market-value">$92-98</div>
+                        </div>
+
                         <div class="market-change negative">▼ 預測回落 -4%</div>
                         <div class="market-meta">
                             <span>7日內</span>
                             <span class="market-trend">機率：15%</span>
-                        </div></div>
+                        </div>
+                    </div>
                     
-                    <div class="market-card-wrapper prediction-price">
-                        <div class="market-card-title prediction">📊 基準情境（僵局持續）</div>
-                        <div class="market-card oil-card prediction-card">
-                        <div class="market-value">$98-107</div>
+                    <div class="market-card oil-card">
+                        <div class="market-card-header">
+                            <div class="market-label">基準情境（僵局持續）</div>
+                            <div class="market-value">$98-107</div>
                         </div>
                         <div class="market-change positive">▲ 預測震盪 ±3%</div>
                         <div class="market-meta">
                             <span>7日內</span>
                             <span class="market-note">機率：33%</span>
-                        </div></div>
+                        </div>
+                    </div>
                     
-                    <div class="market-card-wrapper prediction-price">
-                        <div class="market-card-title prediction">📊 悲觀情境（停火破裂）</div>
-                        <div class="market-card oil-card prediction-card">
-                        <div class="market-value">$115-125</div>
+                    <div class="market-card oil-card">
+                        <div class="market-card-header">
+                            <div class="market-label">悲觀情境（停火破裂）</div>
+                            <div class="market-value">$115-125</div>
                         </div>
                         <div class="market-change negative">▲ 預測暴漲 +15%</div>
                         <div class="market-meta">
                             <span>數日內</span>
                             <span class="market-recovery">機率：52%</span>
-                        </div></div>
+                        </div>
                     </div>
-                    
+
                     <div class="market-card oil-analysis">
                         <div class="analysis-title">📊 油價預測分析</div>
                         <ul class="analysis-list">
                             <li><strong>地緣風險溢價顯著</strong>：WTI原油徘徊在<strong>$96-104區間</strong>（近期高點$104.4），Polymarket預測<strong>100%機率</strong>4月內突破$105，<strong>82%機率</strong>突破$110。黎巴嫩問題成為最大威脅：以色列本週在黎巴嫩發動<strong>戰爭以來最大規模空襲</strong>（數百架次），內塔尼亞胡明確表示「黎巴嫩沒有停火」。CNN警告停火協議「瀕臨崩潰」。市場預期<strong>52%機率</strong>停火可能在4月21日前破裂，油價可能飆升至$115-125</li>
                             <li><strong>霍爾木茲海峽仍未完全開放</strong>：油輪/貨船繼續觀望，只有俄羅斯油輪通過。<strong>可能存在水雷威脅</strong>，需清理作業。馬士基集團表示運營恢復可能需要<strong>數週甚至數月</strong>。Polymarket預測<strong>僅14%機率</strong>霍爾木茲海峽4月底前恢復正常。JP Morgan警告若霍爾木茲僵局持續至7月，油價可能衝破<strong>$120</strong>。Goldman警告：再關閉一個月，2026年全年Brent將維持<strong>$100+</strong>。油價維持高位反映市場對霍爾木茲風險的擔憂</li>
-                            <li><strong>三大情境預測</strong>：<strong>悲觀情境（52%）</strong>：停火數日內破裂，油價飆升至$115-125。<strong>基準情境（33%）</strong>：僵局持續但隨時可能破裂，油價震盪$98-107。<strong>樂觀情境（15%）</strong>：停火奇蹟成功，油價回落至$92-98。市場傾向悲觀情境，油價維持高位</li>
+                            <li><strong>加薩停火經驗借鑒</strong>：加薩停火協議滿6個月（738人死亡但停火協議穩定），為伊朗停火提供經驗：<strong>明確範圍、執行機制、監督方可持續</strong>。然而，伊朗停火協議在範圍界定（黎巴嫩問題）上存在<strong>根本性分歧</strong>，執行難度遠高於加薩停火，崩潰風險極高。市場擔憂伊朗停火協議比加薩停火<strong>脆弱得多</strong></li>
+                            <li><strong>市場情緒謹慎</strong>：油價在$96-104區間波動，地緣風險溢價顯著。內塔尼亞胡政治風暴、黎巴嫩衝突升級等因素使市場高度警惕。樂觀情境機率維持<strong>15%</strong>，顯示市場對停火協議的信心不足。Polymarket預測市場也反映了類似趨勢：永久和平機率僅<strong>27%（5/31前）</strong>或<strong>41%（6/30前）</strong></li>
+                            <li><strong>悲觀情境機率最高</strong>：<strong>52%機率</strong>停火破裂，高於樂觀和基準情境。若黎巴嫩危機繼續升級或內塔尼亞胡政治風暴導致以色列政策轉向，停火可能在數日內崩潰，油價飆升至$115-125。沙特SATORP煉油廠攻擊事件也加劇能源供應擔憂。油價近期觸及$104.4，顯示市場對停火脆弱性的擔憂</li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </section>
-        
-<!-- 市場洞察 -->
+
+            <!-- 防務/能源股預測 -->
+            <div class="market-subsection">
+                <h3 class="market-subtitle">
+                    <span class="market-icon">📈</span>
+                    防務/能源股 7 日預測
+                </h3>
+                
+                <div class="market-grid">
+                    <div class="market-card stock-card">
+                        <div class="market-card-header">
+                            <div class="market-label">洛克希德馬丁 (LMT)</div>
+                            <div class="market-value">$613.72</div>
+                        </div>
+                        <div class="market-change negative">▼ -10.15 (-1.63%)</div>
+                        <div class="market-meta">
+                            <span>4月10日收盤</span>
+                            <span class="market-recovery">7日預測：上漲 $630-665</span>
+                        </div>
+                    </div>
+                    
+                    <div class="market-card stock-card">
+                        <div class="market-card-header">
+                            <div class="market-label">RTX (雷神)</div>
+                            <div class="market-value">$197-203</div>
+                        </div>
+                        <div class="market-change positive">▲ 12個月 +68%</div>
+                        <div class="market-meta">
+                            <span>4月8日 $203.48</span>
+                            <span class="market-recovery">7日預測：上漲 $210-230</span>
+                        </div>
+                    </div>
+                    
+                    <div class="market-card stock-card">
+                        <div class="market-card-header">
+                            <div class="market-label">能源指數ETF (XLE)</div>
+                            <div class="market-value">$56.94</div>
+                        </div>
+                        <div class="market-change negative">▼ -0.39 (-0.68%)</div>
+                        <div class="market-meta">
+                            <span>4月10日收盤</span>
+                            <span class="market-recovery">7日預測：上漲 $60-65</span>
+                        </div>
+                    </div>
+                    
+                    <div class="market-card stock-analysis">
+                        <div class="analysis-title">📊 股市預測分析</div>
+                        <ul class="analysis-list">
+                            <li><strong>防務股預期上漲</strong>：油價徘徊在$96-104區間，地緣風險溢價顯著，停火協議面臨嚴峻考驗（52%機率破裂）。若停火破裂（黎巴嫩危機升級），LMT將在數日內暴漲15-20%至$630-665，RTX將暴漲至$210-230（基於悲觀情境）。樂觀情境下（15%機率）震盪±3%，基準情境下（33%機率）上漲5-8%。市場預期防務股在所有情境下都有上漲空間。RTX過去12個月已暴漲<strong>+68%</strong>，顯示地緣衝突對防務股的強勁支撐</li>
+                            <li><strong>能源ETF受益油價高位</strong>：XLE受益於油價維持高位（$96-104區間），Polymarket預測<strong>100%機率</strong>WTI突破$105，<strong>82%機率</strong>突破$110。預計7日內XLE上漲至$60-65（+5-14%）。若停火破裂，XLE可能暴漲至$65-70。樂觀情境下（油價回落至$92-98）XLE震盪±2%</li>
+                            <li><strong>長期需求強勁</strong>：LMT訂單積壓創紀錄。即使停火成功（15%機率），中東重建和軍備更新將帶來持續需求。內塔尼亞胡政治風暴可能導致以色列增加軍購以平息國內批評。RTX過去12個月暴漲+68%，顯示市場對防務股的長期信心</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 市場洞察 -->
             <div class="market-insight">
                 <h3 class="insight-title">🔍 深度解析：停火協議面臨嚴峻考驗</h3>
                 
@@ -1455,12 +1350,14 @@
                 
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
-                    <div class="timeline-date">4月8日</div>
+                    <div class="timeline-date">4月8日 🔥</div>
                     <div class="timeline-content">
-                        <h3>🔥 兩週停火協議達成</h3>
+                        <h3>兩週停火協議達成 + 黎巴嫩空襲</h3>
                         <ul>
                             <li>川普宣佈<span class="highlight">兩週停火協議</span>（至4月21日），由巴基斯坦調解</li>
                             <li>川普派遣<span class="highlight">副總統萬斯</span>於本週末前往伊斯蘭堡會談</li>
+                            <li>停火宣佈後，以色列在黎巴嫩發動<span class="alert">戰爭以來最大規模空襲</span>（數百架次）</li>
+                            <li>內塔尼亞胡明確表示「<span class="alert">黎巴嫩沒有停火</span>」，將繼續打擊真主黨</li>
                             <li>Polymarket平台交易員通過<span class="alert">精準押注</span>獲利近百萬美元，CFTC啟動初步調查</li>
                         </ul>
                     </div>
@@ -1468,102 +1365,31 @@
                 
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
-                    <div class="timeline-date">4月8日（停火宣佈後）</div>
+                    <div class="timeline-date">4月9-13日（週三-週日）🆕</div>
                     <div class="timeline-content">
-                        <h3>🚨 以色列在黎巴嫩發動最大規模空襲</h3>
+                        <h3>🚨 停火協議面臨嚴峻考驗</h3>
                         <ul>
-                            <li>停火宣佈後，以色列在黎巴嫩發動<span class="alert">戰爭以來最大規模空襲</span>（數百架次）</li>
-                            <li>內塔尼亞胡明確表示「<span class="alert">黎巴嫩沒有停火</span>」，將繼續打擊真主黨</li>
+                            <li><strong>週三-週日（4/9-13）</strong>：以色列本週在黎巴嫩發動<span class="alert">戰爭以來最大規模空襲</span>（數百架次），內塔尼亞胡明確表示「黎巴嫩沒有停火」</li>
                             <li>美以伊三方對<span class="highlight">黎巴嫩是否包含在停火範圍內</span>存在公開分歧</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">4月9日（週三）</div>
-                    <div class="timeline-content">
-                        <h3>黎巴嫩衝突升級</h3>
-                        <ul>
-                            <li>以色列持續在黎巴嫩發動大規模空襲</li>
                             <li>伊朗批評美國提出的停火協議條款「不合理」，堅持黎巴嫩必須涵蓋在停火範圍內</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">4月10日（週四）</div>
-                    <div class="timeline-content">
-                        <h3>內塔尼亞胡政治風暴</h3>
-                        <ul>
                             <li>內塔尼亞胡在以色列國內遭遇<span class="alert">史無前例的政治風暴</span>，被指犯下「史上最嚴重政治災難」</li>
-                            <li>反對派指控他被川普「強迫接受停火」，未能實現戰爭目標</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">4月11日（週五）</div>
-                    <div class="timeline-content">
-                        <h3>📊 加薩停火協議滿6個月</h3>
-                        <ul>
-                            <li>加薩停火協議滿<span class="highlight">6個月</span>（自2025年10月11日起生效）</li>
-                            <li>儘管停火協議持續，6個月內仍有<span class="alert">738人在以色列攻擊中死亡</span>（加薩衛生部數據）</li>
-                            <li>整個加以衝突已造成<strong>超過4.9萬人死亡</strong></li>
-                            <li>加薩停火為伊朗停火提供經驗借鑒：<strong>明確範圍、執行機制、監督方可持續</strong></li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">4月12日（週六）</div>
-                    <div class="timeline-content">
-                        <h3>🤝 副總統萬斯會談巴基斯坦總理</h3>
-                        <ul>
-                            <li>美國副總統萬斯與巴基斯坦總理會談，討論停火協議執行細節</li>
-                            <li>重點包括黎巴嫩衝突問題</li>
-                            <li>內塔尼亞胡授權與黎巴嫩談判，但以色列在黎巴嫩的攻擊未停止</li>
-                            <li>國會調查Polymarket精準押注獲利事件：超過<strong>$185M+</strong>流入伊朗停火相關市場</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">4月13日（週日）</div>
-                    <div class="timeline-content">
-                        <h3>📈 油價徘徊高位 + 市場擔憂加劇</h3>
-                        <ul>
-                            <li>油價徘徊在<span class="alert">$96-104區間</span>（近期高點$104.4）</li>
-                            <li>Polymarket預測<strong>100%機率</strong>4月內突破$105，<strong>82%機率</strong>突破$110</li>
-                            <li>市場預測<strong>52%機率</strong>停火可能在4月21日前破裂</li>
                             <li>CNN警告伊朗戰爭的停火協議「<span class="alert">瀕臨崩潰</span>」</li>
-                            <li>馬士基集團表示運營恢復可能需要<strong>數週甚至數月</strong></li>
-                            <li>霍爾木茲海峽<span class="highlight">仍未完全重新開放</span>：油輪/貨船繼續觀望，只有俄羅斯油輪通過</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">4月14日（週一）🆕</div>
-                    <div class="timeline-content">
-                        <h3>⚡️ 當前局勢</h3>
-                        <ul>
-                            <li>黃金價格飆升至<strong>$4,787/盎司</strong>（+2.8%），避險需求升溫</li>
-                            <li><strong>停火協議僅剩7天</strong>（4月21日到期），破裂風險極高</li>
-                            <li>黎巴嫩衝突持續，<strong>97%機率</strong>衝突將持續至4月底</li>
-                            <li>霍爾木茲僵局持續，<strong>僅14%機率</strong>4月底前恢復正常</li>
-                            <li>市場情緒謹慎：<strong>僅15%機率</strong>停火成功</li>
+                            <li>霍爾木茲海峽<span class="highlight">仍未完全重新開放</span>：油輪/貨船繼續觀望，只有俄羅斯油輪通過。<strong>可能存在水雷威脅</strong>，需清理作業。Polymarket預測<strong>僅14%機率</strong>4月底前恢復正常</li>
+                            <li><strong>週五（4/11）</strong>：加薩停火協議滿<span class="highlight">6個月</span>（自2025年10月11日起生效），為伊朗停火提供經驗借鑒</li>
+                            <li>儘管加薩停火協議持續，6個月內仍有<span class="alert">738人在以色列攻擊中死亡</span>（加薩衛生部數據）。整個加以衝突已造成<strong>超過4.9萬人死亡</strong></li>
+                            <li>加薩停火為伊朗停火提供經驗借鑒：<strong>明確範圍、執行機制、監督方可持續</strong>。然而，伊朗停火協議在範圍界定上存在<strong>根本性分歧</strong></li>
+                            <li><strong>週六（4/12）</strong>：美國副總統萬斯與巴基斯坦總理會談，討論停火協議執行細節。重點包括黎巴嫩衝突問題</li>
+                            <li>內塔尼亞胡授權與黎巴嫩談判，但以色列在黎巴嫩的攻擊未停止。<strong>97%機率</strong>黎巴嫩衝突持續</li>
+                            <li>國會調查Polymarket精準押注獲利事件：超過<strong>$185M+</strong>流入伊朗停火相關市場，部分新賬戶精準押注獲利數十萬美元</li>
+                            <li><strong>週日（4/13 09:33）</strong>：油價徘徊在<span class="alert">$96-104區間</span>（近期高點$104.4），Polymarket預測<strong>100%機率</strong>4月內突破$105，<strong>82%機率</strong>突破$110</li>
+                            <li>市場對停火協議脆弱性的擔憂加劇，預測<strong>52%機率</strong>停火可能在4月21日前破裂</li>
+                            <li>馬士基集團表示運營恢復可能需要<strong>數週甚至數月</strong>。JP Morgan/Goldman警告霍爾木茲風險未消</li>
+                            <li>市場情緒謹慎：<strong>僅15%機率</strong>停火成功，油價回落至$92-98。<strong>52%機率</strong>停火破裂，油價可能飆升至$115-125</li>
                             <li>沙特SATORP煉油廠和東西石油管道遭攻擊關閉，加劇能源供應擔憂</li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </section>
         </section>
         
         <footer>
